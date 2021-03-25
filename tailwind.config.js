@@ -9,7 +9,7 @@ module.exports = {
 				"primary-light": "#3A3B3C",
 				secundary: "#CACDD3",
 				"secundary-light": "#EFF1F8",
-				realced: "#2D88FF",
+				realced: "#2bc42e",
 				error: "#F02849",
 				info: "#E57E1F",
 				success: "#31A24C",

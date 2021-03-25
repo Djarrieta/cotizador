@@ -5,9 +5,11 @@ import "firebase/storage";
 import firebaseConfig from "./firebaseConfig"
 
 const Firebase =firebase.initializeApp(firebaseConfig);
+export const firebaseDate=firebase.firestore.FieldValue.serverTimestamp()
 export const firebaseAuth=Firebase.auth()
 export const firebaseDB=Firebase.firestore()
 export const firebaseStorage=Firebase.storage()
+
 
 
 
