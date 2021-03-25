@@ -34,7 +34,7 @@ function App(): any {
 			<BrowserRouter>
 				<div className="h-screen overflow-x-hidden overflow-y-scroll text-secundary bg-primary-dark">
 					<Navbar currentUser={currentUser} />
-					<div style={{ height: "calc(100vh - 100px)" }}>
+					<div style={{ height: "calc(100vh - 85px)" }}>
 						<Switch>
 							{routes.map((route, n) => {
 								if (route.protected && currentUser) {
@@ -52,7 +52,7 @@ function App(): any {
 							})}
 						</Switch>
 					</div>
-					<span className="flex w-full justify-center">Dja.Red</span>
+					<span className="flex w-full justify-center text-xs">Dja.Red</span>
 				</div>
 			</BrowserRouter>
 		);

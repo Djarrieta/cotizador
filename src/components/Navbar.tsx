@@ -16,7 +16,7 @@ const Navbar = (props: any) => {
 
 	return (
 		<div className="border-b bg-primary border-primary-light">
-			<nav className="container flex items-center justify-around h-16 m-auto ">
+			<nav className="container flex items-center justify-between px-2 h-16 m-auto ">
 				{/* PrincipalMenu */}
 				<div className="relative flex items-center cursor-pointer">
 					<svg
