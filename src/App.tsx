@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import routes from "./models/routes/routes";
-import { firebaseAuth, firebaseDB } from "./models/firebase/firebase";
-
+import { firebaseAuth, firebaseDB } from "./config/firebase/firebase";
 import Navbar from "./components/Navbar";
 
-function App(): any {
-	const [loading, setLoading] = useState(false);
+import Home from "./views/Home";
+import Error404 from "./views/Error404";
+import Profile from "./views/Profile";
+import Teams from "./views/Teams/Teams";
+import TeamDet from "./views/Teams/TeamDet";
+import SignIn from "./views/SignIn";
+import SignUp from "./views/SignUp";
+import Loader from "./components/Loader";
+
+function App() {
+	const [loading, setLoading] = useState(true);
 	const [currentUser, setCurrentUser] = useState<any>(null);
 
 	useEffect(() => {
@@ -18,41 +25,64 @@ function App(): any {
 					.doc(uid)
 					.get()
 					.then((result) => {
-						const test = { ...result.data(), uid: result.id };
-						setCurrentUser(test);
+						const data = { ...result.data() };
+						setCurrentUser(data);
+						setLoading(false);
 					});
 			} else {
 				setCurrentUser(null);
+				setLoading(false);
 			}
-			setLoading(false);
 		});
 	}, []);
 	if (loading) {
-		return <div>Cargando...</div>;
+		return <Loader />;
 	} else {
 		return (
 			<BrowserRouter>
 				<div className="h-screen overflow-x-hidden overflow-y-scroll text-secundary bg-primary-dark">
 					<Navbar currentUser={currentUser} />
-					<div style={{ height: "calc(100vh - 85px)" }}>
-						<Switch>
-							{routes.map((route, n) => {
-								if (route.protected && currentUser) {
-									return <Redirect key={n} to={route.redirect} />;
-								} else {
-									return (
-										<Route
-											key={n}
-											path={route.path}
-											exact={true}
-											component={route.component}
-										/>
-									);
-								}
-							})}
-						</Switch>
-					</div>
-					<span className="flex w-full justify-center text-xs">Dja.Red</span>
+					<Switch>
+						{/* Home */}
+						<Route exact path="/">
+							<Home currentUser={currentUser} />
+						</Route>
+						{/* SignIn */}
+						<Route exact path="/ingresar">
+							{!currentUser ? <SignIn /> : <Redirect to="/" />}
+						</Route>
+						{/* SignUp */}
+						<Route exact path="/registrarse">
+							{!currentUser ? <SignUp /> : <Redirect to="/" />}
+						</Route>
+
+						{/* Profile */}
+						<Route exact path="/perfil/:id">
+							{currentUser ? (
+								<Profile currentUser={currentUser} />
+							) : (
+								<Redirect to="/ingreso" />
+							)}
+						</Route>
+						{/* Equipos */}
+						<Route exact path="/equipos">
+							{currentUser ? (
+								<Teams currentUser={currentUser} />
+							) : (
+								<Redirect to="/ingreso" />
+							)}
+						</Route>
+						{/* Equipo Detail */}
+						<Route exact path="/equipo/:id">
+							{currentUser ? (
+								<TeamDet currentUser={currentUser} />
+							) : (
+								<Redirect to="/ingreso" />
+							)}
+						</Route>
+						{/* Error404 */}
+						<Route component={Error404} />
+					</Switch>
 				</div>
 			</BrowserRouter>
 		);

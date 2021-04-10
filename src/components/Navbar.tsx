@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { firebaseAuth } from "../models/firebase/firebase";
+import { firebaseAuth } from "../config/firebase/firebase";
 
 const Navbar = (props: any) => {
 	const { currentUser } = props;
@@ -16,7 +16,7 @@ const Navbar = (props: any) => {
 
 	return (
 		<div className="border-b bg-primary border-primary-light">
-			<nav className="container flex items-center justify-between px-2 h-16 m-auto ">
+			<nav className="container flex items-center justify-between h-16 px-2 m-auto ">
 				{/* PrincipalMenu */}
 				<div className="relative flex items-center cursor-pointer">
 					<svg
@@ -98,17 +98,33 @@ const Navbar = (props: any) => {
 								{currentUser && (
 									<Link
 										className="w-full px-2 py-1 my-1 overflow-hidden text-center border-b rounded hover:bg-primary-light border-primary-light text-realced"
-										to="/profile"
+										to={"/perfil/" + currentUser.uid}
 									>
 										{currentUser.name || "Perfil"}
+									</Link>
+								)}
+								{currentUser && (
+									<Link
+										className="w-full px-2 py-1 my-1 overflow-hidden text-center border-b rounded hover:bg-primary-light border-primary-light text-realced"
+										to={"/equipos/"}
+									>
+										{"Equipos"}
 									</Link>
 								)}
 								{!currentUser && (
 									<Link
 										className="w-full px-2 py-1 my-1 overflow-hidden text-center rounded hover:bg-primary-light text-realced"
-										to="/ingreso"
+										to="/ingresar"
 									>
-										Login
+										Ingresar
+									</Link>
+								)}
+								{!currentUser && (
+									<Link
+										className="w-full px-2 py-1 my-1 overflow-hidden text-center rounded hover:bg-primary-light text-realced"
+										to="/registrarse"
+									>
+										Registrarse
 									</Link>
 								)}
 								{currentUser && (
