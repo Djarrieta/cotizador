@@ -29,6 +29,9 @@ const SignIn = () => {
 					case "auth/user-not-found":
 						setProblems("El usuario ingresado no existe.");
 						break;
+					case "auth/wrong-password":
+						setProblems("Contraseña incorrecta.");
+						break;
 
 					default:
 						setProblems("Hubo un problema, intenta nuevamente.");
@@ -65,12 +68,16 @@ const SignIn = () => {
 							type="submit"
 							className="w-full py-2 border rounded-lg cursor-pointer focus:outline-none border-realced text-realced hover:bg-primary-light hover:text-secundary-light bg-primary"
 						/>
-						<div className="flex justify-center w-full px-6 my-2">
+						<div className="flex flex-col items-center justify-center w-full px-6 my-2">
 							<span>
 								¿No tienes una cuenta?{" "}
 								<Link to="/registrarse" className="text-realced">
 									Registrarse
 								</Link>
+							</span>
+							<span className="cursor-pointer text-realced">
+								{" "}
+								Olvidé mi contraseña
 							</span>
 						</div>
 					</form>

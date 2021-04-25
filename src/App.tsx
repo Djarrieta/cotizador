@@ -34,7 +34,7 @@ function App() {
 				setLoading(false);
 			}
 		});
-	}, []);
+	}, [currentUser]);
 	if (loading) {
 		return <Loader />;
 	} else {
@@ -61,7 +61,7 @@ function App() {
 							{currentUser ? (
 								<Profile currentUser={currentUser} />
 							) : (
-								<Redirect to="/ingreso" />
+								<Redirect to="/ingresar" />
 							)}
 						</Route>
 						{/* Equipos */}
@@ -69,7 +69,7 @@ function App() {
 							{currentUser ? (
 								<Teams currentUser={currentUser} />
 							) : (
-								<Redirect to="/ingreso" />
+								<Redirect to="/ingresar" />
 							)}
 						</Route>
 						{/* Equipo Detail */}
@@ -77,7 +77,7 @@ function App() {
 							{currentUser ? (
 								<TeamDet currentUser={currentUser} />
 							) : (
-								<Redirect to="/ingreso" />
+								<Redirect to="/ingresar" />
 							)}
 						</Route>
 						{/* Error404 */}
