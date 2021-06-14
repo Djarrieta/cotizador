@@ -4,7 +4,7 @@ const Section = (props: {
 	children?: any;
 	name: string;
 	button?: boolean;
-	handleFunction?: any;
+	handleFunction?: ()=>void;
 }) => {
 	const { children, name, button, handleFunction } = props;
 
@@ -18,7 +18,10 @@ const Section = (props: {
 					</div>
 				)}
 			</div>
+			<div className="px-1 py-2">
+
 			{children}
+			</div>
 		</section>
 	);
 };

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { Context } from "./ContextProvider";
 
 import Home from "../../Home/views/Home";
 import Error404 from "../../Error404/views/Error404";
@@ -8,21 +9,19 @@ import Teams from "../../Teams/views/Teams";
 import TeamDet from "../../Teams/views/TeamDet";
 import SignIn from "../../Users/views/SignIn";
 import SignUp from "../../Users/views/SignUp";
-import { Context } from "./ContextProvider";
+
 const Routes = () => {
 	const { currentUser } = useContext(Context);
-	const routes = [
-		{ component: () => Home, path: "/",condition:true,redirect:"/" },
-		{ component: () => SignIn, path: "/ingresar", condition: !currentUser, redirect:"/"},
-	];
-
 	return (
 		<Switch>
-			{routes.map((route) => {
-				const component = route.component;
-				return <Route path={route.path}>{route.condition ? component: <Redirect to={route.redirect} />}</Route>;
-			})}
-
+			{/* Home */}
+			<Route exact path="/">
+				<Home />
+			</Route>
+			{/* SignIn */}
+			<Route exact path="/ingresar">
+				{!currentUser ? <SignIn /> : <Redirect to="/" />}
+			</Route>
 			{/* SignUp */}
 			<Route exact path="/registrarse">
 				{!currentUser ? <SignUp /> : <Redirect to="/" />}

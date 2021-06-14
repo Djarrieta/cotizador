@@ -19,7 +19,7 @@ const SignIn = () => {
 	const onSubmit = (data: { email: string; password: string }) => {
 		setLoading(true);
 		if (!data.email) {
-			setAlert({ text: "Email no puede estar vacía.", type: "error" });
+			setAlert({ text: "Email no puede estar vacío.", type: "error" });
 			setLoading(false);
 		} else if (!data.password) {
 			setAlert({ text: "Contraseña no puede estar vacía.", type: "error" });
@@ -49,6 +49,7 @@ const SignIn = () => {
 							<input
 								name="email"
 								placeholder="tucorreo@ejemplo.com"
+								defaultValue="arrieta.dario@hotmail.com"
 								ref={register}
 								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
 							/>
@@ -58,6 +59,7 @@ const SignIn = () => {
 							<input
 								name="password"
 								type="password"
+								defaultValue="arrieta.dario@hotmail.com"
 								ref={register}
 								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
 							/>

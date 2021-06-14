@@ -8,11 +8,15 @@ const Home = () => {
 	const { currentUser } = useContext(Context);
 	return (
 		<Container>
+
+			<Section name="OperacionesAPP">
+				<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias eos alias blanditiis atque porro nobis, repudiandae deserunt nihil quis rerum eligendi fugiat molestiae officia accusantium ipsum itaque architecto eveniet? Accusantium.</span>
+			</Section>
 			<Section name="Opciones">
 				<div className="flex justify-around w-full my-4 text-realced ">
 					{currentUser && <Link to={"/perfil/" + currentUser.uid}>Perfil</Link>}
 					{currentUser && <Link to={"/equipos/"}>Equipos</Link>}
-					<Link to="/ingresar">Inicia sesión</Link>
+					{!currentUser && <Link to="/ingresar">Inicia sesión</Link>}
 					<Link to="/adsfasdfadf">Error</Link>
 				</div>
 			</Section>

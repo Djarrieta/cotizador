@@ -1,18 +1,20 @@
+import React, { useContext } from "react";
 import Container from "../../../GlobalComponents/Container";
 import Section from "../../App/components/Section";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import {
-	firebaseAuth,
-	firebaseDate,
-	firebaseDB,
-} from "../../../config/firebase";
+import { Context } from "../../App/components/ContextProvider";
+import signUpService from "../services/SignUpService";
+import Cookies from "universal-cookie";
 
 const SignUp = () => {
 	const { register, handleSubmit, errors } = useForm();
-	const [problems, setProblems] = useState("");
 	const history = useHistory();
+	const { setAlert, setLoading, setCurrentUser } = useContext(Context);
+
+	const cookie = new Cookies();
+
 	const onSubmit = (data: {
 		name: string;
 		email: string;
@@ -20,54 +22,35 @@ const SignUp = () => {
 		password: string;
 		confirmation: string;
 	}) => {
-		setProblems("");
+		setLoading(true);
 		if (!data.name) {
-			setProblems("Nombre inválido");
+			setAlert({ text: "El nombre no puede estar vacío.", type: "error" });
+			setLoading(false);
 		} else if (!data.email) {
-			setProblems("Correo inválido");
+			setAlert({ text: "El email no puede estar vacío.", type: "error" });
+			setLoading(false);
 		} else if (!data.whatsapp) {
-			setProblems("Número de Whatsapp inválido");
+			setAlert({ text: "Número de whatsapp inválido.", type: "error" });
+			setLoading(false);
 		} else if (!data.password) {
-			setProblems("Contraseña inválida");
+			setAlert({ text: "Contraseña no puede estar vacía.", type: "error" });
+			setLoading(false);
 		} else if (data.password !== data.confirmation) {
-			setProblems("Contraseñas no coinciden");
-		}
-		if (problems) {
-			return;
-		}
-		firebaseAuth
-			.createUserWithEmailAndPassword(data.email, data.password)
-			.then((newUser: any) => {
-				firebaseDB
-					.collection("users")
-					.doc(newUser.user.uid)
-					.set({
-						uid: newUser.user.uid,
-						name: data.name,
-						email: data.email,
-						whatsapp: data.whatsapp,
-						pictureURL:
-							"https://firebasestorage.googleapis.com/v0/b/cotizador-2db51.appspot.com/o/assets%2FProfile.png?alt=media&token=74b7d3e1-4f26-4a16-b5ac-d8ac0a3a72ca",
-						created: firebaseDate,
-						updated: firebaseDate,
-					})
-					.then(() => {
-						history.push("/");
-					});
-			})
-			.catch((e) => {
-				switch (e.code) {
-					case "auth/weak-password":
-						setProblems("Coloca una contraseña más dificil de adivinar.");
-						break;
-					case "auth/email-already-in-use":
-						setProblems("El correo ingresado ya está en uso.");
-						break;
-					default:
-						setProblems("Hubo un problema, intenta nuevamente.");
+			setAlert({ text: "Contraseñas no coinciden.", type: "error" });
+			setLoading(false);
+		} else {
+			signUpService(data)
+			.then((response) => {
+				setAlert(response.alert);
+				if (response.data) {
+					setCurrentUser(response.data);
+					cookie.set("currentUser", response.data);
+					history.push("/");
 				}
-				console.error(e);
-			});
+				setLoading(false);
+			})
+			.catch(() => setLoading(false));
+		}
 	};
 	return (
 		<Container>
@@ -79,6 +62,7 @@ const SignUp = () => {
 							<label className="text-xs capitalize">Nombre</label>
 							<input
 								name="name"
+								defaultValue="darío Arrieta"
 								type="text"
 								placeholder="Nombre"
 								ref={register}
@@ -91,6 +75,7 @@ const SignUp = () => {
 							<input
 								name="email"
 								placeholder="tucorreo@ejemplo.com"
+								defaultValue="arrieta.dario@hotmail.com"
 								ref={register}
 								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
 							/>
@@ -102,6 +87,7 @@ const SignUp = () => {
 								name="whatsapp"
 								type="number"
 								placeholder="573001234567"
+								defaultValue="573008718217"
 								ref={register}
 								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
 							/>
@@ -112,6 +98,7 @@ const SignUp = () => {
 							<input
 								name="password"
 								type="password"
+								defaultValue="arrieta.dario@hotmail.com"
 								ref={register}
 								className="px-2 mb-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
 							/>
@@ -122,12 +109,11 @@ const SignUp = () => {
 							<input
 								name="confirmation"
 								type="password"
+								defaultValue="arrieta.dario@hotmail.com"
 								ref={register}
 								className="px-2 mb-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
 							/>
 						</div>
-						{/* problems */}
-						<span className="text-error">{problems}</span>
 						<input
 							type="submit"
 							className="w-full py-2 border rounded-lg cursor-pointer focus:outline-none border-realced text-realced hover:bg-primary-light hover:text-secundary-light bg-primary"

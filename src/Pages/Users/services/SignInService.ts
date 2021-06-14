@@ -2,7 +2,7 @@ import { firebaseAuth, firebaseDB } from "../../../config/firebase";
 import AlertModel from "../../App/models/AlertModel";
 import CurrentUserModel from "../models/CurrentUserModel";
 
-const  signInService = (
+const signInService = (
 	email: string,
 	password: string
 ): Promise<{
@@ -27,24 +27,19 @@ const  signInService = (
 				});
 		})
 		.catch((error) => {
-			switch (error.code) {
-				case "auth/invalid-email":
-					return {alert:{type:"error",text:"El formato del correo no es válido."}}
-				case "auth/user-not-found":
-					return {
-						alert: { type: "error", text: "El usuario ingresado no existe." },
-					};
-				case "auth/wrong-password":
-					return { alert: { type: "error", text: "Contraseña incorrecta." } };
-				default:
-					return {
-						alert: {
-							type: "error",
-							text: "Hubo un problema, intenta nuevamente.",
-						},
-					};
-			}
+			console.error(error.code)
+			const alertCases = {
+				"auth/invalid-email": "El formato del correo no es válido.",
+				"auth/user-not-found": "El usuario ingresado no existe.",
+				"auth/wrong-password": "Contraseña incorrecta.",
+			};
+			return {
+				alert: {
+					type: "error",
+					text: alertCases[error.code] || "El formato del correo no es válido.",
+				},
+			};
 		});
 };
 
-export default signInService
+export default signInService;

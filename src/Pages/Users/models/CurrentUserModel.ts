@@ -4,4 +4,5 @@ export default interface CurrentUserModel{
   email?: string;
   whatsapp?: any;
   pictureURL?: string;
+  password?:string
 }
