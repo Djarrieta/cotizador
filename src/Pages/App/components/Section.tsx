@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "../../../GlobalComponents/Button";
 
 const Section = (props: {
 	children?: any;

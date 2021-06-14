@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import Container from "../../components/Container";
-import Section from "../../components/Section";
-import { firebaseDB } from "../../config/firebase/firebase";
-import IMember from "../../config/interfase/IMember";
-import ITeam from "../../config/interfase/ITeam";
+import Container from "../../../GlobalComponents/Container";
+import Section from "../../App/components/Section";
+import { firebaseDB } from "../../../config/firebase";
+import IMember from "../models/MemberInterface";
+import ITeam from "../models/TeamInterface";
 
 const Teams = (props: any) => {
 	const history = useHistory();

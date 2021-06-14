@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import Button from "../components/Button";
-import Loader from "../components/Loader";
-import Container from "../components/Container";
-import Section from "../components/Section";
-import { firebaseDate, firebaseDB } from "../config/firebase/firebase";
+import Button from "../../../GlobalComponents/Button";
+import Container from "../../../GlobalComponents/Container";
+import Section from "../../App/components/Section";
+import { firebaseDate, firebaseDB } from "../../../config/firebase";
 
 const Profile = (props: any) => {
 	const { id } = useParams<{ id: string }>();
@@ -53,9 +52,7 @@ const Profile = (props: any) => {
 				console.error(e);
 			});
 	}, []);
-	if (loading) {
-		return <Loader />;
-	}
+
 	return (
 		<Container>
 			<Section name="Perfil">

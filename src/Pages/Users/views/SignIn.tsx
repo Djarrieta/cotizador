@@ -1,43 +1,42 @@
-import Container from "../components/Container";
-import Section from "../components/Section";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { firebaseAuth } from "../config/firebase/firebase";
+import Cookies from "universal-cookie";
+
+import Container from "../../../GlobalComponents/Container";
+import Section from "../../App/components/Section";
+
+import { Context } from "../../App/components/ContextProvider";
 import { Link, useHistory } from "react-router-dom";
+import signInService from "../services/SignInService";
+
+const cookie = new Cookies();
 
 const SignIn = () => {
 	const { register, handleSubmit, errors } = useForm();
-	const [problems, setProblems] = useState("");
+	const { setAlert, setLoading, setCurrentUser } = useContext(Context);
 	const history = useHistory();
-	const onSubmit = (data: { email: string; password: string }) => {
-		setProblems("");
-		if (!data.password) {
-			setProblems("Contraseña inválida");
-		} else if (!data.email) {
-			setProblems("Correo inválido");
-		}
-		if (problems) {
-			return;
-		}
-		firebaseAuth
-			.signInWithEmailAndPassword(data.email, data.password)
-			.then((r) => {
-				history.push("/");
-			})
-			.catch((e) => {
-				switch (e.code) {
-					case "auth/user-not-found":
-						setProblems("El usuario ingresado no existe.");
-						break;
-					case "auth/wrong-password":
-						setProblems("Contraseña incorrecta.");
-						break;
 
-					default:
-						setProblems("Hubo un problema, intenta nuevamente.");
-				}
-				console.error(e);
-			});
+	const onSubmit = (data: { email: string; password: string }) => {
+		setLoading(true);
+		if (!data.email) {
+			setAlert({ text: "Email no puede estar vacía.", type: "error" });
+			setLoading(false);
+		} else if (!data.password) {
+			setAlert({ text: "Contraseña no puede estar vacía.", type: "error" });
+			setLoading(false);
+		} else {
+			signInService(data.email, data.password)
+				.then((response) => {
+					setAlert(response.alert);
+					if (response.alert.type === "success") {
+						setCurrentUser(response.data);
+						cookie.set("currentUser", response.data);
+						history.push("/");
+					}
+					setLoading(false);
+				})
+				.catch(() => setLoading(false));
+		}
 	};
 
 	return (
@@ -63,7 +62,6 @@ const SignIn = () => {
 								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
 							/>
 						</div>
-						<span className="text-error">{problems}</span>
 						<input
 							type="submit"
 							className="w-full py-2 border rounded-lg cursor-pointer focus:outline-none border-realced text-realced hover:bg-primary-light hover:text-secundary-light bg-primary"
@@ -76,7 +74,6 @@ const SignIn = () => {
 								</Link>
 							</span>
 							<span className="cursor-pointer text-realced">
-								{" "}
 								Olvidé mi contraseña
 							</span>
 						</div>

@@ -1,4 +1,4 @@
-import IMember from "./IMember";
+import IMember from "./MemberInterface";
 
 export default interface ITeam{
   members:IMember[]

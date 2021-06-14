@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link, useHistory } from "react-router-dom";
-import Button from "../../components/Button";
-import Container from "../../components/Container";
-import Loader from "../../components/Loader";
-import Section from "../../components/Section";
-import { firebaseDate, firebaseDB } from "../../config/firebase/firebase";
-import MemberLine from "./MemberLine";
+import Button from "../../../GlobalComponents/Button";
+import Container from "../../../GlobalComponents/Container";
+import Section from "../../App/components/Section";
+import { firebaseDate, firebaseDB } from "../../../config/firebase";
+import MemberLine from "../components/MemberLine";
 
 const TeamDet = (props: any) => {
 	const { id } = useParams<{ id: string }>();
@@ -84,9 +83,7 @@ const TeamDet = (props: any) => {
 			setLoading(false);
 		}
 	}, []);
-	if (loading) {
-		return <Loader />;
-	}
+
 	return (
 		<div>
 			<Container>

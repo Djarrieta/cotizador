@@ -1,5 +1,5 @@
-import Container from "../components/Container";
-import Section from "../components/Section";
+import Container from "../../../GlobalComponents/Container";
+import Section from "../../App/components/Section";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
@@ -7,7 +7,7 @@ import {
 	firebaseAuth,
 	firebaseDate,
 	firebaseDB,
-} from "../config/firebase/firebase";
+} from "../../../config/firebase";
 
 const SignUp = () => {
 	const { register, handleSubmit, errors } = useForm();
