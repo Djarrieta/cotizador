@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import Error404 from "../../Pages/Error404/views/Error404";
+import Home from "../../Pages/Home/views/Home";
+import TeamDet from "../../Pages/Teams/views/TeamDet";
+import Teams from "../../Pages/Teams/views/Teams";
+import Profile from "../../Pages/Users/views/Profile";
+import SignIn from "../../Pages/Users/views/SignIn";
+import SignUp from "../../Pages/Users/views/SignUp";
 import { Context } from "./ContextProvider";
 
-import Home from "../../Home/views/Home";
-import Error404 from "../../Error404/views/Error404";
-import Profile from "../../Users/views/Profile";
-import Teams from "../../Teams/views/Teams";
-import TeamDet from "../../Teams/views/TeamDet";
-import SignIn from "../../Users/views/SignIn";
-import SignUp from "../../Users/views/SignUp";
 
 const Routes = () => {
 	const { currentUser } = useContext(Context);

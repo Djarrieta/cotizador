@@ -1,9 +1,9 @@
+import AlertModel from "../../../App/models/AlertModel";
 import {
 	firebaseAuth,
 	firebaseDate,
 	firebaseDB,
 } from "../../../config/firebase";
-import AlertModel from "../../App/models/AlertModel";
 import CurrentUserModel from "../models/CurrentUserModel";
 
 const signUpService = (newUser:CurrentUserModel): Promise<{

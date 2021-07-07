@@ -1,5 +1,5 @@
+import AlertModel from "../../../App/models/AlertModel";
 import { firebaseAuth, firebaseDB } from "../../../config/firebase";
-import AlertModel from "../../App/models/AlertModel";
 import CurrentUserModel from "../models/CurrentUserModel";
 
 const signInService = (

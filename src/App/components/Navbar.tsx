@@ -3,10 +3,10 @@ import { Context } from "./ContextProvider";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie/es6";
 
-import IconLogo from "../../../GlobalComponents/icons/IconLogo";
-import IconMenu from "../../../GlobalComponents/icons/IconMenu";
-import IconUser from "../../../GlobalComponents/icons/IconUser";
-import signOutService from "../../Users/services/SignOutService";
+import IconLogo from "../../GlobalComponents/icons/IconLogo";
+import IconMenu from "../../GlobalComponents/icons/IconMenu";
+import IconUser from "../../GlobalComponents/icons/IconUser";
+import signOutService from "../../Pages/Users/services/SignOutService";
 
 const cookie = new Cookies()
 const Navbar = () => {

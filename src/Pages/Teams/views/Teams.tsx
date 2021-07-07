@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Container from "../../../GlobalComponents/Container";
-import Section from "../../App/components/Section";
 import { firebaseDB } from "../../../config/firebase";
 import IMember from "../models/MemberInterface";
 import ITeam from "../models/TeamInterface";
+import Section from "../../../GlobalComponents/Section";
 
 const Teams = (props: any) => {
 	const history = useHistory();

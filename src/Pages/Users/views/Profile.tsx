@@ -3,8 +3,8 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Button from "../../../GlobalComponents/Button";
 import Container from "../../../GlobalComponents/Container";
-import Section from "../../App/components/Section";
 import { firebaseDate, firebaseDB } from "../../../config/firebase";
+import Section from "../../../GlobalComponents/Section";
 
 const Profile = (props: any) => {
 	const { id } = useParams<{ id: string }>();

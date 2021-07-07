@@ -1,6 +1,6 @@
 import React, { createContext, ReactElement, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import CurrentUserModel from "../../Users/models/CurrentUserModel";
+import CurrentUserModel from "../../Pages/Users/models/CurrentUserModel";
 import AlertModel from "../models/AlertModel";
 
 export const Context = createContext<{

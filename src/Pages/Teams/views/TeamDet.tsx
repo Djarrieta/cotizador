@@ -3,9 +3,9 @@ import { useParams } from "react-router";
 import { Link, useHistory } from "react-router-dom";
 import Button from "../../../GlobalComponents/Button";
 import Container from "../../../GlobalComponents/Container";
-import Section from "../../App/components/Section";
 import { firebaseDate, firebaseDB } from "../../../config/firebase";
 import MemberLine from "../components/MemberLine";
+import Section from "../../../GlobalComponents/Section";
 
 const TeamDet = (props: any) => {
 	const { id } = useParams<{ id: string }>();

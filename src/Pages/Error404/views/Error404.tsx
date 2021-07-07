@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
+import Section from "../../../GlobalComponents/Section";
 import Container from "../../../GlobalComponents/Container";
-import Section from "../../App/components/Section";
 import Error404Image from "../components/Error404Image";
 
 const Error404 = () => {

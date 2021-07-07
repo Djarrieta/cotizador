@@ -1,4 +1,4 @@
-const IconLogo = () => {
+const IconMenu = () => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -16,4 +16,4 @@ const IconLogo = () => {
 		</svg>
 	);
 };
-export default IconLogo;
+export default IconMenu;

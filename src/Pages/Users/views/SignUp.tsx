@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import Container from "../../../GlobalComponents/Container";
-import Section from "../../App/components/Section";
+
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Context } from "../../App/components/ContextProvider";
+
 import signUpService from "../services/SignUpService";
 import Cookies from "universal-cookie";
+import { Context } from "../../../App/components/ContextProvider";
+import Section from "../../../GlobalComponents/Section";
 
 const SignUp = () => {
 	const { register, handleSubmit, errors } = useForm();

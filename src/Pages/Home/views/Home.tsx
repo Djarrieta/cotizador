@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../../../App/components/ContextProvider";
+import Section from "../../../GlobalComponents/Section";
 import Container from "../../../GlobalComponents/Container";
-import { Context } from "../../App/components/ContextProvider";
-import Section from "../../App/components/Section";
 
 const Home = () => {
 	const { currentUser } = useContext(Context);

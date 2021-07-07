@@ -3,11 +3,13 @@ import { useForm } from "react-hook-form";
 import Cookies from "universal-cookie";
 
 import Container from "../../../GlobalComponents/Container";
-import Section from "../../App/components/Section";
 
-import { Context } from "../../App/components/ContextProvider";
+
+
 import { Link, useHistory } from "react-router-dom";
 import signInService from "../services/SignInService";
+import { Context } from "../../../App/components/ContextProvider";
+import Section from "../../../GlobalComponents/Section";
 
 const cookie = new Cookies();
 
