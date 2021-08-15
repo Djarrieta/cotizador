@@ -1,15 +1,21 @@
-import AlertModel from "../../../App/models/AlertModel";
-import { firebaseAuth, firebaseDB } from "../../../config/firebase";
-import CurrentUserModel from "../models/CurrentUserModel";
+import { ResponseUserModel } from "../models/ResponseUserModel";
 
-const signInService = (
+export const signInService = (
 	email: string,
 	password: string
-): Promise<{
-	alert: AlertModel;
-	data?: CurrentUserModel;
-}> => {
-	return firebaseAuth
+): Promise<ResponseUserModel> => {
+	return new Promise((resolve, reject) => {
+		resolve({
+			alert: { type: "success", text: "Has ingresado" },
+			data: {
+				name: "Dario",
+				uid: "uidvalue",
+				email: "arrieta.dario@hotmail.com",
+				whatsapp: "3008718217",
+			},
+		});
+	});
+	/* 	return firebaseAuth
 		.signInWithEmailAndPassword(email, password)
 		.then((response) => {
 			return firebaseDB
@@ -20,7 +26,7 @@ const signInService = (
 					return {
 						alert: {
 							type: "success",
-							text: "Haz ingresado satisfactoriomante.",
+							text: "Has ingresado satisfactoriomante.",
 						},
 						data: { ...response.data() },
 					};
@@ -39,7 +45,5 @@ const signInService = (
 					text: alertCases[error.code] || "El formato del correo no es válido.",
 				},
 			};
-		});
+		}); */
 };
-
-export default signInService;

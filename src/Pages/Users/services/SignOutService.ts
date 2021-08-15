@@ -1,13 +1,23 @@
-import { firebaseAuth } from "../../../config/firebase";
+//import { firebaseAuth } from "../../../config/firebase";
 
-const signOutService = () => {
-	return firebaseAuth
+import { ResponseUserModel } from "../models/ResponseUserModel";
+
+export const signOutService = (): Promise<ResponseUserModel> => {
+	return new Promise((resolve, reject) => {
+		resolve({
+			alert: {
+				type: "success",
+				text: "Has cerrado sesión satisfactoriomante.",
+			},
+		});
+	});
+	/* 	return firebaseAuth
 		.signOut()
 		.then(() => {
 			return {
 				alert: {
 					type: "success",
-					text: "Haz cerrado sesión satisfactoriomante.",
+					text: "Has cerrado sesión satisfactoriomante.",
 				},
 			};
 		})
@@ -19,6 +29,5 @@ const signOutService = () => {
 					text: "Hubo un problema al cerrar sesión.  Intenta nuevamente",
 				},
 			};
-		});
+		}); */
 };
-export default signOutService;

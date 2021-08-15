@@ -1,4 +1,4 @@
-export default interface AlertModel {
+export interface AlertModel {
 	type: string;
 	text: string;
 }

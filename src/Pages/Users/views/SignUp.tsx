@@ -1,14 +1,11 @@
 import React, { useContext } from "react";
-import Container from "../../../GlobalComponents/Container";
-
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-
-import signUpService from "../services/SignUpService";
 import Cookies from "universal-cookie";
 import { Context } from "../../../App/components/ContextProvider";
+import Container from "../../../GlobalComponents/Container";
 import Section from "../../../GlobalComponents/Section";
+import { signUpService } from "../services/signUpService";
 
 const SignUp = () => {
 	const { register, handleSubmit, errors } = useForm();
@@ -20,11 +17,17 @@ const SignUp = () => {
 	const onSubmit = (data: {
 		name: string;
 		email: string;
-		whatsapp: number;
+		whatsapp: string;
 		password: string;
 		confirmation: string;
 	}) => {
 		setLoading(true);
+		/* 		const conditions = [
+			{
+				condition: !data.name,
+				alert: { text: "El nombre no puede estar vacío.", type: "error" },
+			},
+		]; */
 		if (!data.name) {
 			setAlert({ text: "El nombre no puede estar vacío.", type: "error" });
 			setLoading(false);
@@ -42,16 +45,16 @@ const SignUp = () => {
 			setLoading(false);
 		} else {
 			signUpService(data)
-			.then((response) => {
-				setAlert(response.alert);
-				if (response.data) {
-					setCurrentUser(response.data);
-					cookie.set("currentUser", response.data);
-					history.push("/");
-				}
-				setLoading(false);
-			})
-			.catch(() => setLoading(false));
+				.then((response) => {
+					setAlert(response.alert);
+					if (response.data) {
+						setCurrentUser(response.data);
+						cookie.set("currentUser", response.data);
+						history.push("/");
+					}
+					setLoading(false);
+				})
+				.catch(() => setLoading(false));
 		}
 	};
 	return (
@@ -123,7 +126,7 @@ const SignUp = () => {
 						<div className="flex justify-center w-full px-6 my-2">
 							<span>
 								¿Ya tienes una cuenta?{" "}
-								<Link to="/ingresar" className="text-realced">
+								<Link to="/ingreso" className="text-realced">
 									Ingresa
 								</Link>
 							</span>

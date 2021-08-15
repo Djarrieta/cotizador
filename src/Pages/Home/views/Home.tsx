@@ -1,26 +1,56 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { Context } from "../../../App/components/ContextProvider";
 import Section from "../../../GlobalComponents/Section";
-import Container from "../../../GlobalComponents/Container";
+
+import Card from "../components/Card";
+import defaultMenuHome from "../../../constants/defaultMenuHome";
+
+import IconUser from "../../../GlobalComponents/icons/IconUser";
+import IconNotifications from "../../../GlobalComponents/icons/IconNotifications";
+import { Context } from "../../../App/components/ContextProvider";
+import { useContext } from "react";
 
 const Home = () => {
 	const { currentUser } = useContext(Context);
-	return (
-		<Container>
 
-			<Section name="OperacionesAPP">
-				<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias eos alias blanditiis atque porro nobis, repudiandae deserunt nihil quis rerum eligendi fugiat molestiae officia accusantium ipsum itaque architecto eveniet? Accusantium.</span>
-			</Section>
-			<Section name="Opciones">
-				<div className="flex justify-around w-full my-4 text-realced ">
-					{currentUser && <Link to={"/perfil/" + currentUser.uid}>Perfil</Link>}
-					{currentUser && <Link to={"/equipos/"}>Equipos</Link>}
-					{!currentUser && <Link to="/ingresar">Inicia sesión</Link>}
-					<Link to="/adsfasdfadf">Error</Link>
-				</div>
-			</Section>
-		</Container>
+	return (
+		<>
+			{currentUser && (
+				<Section name="Usuario">
+					<div className="flex flex-wrap justify-start">
+						<Card
+							to={`/perfil/${currentUser.uid}`}
+							icon={IconUser()}
+							title="Perfil"
+							text={currentUser.name}
+						/>
+						<Card
+							to={`/actividades`}
+							icon={IconNotifications()}
+							title="Notificaciones"
+							text="5 sin leer"
+						/>
+					</div>
+				</Section>
+			)}
+			{defaultMenuHome.map((section) => {
+				return (
+					<Section name={section.name} key={section.name}>
+						<div className="flex flex-wrap justify-start">
+							{section.options.map((item) => {
+								return (
+									<Card
+										key={item.title}
+										to={item.to}
+										icon={item.icon}
+										title={item.title}
+										text={item.text}
+									/>
+								);
+							})}
+						</div>
+					</Section>
+				);
+			})}
+		</>
 	);
 };
 export default Home;

@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Error404 from "../../Pages/Error404/views/Error404";
 import Home from "../../Pages/Home/views/Home";
-import TeamDet from "../../Pages/Teams/views/TeamDet";
-import Teams from "../../Pages/Teams/views/Teams";
 import Profile from "../../Pages/Users/views/Profile";
 import SignIn from "../../Pages/Users/views/SignIn";
 import SignUp from "../../Pages/Users/views/SignUp";
+import UpdatePassword from "../../Pages/Users/views/UpdatePassword";
 import { Context } from "./ContextProvider";
 
 
@@ -16,29 +15,29 @@ const Routes = () => {
 		<Switch>
 			{/* Home */}
 			<Route exact path="/">
-				<Home />
+				{currentUser ? <Home /> : <Redirect to="/ingreso" />}
 			</Route>
 			{/* SignIn */}
-			<Route exact path="/ingresar">
+			<Route exact path="/ingreso">
 				{!currentUser ? <SignIn /> : <Redirect to="/" />}
 			</Route>
 			{/* SignUp */}
-			<Route exact path="/registrarse">
+			<Route exact path="/registro">
 				{!currentUser ? <SignUp /> : <Redirect to="/" />}
 			</Route>
-
 			{/* Profile */}
 			<Route exact path="/perfil/:id">
-				{currentUser ? <Profile /> : <Redirect to="/ingresar" />}
+				{currentUser ? <Profile /> : <Redirect to="/ingreso" />}
 			</Route>
-			{/* Equipos */}
-			<Route exact path="/equipos">
-				{currentUser ? <Teams /> : <Redirect to="/ingresar" />}
+
+
+			<Route exact path="/cambiar-contraseña">
+				{currentUser ? <UpdatePassword /> : <Redirect to="/ingreso" />}
 			</Route>
-			{/* Equipo Detail */}
-			<Route exact path="/equipo/:id">
-				{currentUser ? <TeamDet /> : <Redirect to="/ingresar" />}
-			</Route>
+
+
+
+
 			{/* Error404 */}
 			<Route component={Error404} />
 		</Switch>

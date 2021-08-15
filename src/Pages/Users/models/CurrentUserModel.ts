@@ -1,8 +1,10 @@
-export default interface CurrentUserModel{
+export interface CurrentUserModel{
   uid?: string;
   name?: string;
   email?: string;
-  whatsapp?: any;
+  whatsapp?:string;
   pictureURL?: string;
-  password?:string
+  password?:string;
+  defaultTeam?:string;
+  teams?:string[]
 }

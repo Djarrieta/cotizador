@@ -1,7 +1,7 @@
 import React, { createContext, ReactElement, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import CurrentUserModel from "../../Pages/Users/models/CurrentUserModel";
-import AlertModel from "../models/AlertModel";
+import { CurrentUserModel } from "../../Pages/Users/models/CurrentUserModel";
+import { AlertModel } from "../models/AlertModel";
 
 export const Context = createContext<{
 	currentUser: CurrentUserModel | undefined;
@@ -20,8 +20,9 @@ export const Context = createContext<{
 });
 
 const ContextProvider = ({ children }: { children: ReactElement }) => {
-	const [currentUser, setCurrentUser] =
-		useState<CurrentUserModel | undefined>(undefined);
+	const [currentUser, setCurrentUser] = useState<CurrentUserModel | undefined>(
+		undefined
+	);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [alert, setAlert] = useState<AlertModel | undefined>(undefined);
 

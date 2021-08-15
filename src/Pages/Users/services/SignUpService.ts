@@ -1,16 +1,22 @@
-import AlertModel from "../../../App/models/AlertModel";
-import {
-	firebaseAuth,
-	firebaseDate,
-	firebaseDB,
-} from "../../../config/firebase";
-import CurrentUserModel from "../models/CurrentUserModel";
+import { CurrentUserModel } from "../models/CurrentUserModel";
+import { ResponseUserModel } from "../models/ResponseUserModel";
 
-const signUpService = (newUser:CurrentUserModel): Promise<{
-	alert: AlertModel
-	data?: CurrentUserModel;
-}> => {
-	let finalUser={}
+export const signUpService = (
+	newUser: CurrentUserModel
+): Promise<ResponseUserModel> => {
+	return new Promise((resolve, reject) => {
+		resolve({
+			alert: { type: "success", text: "Has ingresado" },
+			data: {
+				name: newUser.name,
+				uid: "uidvalue",
+				email: newUser.email,
+				whatsapp: newUser.whatsapp,
+				pictureURL: newUser.pictureURL,
+			},
+		});
+	});
+	/* 	let finalUser={}
 	return firebaseAuth
 		.createUserWithEmailAndPassword(newUser.email, newUser.password)
 		.then((response) => {
@@ -49,7 +55,5 @@ const signUpService = (newUser:CurrentUserModel): Promise<{
 						alertCases[error.code] || "Hubo un problema, intenta nuevamente.",
 				},
 			};
-		});
+		}); */
 };
-
-export default signUpService;

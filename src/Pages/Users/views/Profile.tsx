@@ -1,123 +1,127 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router";
+import { Context } from "../../../App/components/ContextProvider";
 import Button from "../../../GlobalComponents/Button";
-import Container from "../../../GlobalComponents/Container";
-import { firebaseDate, firebaseDB } from "../../../config/firebase";
+import IconUser from "../../../GlobalComponents/icons/IconUser";
+import IconPicture from "../../../GlobalComponents/icons/IconPicture";
 import Section from "../../../GlobalComponents/Section";
+import TextField from "../../../GlobalComponents/TextField";
+import { CurrentUserModel } from "../models/CurrentUserModel";
+import { editSingleUserService } from "../services/editSingleUserService";
+import { getSingleUserService } from "../services/getSingleUserService";
+import { signOutService } from "../services/signOutService";
+import Cookies from "universal-cookie";
+import { Link } from "react-router-dom";
 
-const Profile = (props: any) => {
+const cookie = new Cookies();
+
+const Profile = () => {
+	const history = useHistory();
 	const { id } = useParams<{ id: string }>();
-	const [loading, setLoading] = useState<boolean>(true);
-	const [data, setData] = useState<{
-		uid: string;
-		name: string;
-		email: string;
-		whatsapp: any;
-		pictureURL: string;
-	}>({
+	const { setLoading, currentUser, setAlert, setCurrentUser } =
+		useContext(Context);
+
+	const [data, setData] = useState<CurrentUserModel>({
 		uid: "",
 		name: "",
 		email: "",
 		whatsapp: "",
 		pictureURL: "",
 	});
-	const saveUserData = () => {
-		firebaseDB
-			.collection("users")
-			.doc(id)
-			.update({ ...data, uptated: firebaseDate })
-			.then(() => {
-				console.log("save in firestore");
-			})
-			.catch((e) => console.error(e));
+	useEffect(() => {
+		if (id === currentUser.uid) {
+			setData(currentUser);
+			return;
+		}
+		getSingleUserService(id).then((response) => setData(response));
+	}, [id, currentUser]);
+
+	const saveUserData = async () => {
+		setLoading(true);
+		const response = await editSingleUserService(data);
+		setAlert(response.alert);
+		setLoading(false);
 	};
 	const changePictureURL = () => {
 		console.log("cambia foto");
 	};
-	useEffect(() => {
+	const signOut = async () => {
 		setLoading(true);
-		firebaseDB
-			.collection("users")
-			.doc(id)
-			.get()
-			.then((user: any) => {
-				if (user.exists) {
-					setData(user.data());
-				}
-				setLoading(false);
-			})
-			.catch((e) => {
-				setLoading(false);
-				console.error(e);
-			});
-	}, []);
+		const response = await signOutService();
+		cookie.remove("currentUser");
+		setCurrentUser(undefined);
+		setAlert(response.alert);
+		setLoading(false);
+		history.push("/ingreso");
+	};
 
 	return (
-		<Container>
+		<>
 			<Section name="Perfil">
-				<div className="flex flex-col-reverse sm:flex-row">
-					<div className="w-full px-6 pb-2 my-3 sm:w-1/2">
-						{/* UID */}
-						<div className="flex flex-col mb-2">
-							<label className="text-xs capitalize">ID</label>
-							<input
-								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
-								disabled
-								value={data.uid}
+				<div className="flex flex-col-reverse my-6 sm:flex-row">
+					<div className="w-full px-6 pb-2 my-3s sm:w-1/2">
+						<TextField label="ID" value={data.uid} disabled={true} />
+						<TextField
+							label="Nombre"
+							value={data.name}
+							handleFuntion={(e) => setData({ ...data, name: e.target.value })}
+						/>
+						<TextField
+							label="Correo"
+							value={data.email}
+							handleFuntion={(e) => setData({ ...data, email: e.target.value })}
+						/>
+						<TextField
+							label="Whatsapp"
+							value={data.whatsapp}
+							handleFuntion={(e) =>
+								setData({ ...data, whatsapp: e.target.value })
+							}
+						/>
+						<Button name="Editar" handleFunction={saveUserData} />
+						<div className="w-1/2 text-left">
+							<Button
+								name="Cerrar sesión"
+								handleFunction={signOut}
+								secondary={true}
+							/>
+							<Button
+								name="Cambiar contraseña"
+								handleFunction={() => history.push("/cambiar-contraseña")}
+								secondary={true}
 							/>
 						</div>
-						{/* name */}
-						<div className="flex flex-col mb-2">
-							<label className="text-xs capitalize">Nombre</label>
-							<input
-								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
-								value={data.name}
-								onChange={(e) => setData({ ...data, name: e.target.value })}
-							/>
-						</div>
-						{/* email */}
-						<div className="flex flex-col mb-2">
-							<label className="text-xs capitalize">Correo</label>
-							<input
-								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
-								value={data.email}
-								onChange={(e) => setData({ ...data, email: e.target.value })}
-							/>
-						</div>
-						{/* whatsapp */}
-						<div className="flex flex-col mb-2">
-							<label className="text-xs capitalize">WhatsApp</label>
-							<input
-								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
-								type="number"
-								value={data.whatsapp}
-								onChange={(e) =>
-									setData({ ...data, whatsapp: parseInt(e.target.value) })
-								}
-							/>
-						</div>
-						<Button name="Guardar" handleFunction={saveUserData} />
 					</div>
-					<div className="w-full px-6 pb-2 my-3 sm:w-1/2">
-						<img src={data.pictureURL} alt="profile" />
-						{/* <Button name="✏️" handleFunction={changePictureURL} /> */}
+					<div className="flex flex-col justify-center w-full px-6 pb-2 my-3 sm:w-1/2 max-h-60">
+						{data.pictureURL ? (
+							<img src={data.pictureURL} alt="profile" />
+						) : (
+							<IconUser />
+						)}
+						<Button
+							name="Editar foto"
+							handleFunction={changePictureURL}
+							secondary={true}
+						/>
 					</div>
 				</div>
 			</Section>
-			<Section name="Opciones">
-				<div className="flex justify-around w-full my-4">
-					<Link to="/equipos" className="text-realced">
-						Ir a Equipos
-					</Link>
-
-					<Link to="/" className="text-realced">
-						Inicio
-					</Link>
-				</div>
+			<Section name="Equipos">
+				<table className="w-full p-4 mt-4">
+					<tbody>
+						<tr>
+							<Link to="/hola">
+								<td className="flex items-center justify-between w-full h-10 my-1 border-b border-text_light">
+									<IconPicture />
+									<span>EquipoId</span>
+									<span>Role</span>
+								</td>
+							</Link>
+						</tr>
+					</tbody>
+				</table>
 			</Section>
-			<Section name="Actividad"></Section>
-		</Container>
+		</>
 	);
 };
 
