@@ -13,6 +13,8 @@ export const signUpService = (
 				email: newUser.email,
 				whatsapp: newUser.whatsapp,
 				pictureURL: newUser.pictureURL,
+				defaultTeam:"myTeam",
+				teams:["myTeam", "OtherTeam"]
 			},
 		});
 	});

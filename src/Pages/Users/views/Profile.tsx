@@ -109,15 +109,22 @@ const Profile = () => {
 			<Section name="Equipos">
 				<table className="w-full p-4 mt-4">
 					<tbody>
-						<tr>
-							<Link to="/hola">
-								<td className="flex items-center justify-between w-full h-10 my-1 border-b border-text_light">
-									<IconPicture />
-									<span>EquipoId</span>
-									<span>Role</span>
-								</td>
-							</Link>
-						</tr>
+						{currentUser.teams.map((team) => {
+							return (
+								<tr key={team}>
+									<td>
+										<Link
+											to={`/team/${team}`}
+											className="flex items-center justify-between w-full h-10 my-1 border-b border-text_light"
+										>
+											<IconPicture />
+											<span>{team}</span>
+											<span>Role</span>
+										</Link>
+									</td>
+								</tr>
+							);
+						})}
 					</tbody>
 				</table>
 			</Section>

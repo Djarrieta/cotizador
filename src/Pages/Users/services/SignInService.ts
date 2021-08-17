@@ -12,6 +12,8 @@ export const signInService = (
 				uid: "uidvalue",
 				email: "arrieta.dario@hotmail.com",
 				whatsapp: "3008718217",
+				defaultTeam:"myTeam",
+				teams:["myTeam", "OtherTeam"]
 			},
 		});
 	});
