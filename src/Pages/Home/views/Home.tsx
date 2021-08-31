@@ -1,7 +1,7 @@
 import Section from "../../../GlobalComponents/Section";
 
 import Card from "../components/Card";
-import defaultMenuHome from "../../../constants/defaultMenuHome";
+import DEFAULT_MENU_HOME from "../../../constants/DEFAULT_MENU_HOME";
 
 import IconUser from "../../../GlobalComponents/icons/IconUser";
 import IconNotifications from "../../../GlobalComponents/icons/IconNotifications";
@@ -31,7 +31,7 @@ const Home = () => {
 					</div>
 				</Section>
 			)}
-			{defaultMenuHome.map((section) => {
+			{DEFAULT_MENU_HOME.map((section) => {
 				return (
 					<Section name={section.name} key={section.name}>
 						<div className="flex flex-wrap justify-start">

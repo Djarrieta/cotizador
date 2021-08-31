@@ -9,11 +9,13 @@ export const editSingleUserService = (
 			resolve({
 				alert: { type: "success", text: "Usuario editado con éxito." },
 				data: {
-					name: "userName",
-					uid: "uid",
-					whatsapp: "whatsapp",
-					pictureURL: "url",
-					defaultTeam: "team",
+					currentUser: {
+						name: "userName",
+						uid: "uid",
+						whatsapp: "whatsapp",
+						pictureURL: "url",
+						defaultTeam: "team",
+					},
 				},
 			});
 		}, 5000);

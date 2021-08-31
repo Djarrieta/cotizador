@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Context } from "../../../App/components/ContextProvider";
 import Button from "../../../GlobalComponents/Button";
 import Section from "../../../GlobalComponents/Section";
-import TextField from "../../../GlobalComponents/TextField";
+import FieldText from "../../../GlobalComponents/FieldText";
 import { updatePasswordService } from "../services/updatePasswordService";
 
 const UpdatePassword = () => {
@@ -23,7 +23,7 @@ const UpdatePassword = () => {
 		<div className="w-full max-w-md py-2 m-auto ">
 			<Section name="Perfil">
 				<div className="flex flex-col w-full px-6 pb-2 my-3">
-					<TextField
+					<FieldText
 						label="Nueva contraseña"
 						value={data.newPasswod}
 						type="password"
@@ -31,7 +31,7 @@ const UpdatePassword = () => {
 							setData({ ...data, newPasswod: e.target.value })
 						}
 					/>
-					<TextField
+					<FieldText
 						label="Confirmación"
 						value={data.confirmation}
 						type="password"
