@@ -1,17 +1,22 @@
+import MenuHomeModel from "../App/models/MenuHomeModel";
 import IconActivities from "../GlobalComponents/icons/IconActivities";
-import IconThirdParties from "../GlobalComponents/icons/IconThirdParties";
 import IconItems from "../GlobalComponents/icons/IconItems";
 import IconProjects from "../GlobalComponents/icons/IconProjects";
 import IconQuotes from "../GlobalComponents/icons/IconQuotes";
 import IconReport from "../GlobalComponents/icons/IconReport";
+import IconThirdParties from "../GlobalComponents/icons/IconThirdParties";
+import IconUser from "../GlobalComponents/icons/IconUser";
 
-import MenuHomeModel from "../App/models/MenuHomeModel";
-
-
-const defaultMenuHome: MenuHomeModel[] = [
+const DEFAULT_MENU_HOME: MenuHomeModel[] = [
 	{
 		name: "General",
 		options: [
+			{
+				to: "/perfil/",
+				icon: IconUser(),
+				title: "Perfil",
+				text: "",
+			},
 			{
 				to: "/actividades",
 				icon: IconActivities(),
@@ -22,7 +27,7 @@ const defaultMenuHome: MenuHomeModel[] = [
 				to: "/terceros",
 				icon: IconThirdParties(),
 				title: "Terceros",
-				text: "Prospectos, clientes, proveedores, contactos",
+				text: "Clientes, proveedores, contactos",
 			},
 			{
 				to: "/items",
@@ -62,4 +67,4 @@ const defaultMenuHome: MenuHomeModel[] = [
 	},
 ];
 
-export default defaultMenuHome;
+export default DEFAULT_MENU_HOME;

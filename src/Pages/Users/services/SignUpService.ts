@@ -8,13 +8,23 @@ export const signUpService = (
 		resolve({
 			alert: { type: "success", text: "Has ingresado" },
 			data: {
-				name: newUser.name,
-				uid: "uidvalue",
-				email: newUser.email,
-				whatsapp: newUser.whatsapp,
-				pictureURL: newUser.pictureURL,
-				defaultTeam:"myTeam",
-				teams:["myTeam", "OtherTeam"]
+				currentUser: {
+					name: "Dario",
+					uid: "uidvalue",
+					email: "arrieta.dario@hotmail.com",
+					whatsapp: "3008718217",
+					defaultTeam: "myTeam",
+					teams: [
+						{ teamId: "myTeamId", role: "admin" },
+						{ teamId: "OtherTeamId", role: "comercial" },
+					],
+				},
+				currentTeam: {
+					name: "My Team Name",
+					pictureURL: "",
+					teamId: "myTeamId",
+					members: [{ role: "Admin", email: "asdf@asdf.com" , uid:"uidUp"}],
+				},
 			},
 		});
 	});

@@ -1,140 +1,134 @@
-import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { Link, useHistory } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { Context } from "../../../App/components/ContextProvider";
-import Container from "../../../GlobalComponents/Container";
+import VerificationDataModel from "../../../App/models/VerificationDataModel";
+import Button from "../../../GlobalComponents/Button";
 import Section from "../../../GlobalComponents/Section";
+import FieldText from "../../../GlobalComponents/FieldText";
+import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { signUpService } from "../services/signUpService";
 
+const cookie = new Cookies();
+
 const SignUp = () => {
-	const { register, handleSubmit, errors } = useForm();
-	const history = useHistory();
-	const { setAlert, setLoading, setCurrentUser } = useContext(Context);
-
-	const cookie = new Cookies();
-
-	const onSubmit = (data: {
+	const [data, setData] = useState<{
 		name: string;
 		email: string;
 		whatsapp: string;
 		password: string;
 		confirmation: string;
-	}) => {
+	}>({
+		name: "",
+		email: "",
+		whatsapp: "",
+		password: "",
+		confirmation: "",
+	});
+
+	const { setAlert, setLoading, setCurrentUser,setCurrentTeam } = useContext(Context);
+	const history = useHistory();
+	const verificationData: VerificationDataModel[] = [
+		{
+			condition: !data.name,
+			text: "El nombre no puede estar vacío.",
+		},
+		{
+			condition: !data.email,
+			text: "Email no puede estar vacío.",
+		},
+		{
+			condition: !data.whatsapp,
+			text: "Especifica un número con whatsapp no puede estar vacío.",
+		},
+		{
+			condition: !data.password,
+			text: "Contraseña no puede estar vacía.",
+		},
+		{
+			condition: data.password !== data.confirmation,
+			text: "Las contraseñas no coinciden.",
+		},
+	];
+
+	const handleClick = (): void => {
 		setLoading(true);
-		/* 		const conditions = [
-			{
-				condition: !data.name,
-				alert: { text: "El nombre no puede estar vacío.", type: "error" },
-			},
-		]; */
-		if (!data.name) {
-			setAlert({ text: "El nombre no puede estar vacío.", type: "error" });
+
+		const infoVerified = verifyDataInfo(
+			verificationData,
+			"Has ingresado satisfactoriamente."
+		);
+
+		if (!infoVerified.ok) {
+			setAlert({ text: infoVerified.text, type: "error" });
 			setLoading(false);
-		} else if (!data.email) {
-			setAlert({ text: "El email no puede estar vacío.", type: "error" });
-			setLoading(false);
-		} else if (!data.whatsapp) {
-			setAlert({ text: "Número de whatsapp inválido.", type: "error" });
-			setLoading(false);
-		} else if (!data.password) {
-			setAlert({ text: "Contraseña no puede estar vacía.", type: "error" });
-			setLoading(false);
-		} else if (data.password !== data.confirmation) {
-			setAlert({ text: "Contraseñas no coinciden.", type: "error" });
-			setLoading(false);
-		} else {
-			signUpService(data)
-				.then((response) => {
-					setAlert(response.alert);
-					if (response.data) {
-						setCurrentUser(response.data);
-						cookie.set("currentUser", response.data);
-						history.push("/");
-					}
-					setLoading(false);
-				})
-				.catch(() => setLoading(false));
+			return;
 		}
+		signUpService(data).then((response) => {
+			setAlert(response.alert);
+			if (response.data.currentUser) {
+				setCurrentUser(response.data.currentUser);
+				cookie.set("currentUser", response.data.currentUser);
+			}
+
+			if (response.data.currentTeam) {
+				setCurrentTeam(response.data.currentTeam);
+				cookie.set("currentTeam", response.data.currentTeam);
+			}
+			history.push("/");
+			setLoading(false);
+		});
 	};
+
 	return (
-		<Container>
-			<div className="w-full max-w-md">
-				<Section name="Registrarse">
-					<form onSubmit={handleSubmit(onSubmit)}>
-						{/* name */}
-						<div className="flex flex-col mb-2">
-							<label className="text-xs capitalize">Nombre</label>
-							<input
-								name="name"
-								defaultValue="darío Arrieta"
-								type="text"
-								placeholder="Nombre"
-								ref={register}
-								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
-							/>
-						</div>
-						{/* Email */}
-						<div className="flex flex-col mb-2">
-							<label className="text-xs capitalize">Correo</label>
-							<input
-								name="email"
-								placeholder="tucorreo@ejemplo.com"
-								defaultValue="arrieta.dario@hotmail.com"
-								ref={register}
-								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
-							/>
-						</div>
-						{/* whatsapp */}
-						<div className="flex flex-col mb-2">
-							<label className="text-xs capitalize">Whatsapp</label>
-							<input
-								name="whatsapp"
-								type="number"
-								placeholder="573001234567"
-								defaultValue="573008718217"
-								ref={register}
-								className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
-							/>
-						</div>
-						{/* password */}
-						<div className="flex flex-col">
-							<label className="text-xs capitalize">Contraseña</label>
-							<input
-								name="password"
-								type="password"
-								defaultValue="arrieta.dario@hotmail.com"
-								ref={register}
-								className="px-2 mb-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
-							/>
-						</div>
-						{/* Confirmation */}
-						<div className="flex flex-col">
-							<label className="text-xs capitalize">Confirmación</label>
-							<input
-								name="confirmation"
-								type="password"
-								defaultValue="arrieta.dario@hotmail.com"
-								ref={register}
-								className="px-2 mb-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
-							/>
-						</div>
-						<input
-							type="submit"
-							className="w-full py-2 border rounded-lg cursor-pointer focus:outline-none border-realced text-realced hover:bg-primary-light hover:text-secundary-light bg-primary"
+		<div className="flex items-center justify-center w-full h-full">
+			<div className="max-w-xs">
+				<Section name="Ingresar">
+					<div className="flex flex-col max-w-md px-3 py-4 my-2 border rounded-lg">
+						<FieldText
+							label="Nombre"
+							value={data.name}
+							handleFuntion={(e) => setData({ ...data, name: e.target.value })}
 						/>
-						<div className="flex justify-center w-full px-6 my-2">
-							<span>
-								¿Ya tienes una cuenta?{" "}
-								<Link to="/ingreso" className="text-realced">
-									Ingresa
-								</Link>
-							</span>
-						</div>
-					</form>
+						<FieldText
+							label="Correo"
+							value={data.email}
+							handleFuntion={(e) => setData({ ...data, email: e.target.value })}
+						/>
+						<FieldText
+							label="WhatsApp"
+							placeholder="573001234567"
+							value={data.whatsapp}
+							handleFuntion={(e) =>
+								setData({ ...data, whatsapp: e.target.value })
+							}
+						/>
+						<FieldText
+							label="Contraseña"
+							value={data.password}
+							type="password"
+							handleFuntion={(e) =>
+								setData({ ...data, password: e.target.value })
+							}
+						/>
+						<FieldText
+							label="Confirmación"
+							value={data.confirmation}
+							type="password"
+							handleFuntion={(e) =>
+								setData({ ...data, confirmation: e.target.value })
+							}
+						/>
+						<Button name="Ingresar" handleFunction={() => handleClick()} />
+						<Button
+							name="Ingresar"
+							handleFunction={() => history.push("/ingreso")}
+							secondary={true}
+						/>
+					</div>
 				</Section>
 			</div>
-		</Container>
+		</div>
 	);
 };
 export default SignUp;

@@ -6,8 +6,9 @@ import Profile from "../../Pages/Users/views/Profile";
 import SignIn from "../../Pages/Users/views/SignIn";
 import SignUp from "../../Pages/Users/views/SignUp";
 import UpdatePassword from "../../Pages/Users/views/UpdatePassword";
+import TeamDetail from "../../Pages/TeamDetail/views/TeamDetail";
 import { Context } from "./ContextProvider";
-
+import NewMember from "../../Pages/TeamDetail/views/NewMember";
 
 const Routes = () => {
 	const { currentUser } = useContext(Context);
@@ -26,17 +27,21 @@ const Routes = () => {
 				{!currentUser ? <SignUp /> : <Redirect to="/" />}
 			</Route>
 			{/* Profile */}
-			<Route exact path="/perfil/:id">
+			<Route exact path="/perfil/:uid">
 				{currentUser ? <Profile /> : <Redirect to="/ingreso" />}
 			</Route>
-
+			{/* TeamDet */}
+			<Route exact path="/equipo/:teamId">
+				{currentUser ? <TeamDetail /> : <Redirect to="/ingreso" />}
+			</Route>
+			{/* NewMember */}
+			<Route exact path="/:teamId/nuevo-miembro">
+				{currentUser ? <NewMember /> : <Redirect to="/ingreso" />}
+			</Route>
 
 			<Route exact path="/cambiar-contraseña">
 				{currentUser ? <UpdatePassword /> : <Redirect to="/ingreso" />}
 			</Route>
-
-
-
 
 			{/* Error404 */}
 			<Route component={Error404} />

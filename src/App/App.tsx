@@ -9,7 +9,7 @@ function App() {
 	return (
 		<ContextProvider>
 			<BrowserRouter>
-				<div className="flex flex-col min-h-screen pt-4 pb-16 my-4 overflow-x-hidden overflow-y-scroll text-secundary bg-bgd_primary text-text_primary">
+				<div className="flex flex-col min-h-screen pt-4 pb-16 overflow-x-hidden overflow-y-scroll text-secundary bg-bgd_primary text-text_primary">
 					<Routes />
 					<Alert />
 					<Loading />
