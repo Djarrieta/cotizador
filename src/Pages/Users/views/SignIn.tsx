@@ -1,84 +1,100 @@
-import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
+import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
-
-import { Link, useHistory } from "react-router-dom";
-import { signInService } from "../services/signInService"
 import { Context } from "../../../App/components/ContextProvider";
+import VerificationDataModel from "../../../App/models/VerificationDataModel";
+import Button from "../../../GlobalComponents/Button";
 import Section from "../../../GlobalComponents/Section";
+import FieldText from "../../../GlobalComponents/FieldText";
+import { verifyDataInfo } from "../../../utils/verifyDataInfo";
+import { signInService } from "../services/signInService";
 
 const cookie = new Cookies();
 
 const SignIn = () => {
-	const { register, handleSubmit, errors } = useForm();
-	const { setAlert, setLoading, setCurrentUser } = useContext(Context);
-	const history = useHistory();
+	const [data, setData] = useState<{
+		email: string;
+		password: string;
+	}>({
+		email: "",
+		password: "",
+	});
 
-	const onSubmit = (data: { email: string; password: string }) => {
-		setLoading(true);
-		if (!data.email) {
-			setAlert({ text: "Email no puede estar vacío.", type: "error" });
+	const { setAlert, setLoading, setCurrentUser, setCurrentTeam } =
+		useContext(Context);
+	const history = useHistory();
+	const verificationData: VerificationDataModel[] = [
+		{
+			condition: !data.email,
+			text: "Email no puede estar vacío.",
+		},
+		{
+			condition: !data.password,
+			text: "Contraseña no puede estar vacía.",
+		},
+	];
+
+	const handleClick = (): void => {
+		const infoVerified = verifyDataInfo(
+			verificationData,
+			"Has ingresado satisfactoriamente."
+		);
+
+		if (!infoVerified.ok) {
+			setAlert({ text: infoVerified.text, type: "error" });
 			setLoading(false);
-		} else if (!data.password) {
-			setAlert({ text: "Contraseña no puede estar vacía.", type: "error" });
-			setLoading(false);
-		} else {
-			signInService(data.email, data.password)
-				.then((response) => {
-					setAlert(response.alert);
-					if (response.alert.type === "success") {
-						setCurrentUser(response.data);
-						cookie.set("currentUser", response.data);
-						history.push("/");
-					}
-					setLoading(false);
-				})
-				.catch(() => setLoading(false));
+			return;
 		}
+		signInService(data.email, data.password).then((response) => {
+			setAlert(response.alert);
+			if (response.alert.type === "success") {
+				if (response.data.currentUser) {
+					setCurrentUser(response.data.currentUser);
+					cookie.set("currentUser", response.data.currentUser);
+				}
+
+				if (response.data.currentTeam) {
+					setCurrentTeam(response.data.currentTeam);
+					cookie.set("currentTeam", response.data.currentTeam);
+				}
+				history.push("/");
+			}
+			setLoading(false);
+		});
 	};
 
 	return (
-		<div className="w-full max-w-md py-2 m-auto overflow-hidden rounded-xl">
-			<Section name="Ingresar">
-				<form onSubmit={handleSubmit(onSubmit)}>
-					<div className="flex flex-col mb-2">
-						<label className="text-xs capitalize">Correo</label>
-						<input
-							name="email"
-							placeholder="tucorreo@ejemplo.com"
-							defaultValue="arrieta.dario@hotmail.com"
-							ref={register}
-							className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
+		<div className="flex items-center justify-center w-full h-full">
+			<div className="max-w-xs ">
+				<Section name="Ingresar">
+					<div className="flex flex-col max-w-md px-3 py-4 my-2 border rounded-lg">
+						<FieldText
+							label="Correo"
+							value={data.email}
+							handleFuntion={(e) => setData({ ...data, email: e.target.value })}
 						/>
-					</div>
-					<div className="flex flex-col mb-2">
-						<label className="text-xs capitalize">Contraseña</label>
-						<input
-							name="password"
+						<FieldText
+							label="Contraseña"
+							value={data.password}
 							type="password"
-							defaultValue="arrieta.dario@hotmail.com"
-							ref={register}
-							className="px-2 rounded focus:outline-none text-secundary bg-primary-light focus:bg-primary-light"
+							handleFuntion={(e) =>
+								setData({ ...data, password: e.target.value })
+							}
+						/>
+						<Button name="Ingresar" handleFunction={() => handleClick()} />
+						<Button
+							name="Registrarme"
+							handleFunction={() => history.push("/registro")}
+							secondary={true}
+						/>
+						<Button
+							name="Recuperar mi contraseña"
+							handleFunction={() => history.push("/recuperar-contrasena")}
+							secondary={true}
 						/>
 					</div>
-					<input
-						type="submit"
-						value="Ingresar"
-						className="w-full py-2 border rounded-lg cursor-pointer focus:outline-none border-realced text-realced hover:bg-primary-light hover:text-secundary-light bg-primary"
-					/>
-					<div className="flex flex-col items-center justify-center w-full px-6 my-2">
-						<span>
-							¿No tienes una cuenta?{" "}
-							<Link to="/registrarse" className="text-realced">
-								Registrarse
-							</Link>
-						</span>
-						<span className="cursor-pointer text-realced">
-							Olvidé mi contraseña
-						</span>
-					</div>
-				</form>
-			</Section>
+				</Section>
+			</div>
 		</div>
 	);
 };

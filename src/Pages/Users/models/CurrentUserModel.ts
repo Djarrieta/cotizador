@@ -6,5 +6,5 @@ export interface CurrentUserModel{
   pictureURL?: string;
   password?:string;
   defaultTeam?:string;
-  teams?:string[]
+  teams?:{teamId:string; role:string}[]
 }
