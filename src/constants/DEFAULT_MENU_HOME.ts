@@ -5,11 +5,18 @@ import IconProjects from "../GlobalComponents/icons/IconProjects";
 import IconQuotes from "../GlobalComponents/icons/IconQuotes";
 import IconReport from "../GlobalComponents/icons/IconReport";
 import IconThirdParties from "../GlobalComponents/icons/IconThirdParties";
+import IconUser from "../GlobalComponents/icons/IconUser";
 
 const DEFAULT_MENU_HOME: MenuHomeModel[] = [
 	{
 		name: "General",
 		options: [
+			{
+				to: "/perfil/",
+				icon: IconUser(),
+				title: "Perfil",
+				text: "",
+			},
 			{
 				to: "/actividades",
 				icon: IconActivities(),

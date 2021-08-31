@@ -9,28 +9,15 @@ import UpdatePassword from "../../Pages/Users/views/UpdatePassword";
 import TeamDetail from "../../Pages/TeamDetail/views/TeamDetail";
 import { Context } from "./ContextProvider";
 import NewMember from "../../Pages/TeamDetail/views/NewMember";
-import ConditionalRoute from "../components/ConditionalRoute";
 
 const Routes = () => {
 	const { currentUser } = useContext(Context);
 	return (
 		<Switch>
-			<ConditionalRoute
-				path="/"
-				Element={Home}
-				redirectTo="/ingreso"
-				condition={currentUser !==undefined}
-			/>
-			<ConditionalRoute
-				path="/perfil/:uid"
-				Element={Profile}
-				redirectTo="/ingreso"
-				condition={currentUser !== undefined}
-			/>
 			{/* Home */}
-			{/* <Route exact path="/">
+			<Route exact path="/">
 				{currentUser ? <Home /> : <Redirect to="/ingreso" />}
-			</Route> */}
+			</Route>
 			{/* SignIn */}
 			<Route exact path="/ingreso">
 				{!currentUser ? <SignIn /> : <Redirect to="/" />}

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import { Context } from "../../../App/components/ContextProvider";
 import VerificationDataModel from "../../../App/models/VerificationDataModel";
 import ROLES from "../../../constants/ROLES";
@@ -16,9 +16,11 @@ import { CurrentTeamModel } from "../models/CurrentTeamModel";
 import { editSingleTeamService } from "../services/editSingleTeamService";
 import { getSingleTeamService } from "../services/getSingleTeamService";
 
+
 const TeamDetail = () => {
 	const { teamId } = useParams<{ teamId: string }>();
 	const { setLoading, currentTeam, setAlert } = useContext(Context);
+	const history=useHistory()
 
 	const [data, setData] = useState<CurrentTeamModel>({
 		teamId: "",
@@ -26,10 +28,7 @@ const TeamDetail = () => {
 		pictureURL: "",
 		members: [],
 	});
-	const [newMember, setNewMember] = useState<{ email: string; role: string }>({
-		email: "",
-		role: "Comercial",
-	});
+
 
 	const verificationData: VerificationDataModel[] = [
 		{
@@ -140,29 +139,9 @@ const TeamDetail = () => {
 				name="Miembros"
 				button={true}
 				buttonName="Invitar"
-				handleFunction={() => console.log("hola")}
+				handleFunction={() =>history.push("/" + teamId + "/nuevo-miembro" )}
 			>
 				<Table>
-					<TableItem>
-						<div className="flex w-full px-2 py-4 mb-3 border rounded-lg">
-							<FieldText
-								label="Email"
-								value={newMember.email}
-								handleFuntion={(event) => console.log(event.target.value)}
-							/>
-							<FieldSelect
-								label="Role"
-								options={ROLES}
-								selectedValue={newMember.role}
-								handleChange={(event) => console.log(event.target.value)}
-							/>
-							<div>
-								<Button name="Guardar" handleFunction={() => {}} />
-								<Button name="Cancelar" handleFunction={() => {}} />
-							</div>
-						</div>
-					</TableItem>
-
 					{data.members.map((member) => {
 						return (
 							<TableItem key={member.email}>
