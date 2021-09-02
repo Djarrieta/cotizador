@@ -64,9 +64,9 @@ const Tasks = () => {
 											{task.tags.map((tag) => {
 												return (
 													<span
-														className={` -ml-3 text-xs rounded px-1 bg-color_tag_${tag.type}`}
+														className={` -ml-1 text-xs border rounded px-1 bg-color_tag_${tag.type}`}
 													>
-														{tag.name.slice(0, 3)}
+														{tag.name.slice(0, 9)}
 													</span>
 												);
 											})}
