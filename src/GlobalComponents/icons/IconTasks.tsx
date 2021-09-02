@@ -1,4 +1,4 @@
-const IconActivities = () => {
+const IconTasks = () => {
 	return (
 		<svg
 			className="h-full"
@@ -16,4 +16,4 @@ const IconActivities = () => {
 		</svg>
 	);
 };
-export default IconActivities;
+export default IconTasks;

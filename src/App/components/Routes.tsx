@@ -9,6 +9,9 @@ import UpdatePassword from "../../Pages/Users/views/UpdatePassword";
 import TeamDetail from "../../Pages/TeamDetail/views/TeamDetail";
 import { Context } from "./ContextProvider";
 import NewMember from "../../Pages/TeamDetail/views/NewMember";
+import Tasks from "../../Pages/Tasks/views/Tasks";
+import TaskDetail from "../../Pages/Tasks/views/TaskDetail";
+import PrivateRoute from "./PrivateRoute";
 
 const Routes = () => {
 	const { currentUser } = useContext(Context);
@@ -18,29 +21,35 @@ const Routes = () => {
 			<Route exact path="/">
 				{currentUser ? <Home /> : <Redirect to="/ingreso" />}
 			</Route>
-			{/* SignIn */}
+
+			{/* User */}
 			<Route exact path="/ingreso">
 				{!currentUser ? <SignIn /> : <Redirect to="/" />}
 			</Route>
-			{/* SignUp */}
 			<Route exact path="/registro">
 				{!currentUser ? <SignUp /> : <Redirect to="/" />}
 			</Route>
-			{/* Profile */}
 			<Route exact path="/perfil/:uid">
 				{currentUser ? <Profile /> : <Redirect to="/ingreso" />}
 			</Route>
-			{/* TeamDet */}
+			<Route exact path="/cambiar-contraseña">
+				{currentUser ? <UpdatePassword /> : <Redirect to="/ingreso" />}
+			</Route>
+
+			{/* Team */}
 			<Route exact path="/equipo/:teamId">
 				{currentUser ? <TeamDetail /> : <Redirect to="/ingreso" />}
 			</Route>
-			{/* NewMember */}
 			<Route exact path="/:teamId/nuevo-miembro">
 				{currentUser ? <NewMember /> : <Redirect to="/ingreso" />}
 			</Route>
 
-			<Route exact path="/cambiar-contraseña">
-				{currentUser ? <UpdatePassword /> : <Redirect to="/ingreso" />}
+			{/* Tasks */}
+			<Route exact path="/:teamId/tareas">
+				{currentUser ? <Tasks /> : <Redirect to="/ingreso" />}
+			</Route>
+			<Route exact path="/:teamId/tarea/:taskId">
+				{currentUser ? <TaskDetail /> : <Redirect to="/ingreso" />}
 			</Route>
 
 			{/* Error404 */}
