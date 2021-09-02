@@ -36,6 +36,7 @@ export const signInService = (
 				.doc(response.user.uid)
 				.get()
 				.then((response) => {
+					
 					return {
 						alert: {
 							type: "success",

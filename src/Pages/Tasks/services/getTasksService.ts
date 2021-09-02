@@ -40,7 +40,7 @@ export const getTasksService = (): Promise<TaskModel[]> => {
       {
         id: "2",
         state: TaskState.Realizado,
-        type: ["Técnico", "Cotización"],
+        type: ["Técnico", "Despiece"],
         tags: [
           {
             type: TaskTagType.Proyecto,
@@ -55,9 +55,9 @@ export const getTasksService = (): Promise<TaskModel[]> => {
         modifiedAt: "01/01/21",
       },
       {
-        id: "2",
+        id: "3",
         state: TaskState.Realizado,
-        type: ["Técnico", "Cotización"],
+        type: ["Financiero", "Compra"],
         tags: [
           {
             type: TaskTagType.Proyecto,
@@ -77,9 +77,9 @@ export const getTasksService = (): Promise<TaskModel[]> => {
         modifiedAt: "01/01/21",
       },
       {
-        id: "2",
+        id: "4",
         state: TaskState.Realizado,
-        type: ["Técnico", "Cotización"],
+        type: ["Comercial", "Visita"],
         tags: [
           {
             type: TaskTagType.Proyecto,
