@@ -56,7 +56,7 @@ const Profile = () => {
 	];
 
 	useEffect(() => {
-		if (uid === currentUser.uid) {
+		if (currentUser?.uid === uid) {
 			setData(currentUser);
 			return;
 		}
@@ -149,22 +149,26 @@ const Profile = () => {
 					</div>
 				</div>
 			</Section>
-			<Section name="Equipos">
-				<Table>
-					{currentUser.teams.map((team) => {
-						return (
-							<TableItem key={team.teamId}>
-								<IconTeam />
-								<span>{team.teamId}</span>
-								<span>{team.role}</span>
-								<Link to={`/equipo/${team.teamId}`} className="h-full">
-									<IconMore />
-								</Link>
-							</TableItem>
-						);
-					})}
-				</Table>
-			</Section>
+			{currentUser && (
+				<Section name="Equipos">
+					<Table>
+						{currentUser.teams.map((team) => {
+							return (
+								<TableItem key={team.teamId}>
+									<div className="flex justify-between w-full h-10">
+										<IconTeam />
+										<span>{team.teamId}</span>
+										<span>{team.role}</span>
+										<Link to={`/equipo/${team.teamId}`} className="h-full">
+											<IconMore />
+										</Link>
+									</div>
+								</TableItem>
+							);
+						})}
+					</Table>
+				</Section>
+			)}
 		</>
 	);
 };

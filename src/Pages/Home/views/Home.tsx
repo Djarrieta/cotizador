@@ -7,6 +7,8 @@ import Card from "../components/Card";
 const Home = () => {
 	const { currentUser } = useContext(Context);
 
+	const teamId = currentUser?.defaultTeam ?? "";
+
 	return (
 		<>
 			{DEFAULT_MENU_HOME.map((section) => {
@@ -14,11 +16,12 @@ const Home = () => {
 					<Section name={section.name} key={section.name}>
 						<div className="flex flex-wrap justify-start">
 							{section.options.map((item) => {
-								let to = item.to;
+								let to = `/${teamId}${item.to}`;
 								let text = item.text;
 								if (item.title === "Perfil") {
-									to = `/perfil/${currentUser.uid}`;
-									text = currentUser.name ?? "";
+									to = `/perfil/${currentUser?.uid ?? ""}`;
+									text =
+										`${currentUser?.name ?? ""}, ${currentUser?.defaultTeam ?? ""}`;
 								}
 
 								return (
