@@ -8,14 +8,12 @@ export const editSingleUserService = (
 		setTimeout(() => {
 			resolve({
 				alert: { type: "success", text: "Usuario editado con éxito." },
-				data: {
-					currentUser: {
-						name: "userName",
-						uid: "uid",
-						whatsapp: "whatsapp",
-						pictureURL: "url",
-						defaultTeam: "team",
-					},
+				currentUser: {
+					name: "userName",
+					uid: "uid",
+					whatsapp: "whatsapp",
+					pictureURL: "url",
+					defaultTeam: "team",
 				},
 			});
 		}, 5000);

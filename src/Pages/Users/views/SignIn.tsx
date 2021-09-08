@@ -16,8 +16,8 @@ const SignIn = () => {
 		email: string;
 		password: string;
 	}>({
-		email: "",
-		password: "",
+		email: "arrieta.dario@hotmail.com",
+		password: "dariojose",
 	});
 
 	const { setAlert, setLoading, setCurrentUser, setCurrentTeam } =
@@ -35,6 +35,7 @@ const SignIn = () => {
 	];
 
 	const handleClick = (): void => {
+		setLoading(true)
 		const infoVerified = verifyDataInfo(
 			verificationData,
 			"Has ingresado satisfactoriamente."
@@ -48,14 +49,14 @@ const SignIn = () => {
 		signInService(data.email, data.password).then((response) => {
 			setAlert(response.alert);
 			if (response.alert.type === "success") {
-				if (response.data.currentUser) {
-					setCurrentUser(response.data.currentUser);
-					cookie.set("currentUser", response.data.currentUser);
+				if (response.currentUser) {
+					setCurrentUser(response.currentUser);
+					cookie.set("currentUser", response.currentUser);
 				}
 
-				if (response.data.currentTeam) {
-					setCurrentTeam(response.data.currentTeam);
-					cookie.set("currentTeam", response.data.currentTeam);
+				if (response.currentTeam) {
+					setCurrentTeam(response.currentTeam);
+					cookie.set("currentTeam", response.currentTeam);
 				}
 				history.push("/");
 			}

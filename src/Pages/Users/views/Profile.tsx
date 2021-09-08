@@ -60,7 +60,7 @@ const Profile = () => {
 			setData(currentUser);
 			return;
 		}
-		getSingleUserService(uid).then((response) => setData(response));
+		getSingleUserService(uid).then((response) => setData(response.currentUser));
 	}, [uid, currentUser]);
 
 	const saveUserData = () => {
@@ -117,9 +117,10 @@ const Profile = () => {
 						<FieldText
 							label="Whatsapp"
 							value={data.whatsapp}
-							handleFuntion={(e) =>
-								setData({ ...data, whatsapp: e.target.value })
-							}
+							handleFuntion={(e) => {
+								console.log(e.type);
+								setData({ ...data, whatsapp: e.target.value });
+							}}
 						/>
 						<Button name="Editar" handleFunction={saveUserData} />
 						<div className="w-1/2 text-left">
@@ -149,10 +150,11 @@ const Profile = () => {
 					</div>
 				</div>
 			</Section>
-			{currentUser && (
-				<Section name="Equipos">
-					<Table>
-						{currentUser.teams.map((team) => {
+
+			<Section name="Equipos">
+				<Table>
+					{currentUser.teams ? (
+						currentUser.teams.map((team) => {
 							return (
 								<TableItem key={team.teamId}>
 									<div className="flex justify-between w-full h-10">
@@ -165,10 +167,16 @@ const Profile = () => {
 									</div>
 								</TableItem>
 							);
-						})}
-					</Table>
-				</Section>
-			)}
+						})
+					) : (
+						<tr className="flex items-center justify-center w-full ">
+							<p>
+								No tienes ningún equipo. <span>Crea tu primer equipo</span>
+							</p>
+						</tr>
+					)}
+				</Table>
+			</Section>
 		</>
 	);
 };
