@@ -1,8 +1,8 @@
-const ROLES = [
+enum ROLES {
 	"Admin",
 	"Comercial",
 	"Logístico",
 	"Técnico",
 	"Financiero",
-];
+}
 export default ROLES;

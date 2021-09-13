@@ -10,8 +10,6 @@ const TaskDetail = () => {
 		<>
 			<Section
 				name="Detalle Tarea"
-        
-				button={true}
 				buttonName="Atrás"
 				handleFunction={() =>
 					history.push("/" + teamId + "/tareas")

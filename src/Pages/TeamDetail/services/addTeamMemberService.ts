@@ -1,3 +1,6 @@
+import firebase from "firebase/app";
+import { firebaseDB } from "../../../config/firebase";
+import ROLES from "../../../constants/ROLES";
 import { ResponseTeamModel } from "../models/ResponseTeamModel";
 export const addTeamMemberService = (
 	teamId: string,
@@ -6,15 +9,11 @@ export const addTeamMemberService = (
 		role: string;
 	}
 ): Promise<ResponseTeamModel> => {
-	return new Promise((resolve, reject) => {
-		resolve({
-			alert: { text: "Miembro agregado con éxito", type: "success" },
-			data: {
-				name: "Other team comming from service",
-				teamId: "uid",
-				pictureURL: "url",
-				members: [{ email: "email@member1", role: "admin", uid: "uid" }],
-			},
+	return firebaseDB
+		.collection("teams")
+		.doc(teamId)
+		.update({ members: firebase.firestore.FieldValue.arrayUnion(newMember) })
+		.then(() => {
+			return { alert: { type: "success", text: "Miembro agregado con éxito" } };
 		});
-	});
 };

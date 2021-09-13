@@ -151,7 +151,11 @@ const Profile = () => {
 				</div>
 			</Section>
 
-			<Section name="Equipos">
+			<Section
+				name="Equipos"
+				buttonName="Nuevo"
+				handleFunction={() => history.push("/equipo/nuevo")}
+			>
 				<Table>
 					{currentUser.teams ? (
 						currentUser.teams.map((team) => {
@@ -169,11 +173,14 @@ const Profile = () => {
 							);
 						})
 					) : (
-						<tr className="flex items-center justify-center w-full ">
-							<p>
-								No tienes ningún equipo. <span>Crea tu primer equipo</span>
-							</p>
-						</tr>
+						<TableItem>
+							<div className="flex w-full ">
+								<span >
+									No tienes ningún equipo.{" "}
+									<Link className="text-realced" to="/equipo/nuevo">Crea tu primer equipo</Link>
+								</span>
+							</div>
+						</TableItem>
 					)}
 				</Table>
 			</Section>

@@ -65,7 +65,7 @@ const NewMember = () => {
 				/>
 				<FieldSelect
 					label="Role"
-					options={ROLES}
+					options={Object.values(ROLES).map(role=>ROLES[role])}
 					selectedValue={newMember.role}
 					handleChange={(event) =>
 						setNewMember({ ...newMember, role: event.target.value })
