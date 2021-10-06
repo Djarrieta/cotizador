@@ -24,6 +24,10 @@ export const useTeamDetail = () => {
 			condition: !data.teamId,
 			text: "Coloca un ID de equipo válido.",
 		},
+    {
+			condition: data.teamId.length<3,
+			text: "Coloca un ID de equipo más largo.",
+		},
 		{
 			condition: !data.name,
 			text: "Coloca un nombre válido.",

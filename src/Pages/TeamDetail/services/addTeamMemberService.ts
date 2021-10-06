@@ -1,6 +1,5 @@
 import firebase from "firebase/app";
 import { firebaseDB } from "../../../config/firebase";
-import ROLES from "../../../constants/ROLES";
 import { ResponseTeamModel } from "../models/ResponseTeamModel";
 export const addTeamMemberService = (
 	teamId: string,

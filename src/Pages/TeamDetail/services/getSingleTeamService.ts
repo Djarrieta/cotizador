@@ -1,5 +1,4 @@
 import { firebaseDB } from "../../../config/firebase";
-import { CurrentTeamModel } from "../models/CurrentTeamModel";
 import { ResponseTeamModel } from "../models/ResponseTeamModel";
 
 export const getSingleTeamService = (

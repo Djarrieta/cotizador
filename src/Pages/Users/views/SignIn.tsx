@@ -4,8 +4,8 @@ import Cookies from "universal-cookie";
 import { Context } from "../../../App/components/ContextProvider";
 import VerificationDataModel from "../../../App/models/VerificationDataModel";
 import Button from "../../../GlobalComponents/Button";
-import Section from "../../../GlobalComponents/Section";
 import FieldText from "../../../GlobalComponents/FieldText";
+import Section from "../../../GlobalComponents/Section";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { signInService } from "../services/signInService";
 
@@ -35,7 +35,7 @@ const SignIn = () => {
 	];
 
 	const handleClick = (): void => {
-		setLoading(true)
+		setLoading(true);
 		const infoVerified = verifyDataInfo(
 			verificationData,
 			"Has ingresado satisfactoriamente."

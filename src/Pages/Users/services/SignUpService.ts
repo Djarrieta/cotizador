@@ -11,17 +11,16 @@ export const signUpService = (
 	newUser: CurrentUserModel
 ): Promise<ResponseUserModel> => {
 	let { password, confirmation, ...finalUser } = newUser;
-
+	console.log("it is inside the service");
 	return firebaseAuth
 		.createUserWithEmailAndPassword(newUser.email, newUser.password)
 		.then((response) => {
 			finalUser = { ...finalUser, uid: response.user.uid };
-			return firebaseDB
-				.collection("users")
-				.doc(response.user.uid)
-				.set(finalUser);
+			console.log("finalUser auth", finalUser);
+			return firebaseDB.collection("users").doc(finalUser.uid).set(finalUser);
 		})
-		.then(() => {
+		.then((response) => {
+			console.log("firestore response", response);
 			return {
 				alert: {
 					type: "success",
