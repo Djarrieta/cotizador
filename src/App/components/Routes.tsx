@@ -2,16 +2,15 @@ import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Error404 from "../../Pages/Error404/views/Error404";
 import Home from "../../Pages/Home/views/Home";
+import TaskDetail from "../../Pages/Tasks/views/TaskDetail";
+import Tasks from "../../Pages/Tasks/views/Tasks";
+import NewMember from "../../Pages/TeamDetail/views/NewMember";
+import TeamDetail from "../../Pages/TeamDetail/views/TeamDetail";
 import Profile from "../../Pages/Users/views/Profile";
 import SignIn from "../../Pages/Users/views/SignIn";
 import SignUp from "../../Pages/Users/views/SignUp";
 import UpdatePassword from "../../Pages/Users/views/UpdatePassword";
-import TeamDetail from "../../Pages/TeamDetail/views/TeamDetail";
 import { Context } from "./ContextProvider";
-import NewMember from "../../Pages/TeamDetail/views/NewMember";
-import Tasks from "../../Pages/Tasks/views/Tasks";
-import TaskDetail from "../../Pages/Tasks/views/TaskDetail";
-import PrivateRoute from "./PrivateRoute";
 
 const Routes = () => {
 	const { currentUser } = useContext(Context);

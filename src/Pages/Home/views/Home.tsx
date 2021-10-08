@@ -21,7 +21,7 @@ const Home = () => {
 								if (item.title === "Perfil") {
 									to = `/perfil/${currentUser?.uid ?? ""}`;
 									text =
-										`${currentUser?.name ?? ""}, ${currentUser?.defaultTeam ?? ""}`;
+										`${currentUser?.name ?? ""} ${currentUser?.defaultTeam ?? ""}`;
 								}
 
 								return (

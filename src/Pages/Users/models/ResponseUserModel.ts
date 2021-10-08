@@ -4,5 +4,6 @@ import { CurrentUserModel } from "./CurrentUserModel";
 
 export interface ResponseUserModel {
 	alert: AlertModel;
-	data?: { currentUser: CurrentUserModel; currentTeam?: CurrentTeamModel };
+	currentUser?: CurrentUserModel;
+	currentTeam?: CurrentTeamModel;
 }

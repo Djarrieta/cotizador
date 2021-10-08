@@ -4,7 +4,8 @@ export interface CurrentUserModel{
   email?: string;
   whatsapp?:string;
   pictureURL?: string;
-  password?:string;
   defaultTeam?:string;
   teams?:{teamId:string; role:string}[]
+  password?:string;
+  confirmation?:string;
 }

@@ -7,7 +7,7 @@ import Button from "../../../GlobalComponents/Button";
 import Section from "../../../GlobalComponents/Section";
 import FieldText from "../../../GlobalComponents/FieldText";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
-import { signUpService } from "../services/signUpService";
+import { signUpService } from "../services/SignUpService";
 
 const cookie = new Cookies();
 
@@ -19,11 +19,11 @@ const SignUp = () => {
 		password: string;
 		confirmation: string;
 	}>({
-		name: "",
-		email: "",
-		whatsapp: "",
-		password: "",
-		confirmation: "",
+		name: "Dario Arrieta",
+		email: "arrieta.dario@hotmail.com",
+		whatsapp: "573008718217",
+		password: "dariojose",
+		confirmation: "dariojose",
 	});
 
 	const { setAlert, setLoading, setCurrentUser,setCurrentTeam } = useContext(Context);
@@ -66,16 +66,18 @@ const SignUp = () => {
 		}
 		signUpService(data).then((response) => {
 			setAlert(response.alert);
-			if (response.data.currentUser) {
-				setCurrentUser(response.data.currentUser);
-				cookie.set("currentUser", response.data.currentUser);
+			if (response.currentUser) {
+				setCurrentUser(response.currentUser);
+				cookie.set("currentUser", response.currentUser);
+				history.push("/");
 			}
 
-			if (response.data.currentTeam) {
-				setCurrentTeam(response.data.currentTeam);
-				cookie.set("currentTeam", response.data.currentTeam);
+			if (response.currentTeam) {
+				setCurrentTeam(response.currentTeam);
+				cookie.set("currentTeam", response.currentTeam);
+				history.push("/");
 			}
-			history.push("/");
+			
 			setLoading(false);
 		});
 	};
@@ -83,7 +85,7 @@ const SignUp = () => {
 	return (
 		<div className="flex items-center justify-center w-full h-full">
 			<div className="max-w-xs">
-				<Section name="Ingresar">
+				<Section name="Registro">
 					<div className="flex flex-col max-w-md px-3 py-4 my-2 border rounded-lg">
 						<FieldText
 							label="Nombre"
@@ -119,9 +121,9 @@ const SignUp = () => {
 								setData({ ...data, confirmation: e.target.value })
 							}
 						/>
-						<Button name="Ingresar" handleFunction={() => handleClick()} />
+						<Button name="Registrarse" handleFunction={() => handleClick()} />
 						<Button
-							name="Ingresar"
+							name="Ingreso"
 							handleFunction={() => history.push("/ingreso")}
 							secondary={true}
 						/>

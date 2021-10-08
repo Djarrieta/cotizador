@@ -1,5 +1,3 @@
-import firebase from "firebase";
-
 export enum TaskState {
 	"Pendiente",
 	"Haciendo",
