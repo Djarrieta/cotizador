@@ -7,7 +7,7 @@ import Button from "../../../GlobalComponents/Button";
 import Section from "../../../GlobalComponents/Section";
 import FieldText from "../../../GlobalComponents/FieldText";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
-import { signUpService } from "../services/signUpService";
+import { signUpService } from "../services/SignUpService";
 
 const cookie = new Cookies();
 

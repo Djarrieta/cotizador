@@ -10,7 +10,7 @@ const alertCases = {
 export const signUpService = (
 	newUser: CurrentUserModel
 ): Promise<ResponseUserModel> => {
-	let { password, confirmation, ...finalUser } = newUser;
+	let { password, ...finalUser } = newUser;
 
 	return firebaseAuth
 		.createUserWithEmailAndPassword(newUser.email, newUser.password)

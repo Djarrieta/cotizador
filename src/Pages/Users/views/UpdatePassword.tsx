@@ -3,7 +3,7 @@ import { Context } from "../../../App/components/ContextProvider";
 import Button from "../../../GlobalComponents/Button";
 import Section from "../../../GlobalComponents/Section";
 import FieldText from "../../../GlobalComponents/FieldText";
-import { updatePasswordService } from "../services/updatePasswordService";
+import { updatePasswordService } from "../services/UpdatePasswordService";
 
 const UpdatePassword = () => {
 	const { setLoading, setAlert } = useContext(Context);

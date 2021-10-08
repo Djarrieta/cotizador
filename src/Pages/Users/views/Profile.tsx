@@ -12,12 +12,12 @@ import TableItem from "../../../GlobalComponents/TableItem";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { CurrentUserModel } from "../models/CurrentUserModel";
 import { editSingleUserService } from "../services/editSingleUserService";
-import { getSingleUserService } from "../services/getSingleUserService";
-import { signOutService } from "../services/signOutService";
 import { Link } from "react-router-dom";
 
 import IconTeam from "../../../GlobalComponents/icons/IconTeam";
 import IconMore from "../../../GlobalComponents/icons/IconMore";
+import { signOutService } from "../services/SignOutService";
+import { getSingleUserService } from "../services/getSingleUserService";
 
 const cookie = new Cookies();
 
