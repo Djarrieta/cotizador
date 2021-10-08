@@ -53,7 +53,6 @@ const SignUp = () => {
 
 	const handleClick = (): void => {
 		setLoading(true);
-
 		const infoVerified = verifyDataInfo(
 			verificationData,
 			"Has ingresado satisfactoriamente."

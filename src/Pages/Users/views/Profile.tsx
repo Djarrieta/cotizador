@@ -1,23 +1,23 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { Context } from "../../../App/components/ContextProvider";
 import VerificationDataModel from "../../../App/models/VerificationDataModel";
 import Button from "../../../GlobalComponents/Button";
+import FieldText from "../../../GlobalComponents/FieldText";
+import IconMore from "../../../GlobalComponents/icons/IconMore";
+import IconTeam from "../../../GlobalComponents/icons/IconTeam";
 import IconUser from "../../../GlobalComponents/icons/IconUser";
 import Section from "../../../GlobalComponents/Section";
-import FieldText from "../../../GlobalComponents/FieldText";
 import Table from "../../../GlobalComponents/Table";
 import TableItem from "../../../GlobalComponents/TableItem";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { CurrentUserModel } from "../models/CurrentUserModel";
 import { editSingleUserService } from "../services/editSingleUserService";
-import { Link } from "react-router-dom";
-
-import IconTeam from "../../../GlobalComponents/icons/IconTeam";
-import IconMore from "../../../GlobalComponents/icons/IconMore";
-import { signOutService } from "../services/SignOutService";
 import { getSingleUserService } from "../services/getSingleUserService";
+import { signOutService } from "../services/SignOutService";
+
 
 const cookie = new Cookies();
 
@@ -77,6 +77,9 @@ const Profile = () => {
 
 		editSingleUserService(data).then((response) => {
 			setAlert(response.alert);
+			if(response.alert.type==="success"){
+				cookie.set("currentUser", data);
+			}
 			setLoading(false);
 		});
 	};
@@ -151,7 +154,11 @@ const Profile = () => {
 				</div>
 			</Section>
 
-			<Section name="Equipos" buttonName="Agregar" handleFunction={()=>console.log("add")}>
+			<Section
+				name="Equipos"
+				buttonName="Agregar"
+				handleFunction={() => console.log("add")}
+			>
 				<Table>
 					{currentUser.teams ? (
 						currentUser.teams.map((team) => {
