@@ -10,15 +10,17 @@ import SignUp from "../../Pages/Users/views/SignUp";
 import UpdatePassword from "../../Pages/Users/views/UpdatePassword";
 import { Context } from "../components/ContextProvider";
 
+interface routeModel {
+	path: string;
+	condition: boolean;
+	redirect: string;
+	component: () => JSX.Element;
+}
+
 const useRoutes = () => {
 	const { currentUser } = useContext(Context);
 
-	const routes: {
-		path: string;
-		condition: boolean;
-		redirect: string;
-		component: () => JSX.Element;
-	}[] = [
+	const userRoutes: routeModel[] = [
 		{
 			path: "/",
 			condition: currentUser !== undefined,
@@ -50,6 +52,9 @@ const useRoutes = () => {
 			redirect: "/ingreso",
 			component: UpdatePassword,
 		},
+	];
+
+	const teamRoutes: routeModel[] = [
 		{
 			path: "/equipo/:teamId",
 			condition: currentUser !== undefined,
@@ -75,6 +80,7 @@ const useRoutes = () => {
 			component: TaskDetail,
 		},
 	];
+	const routes = [...userRoutes, ...teamRoutes];
 	return { routes };
 };
 export default useRoutes;

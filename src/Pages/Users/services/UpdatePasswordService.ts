@@ -1,6 +1,11 @@
 import { firebaseAuth } from "../../../config/firebase";
 import { ResponseUserModel } from "../models/ResponseUserModel";
 
+const alertCases = {
+	"auth/requires-recent-login": "Se requiere haber iniciado sesión recientemente.",
+	"auth/weak-password": "Coloca una contraseña más dificil de adivinar.",
+};
+
 export const updatePasswordService = (
 	newPassword: string
 ): Promise<ResponseUserModel> => {
@@ -19,7 +24,7 @@ export const updatePasswordService = (
 			return {
 				alert: {
 					type: "error",
-					text: "Hubo un problema, intenta nuevamente.",
+					text: alertCases[error.code] || "Hubo un problema, intenta nuevamente.",
 				},
 			};
 		});

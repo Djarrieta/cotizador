@@ -151,7 +151,7 @@ const Profile = () => {
 				</div>
 			</Section>
 
-			<Section name="Equipos">
+			<Section name="Equipos" buttonName="Agregar" handleFunction={()=>console.log("add")}>
 				<Table>
 					{currentUser.teams ? (
 						currentUser.teams.map((team) => {
