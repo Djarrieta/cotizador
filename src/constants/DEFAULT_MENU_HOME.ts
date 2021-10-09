@@ -1,5 +1,5 @@
 import MenuHomeModel from "../App/models/MenuHomeModel";
-import IconActivities from "../GlobalComponents/icons/IconActivities";
+import IconTasks from "../GlobalComponents/icons/IconTasks";
 import IconItems from "../GlobalComponents/icons/IconItems";
 import IconProjects from "../GlobalComponents/icons/IconProjects";
 import IconQuotes from "../GlobalComponents/icons/IconQuotes";
@@ -18,9 +18,9 @@ const DEFAULT_MENU_HOME: MenuHomeModel[] = [
 				text: "",
 			},
 			{
-				to: "/actividades",
-				icon: IconActivities(),
-				title: "Actividades",
+				to: "/tareas",
+				icon: IconTasks(),
+				title: "Tareas",
 				text: "Asignadas a ti o a otros",
 			},
 			{

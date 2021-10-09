@@ -18,11 +18,12 @@ module.exports = {
 				info: "#E57E1F",
 				success: "#31A24C",
 
-				tag_1:"#ED78FA",
-				tag_2:"#87ABD6",
-				tag_3:"#92EB9F",
-				tag_4:"#FCE15B",
-				tag_5:"#FA997F"
+				color_tag_0:"#FA997F",
+				color_tag_1:"#ED78FA",
+				color_tag_2:"#87ABD6",
+				color_tag_3:"#92EB9F",
+				color_tag_4:"#FCE15B",
+				
 			},
 		},
 	},

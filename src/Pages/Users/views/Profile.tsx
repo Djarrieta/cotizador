@@ -1,23 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { Context } from "../../../App/components/ContextProvider";
 import VerificationDataModel from "../../../App/models/VerificationDataModel";
 import Button from "../../../GlobalComponents/Button";
+import FieldText from "../../../GlobalComponents/FieldText";
+import IconMore from "../../../GlobalComponents/icons/IconMore";
+import IconTeam from "../../../GlobalComponents/icons/IconTeam";
 import IconUser from "../../../GlobalComponents/icons/IconUser";
 import Section from "../../../GlobalComponents/Section";
-import FieldText from "../../../GlobalComponents/FieldText";
 import Table from "../../../GlobalComponents/Table";
 import TableItem from "../../../GlobalComponents/TableItem";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { CurrentUserModel } from "../models/CurrentUserModel";
 import { editSingleUserService } from "../services/editSingleUserService";
 import { getSingleUserService } from "../services/getSingleUserService";
-import { signOutService } from "../services/signOutService";
-import { Link } from "react-router-dom";
-
-import IconTeam from "../../../GlobalComponents/icons/IconTeam";
-import IconMore from "../../../GlobalComponents/icons/IconMore";
+import { signOutService } from "../services/SignOutService";
 
 const cookie = new Cookies();
 
@@ -56,11 +55,11 @@ const Profile = () => {
 	];
 
 	useEffect(() => {
-		if (uid === currentUser.uid) {
+		if (currentUser?.uid === uid) {
 			setData(currentUser);
 			return;
 		}
-		getSingleUserService(uid).then((response) => setData(response));
+		getSingleUserService(uid).then((response) => setData(response.currentUser));
 	}, [uid, currentUser]);
 
 	const saveUserData = () => {
@@ -77,6 +76,9 @@ const Profile = () => {
 
 		editSingleUserService(data).then((response) => {
 			setAlert(response.alert);
+			if (response.alert.type === "success") {
+				cookie.set("currentUser", data);
+			}
 			setLoading(false);
 		});
 	};
@@ -105,21 +107,23 @@ const Profile = () => {
 					<div className="w-full px-6 pb-2 my-3s sm:w-1/2">
 						<FieldText label="ID" value={data.uid} disabled={true} />
 						<FieldText
+							label="Correo"
+							value={data.email}
+							handleFuntion={(e) => setData({ ...data, email: e.target.value })}
+							disabled={true}
+						/>
+						<FieldText
 							label="Nombre"
 							value={data.name}
 							handleFuntion={(e) => setData({ ...data, name: e.target.value })}
 						/>
 						<FieldText
-							label="Correo"
-							value={data.email}
-							handleFuntion={(e) => setData({ ...data, email: e.target.value })}
-						/>
-						<FieldText
 							label="Whatsapp"
 							value={data.whatsapp}
-							handleFuntion={(e) =>
-								setData({ ...data, whatsapp: e.target.value })
-							}
+							handleFuntion={(e) => {
+								console.log(e.type);
+								setData({ ...data, whatsapp: e.target.value });
+							}}
 						/>
 						<Button name="Editar" handleFunction={saveUserData} />
 						<div className="w-1/2 text-left">
@@ -149,20 +153,36 @@ const Profile = () => {
 					</div>
 				</div>
 			</Section>
-			<Section name="Equipos">
+
+			<Section
+				name="Equipos"
+				buttonName="Agregar"
+				handleFunction={() => history.push("/equipo/nuevo")}
+			>
 				<Table>
-					{currentUser.teams.map((team) => {
-						return (
-							<TableItem key={team.teamId}>
-								<IconTeam />
-								<span>{team.teamId}</span>
-								<span>{team.role}</span>
-								<Link to={`/equipo/${team.teamId}`} className="h-full">
-									<IconMore />
-								</Link>
-							</TableItem>
-						);
-					})}
+					{currentUser.teams ? (
+						currentUser.teams.map((team) => {
+							return (
+								<TableItem key={team.teamId}>
+									<div className="flex justify-between w-full h-10">
+										<IconTeam />
+										<span>{team.teamId}</span>
+										<span>{team.role}</span>
+										<Link to={`/equipo/${team.teamId}`} className="h-full">
+											<IconMore />
+										</Link>
+									</div>
+								</TableItem>
+							);
+						})
+					) : (
+						<tr className="flex items-center justify-center w-full ">
+							<td>
+								<span>No tienes ningún equipo. </span>
+								<Link to="/equipo/nuevo">Crea tu primer equipo</Link>
+							</td>
+						</tr>
+					)}
 				</Table>
 			</Section>
 		</>

@@ -7,13 +7,13 @@ const Section = (props: {
 	handleFunction?: ()=>void;
 	buttonName?:string
 }) => {
-	const { children, name, button, handleFunction, buttonName } = props;
+	const { children, name, handleFunction, buttonName } = props;
 
 	return (
 		<section className="w-full max-w-4xl px-4 mx-auto rounded-lg bg-bgd_light">
 			<div className="flex justify-between w-full border-b border-text_light">
 				<h2 className="pb-1 pl-4 text-2xl text-text_light">{name}</h2>
-				{button && (
+				{buttonName && (
 					<div className="w-16 py-1">
 						<Button name={buttonName ?? "Nuevo"}  handleFunction={handleFunction} secondary={true}/>
 					</div>
