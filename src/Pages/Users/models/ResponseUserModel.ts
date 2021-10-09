@@ -1,5 +1,5 @@
 import { AlertModel } from "../../../App/models/AlertModel";
-import { CurrentTeamModel } from "../../TeamDetail/models/CurrentTeamModel";
+import { CurrentTeamModel } from "../../Teams/models/CurrentTeamModel";
 import { CurrentUserModel } from "./CurrentUserModel";
 
 export interface ResponseUserModel {

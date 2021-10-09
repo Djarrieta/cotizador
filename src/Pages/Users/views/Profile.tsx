@@ -18,7 +18,6 @@ import { editSingleUserService } from "../services/editSingleUserService";
 import { getSingleUserService } from "../services/getSingleUserService";
 import { signOutService } from "../services/SignOutService";
 
-
 const cookie = new Cookies();
 
 const Profile = () => {
@@ -77,7 +76,7 @@ const Profile = () => {
 
 		editSingleUserService(data).then((response) => {
 			setAlert(response.alert);
-			if(response.alert.type==="success"){
+			if (response.alert.type === "success") {
 				cookie.set("currentUser", data);
 			}
 			setLoading(false);
@@ -108,14 +107,15 @@ const Profile = () => {
 					<div className="w-full px-6 pb-2 my-3s sm:w-1/2">
 						<FieldText label="ID" value={data.uid} disabled={true} />
 						<FieldText
-							label="Nombre"
-							value={data.name}
-							handleFuntion={(e) => setData({ ...data, name: e.target.value })}
-						/>
-						<FieldText
 							label="Correo"
 							value={data.email}
 							handleFuntion={(e) => setData({ ...data, email: e.target.value })}
+							disabled={true}
+						/>
+						<FieldText
+							label="Nombre"
+							value={data.name}
+							handleFuntion={(e) => setData({ ...data, name: e.target.value })}
 						/>
 						<FieldText
 							label="Whatsapp"
@@ -157,7 +157,7 @@ const Profile = () => {
 			<Section
 				name="Equipos"
 				buttonName="Agregar"
-				handleFunction={() => console.log("add")}
+				handleFunction={() => history.push("/equipo/nuevo")}
 			>
 				<Table>
 					{currentUser.teams ? (
@@ -177,9 +177,10 @@ const Profile = () => {
 						})
 					) : (
 						<tr className="flex items-center justify-center w-full ">
-							<p>
-								No tienes ningún equipo. <span>Crea tu primer equipo</span>
-							</p>
+							<td>
+								<span>No tienes ningún equipo. </span>
+								<Link to="/equipo/nuevo">Crea tu primer equipo</Link>
+							</td>
 						</tr>
 					)}
 				</Table>
