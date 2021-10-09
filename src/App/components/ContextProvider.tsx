@@ -1,7 +1,7 @@
 import React, { createContext, ReactElement, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import { CurrentUserModel } from "../../Pages/Users/models/CurrentUserModel";
-import { CurrentTeamModel } from "../../Pages/TeamDetail/models/CurrentTeamModel";
+import { CurrentTeamModel } from "../../Pages/Teams/models/CurrentTeamModel";
 import { AlertModel } from "../models/AlertModel";
 
 export const Context = createContext<{

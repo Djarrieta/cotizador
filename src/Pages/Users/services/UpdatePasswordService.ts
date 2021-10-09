@@ -1,31 +1,31 @@
-//import { firebaseAuth } from "../../../config/firebase";
-
+import { firebaseAuth } from "../../../config/firebase";
 import { ResponseUserModel } from "../models/ResponseUserModel";
+
+const alertCases = {
+	"auth/requires-recent-login": "Se requiere haber iniciado sesión recientemente.",
+	"auth/weak-password": "Coloca una contraseña más dificil de adivinar.",
+};
 
 export const updatePasswordService = (
 	newPassword: string
 ): Promise<ResponseUserModel> => {
-	return new Promise((resolve, reject) => {
-		resolve({
-			alert: {
-				type: "success",
-				text: "Se ha modificado la contraseña satisfactoriamente.",
-			},
-		});
-	});
-	/* firebaseAuth.currentUser
+	return firebaseAuth.currentUser
 		.updatePassword(newPassword)
 		.then(() => {
 			return {
-				type: "success",
-				text: "Se ha actualizado la contraseña con éxito.",
+				alert: {
+					type: "success",
+					text: "Se ha actualizado la contraseña con éxito.",
+				},
 			};
 		})
 		.catch((error) => {
 			console.error(error.code);
 			return {
-				type: "error",
-				text: "Hubo un problema, intenta nuevamente.",
+				alert: {
+					type: "error",
+					text: alertCases[error.code] || "Hubo un problema, intenta nuevamente.",
+				},
 			};
-		}); */
+		});
 };
