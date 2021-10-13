@@ -1,18 +1,15 @@
-import { useContext } from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { Context } from "../../../App/components/ContextProvider";
 import VerificationDataModel from "../../../App/models/VerificationDataModel";
-import ROLES from "../../../constants/ROLES";
 import Button from "../../../GlobalComponents/Button";
-import FieldSelect from "../../../GlobalComponents/FieldSelect";
 import FieldText from "../../../GlobalComponents/FieldText";
 import Section from "../../../GlobalComponents/Section";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { addTeamMemberService } from "../services/addTeamMemberService";
 
 const NewMember = () => {
-	const { setLoading, setAlert, setCurrentTeam } = useContext(Context);
+	const { setLoading, setAlert } = useContext(Context);
 	const { teamId } = useParams<{ teamId: string }>();
 	const [newMember, setNewMember] = useState<{ email: string; role: string }>({
 		email: "",
@@ -48,7 +45,6 @@ const NewMember = () => {
 		}
 		addTeamMemberService(teamId, newMember).then((response) => {
 			setAlert({ text: infoVerified.text, type: "success" });
-			setCurrentTeam(response.data);
 			history.push("/equipo/" + teamId);
 			setLoading(false);
 		});
@@ -59,18 +55,18 @@ const NewMember = () => {
 				<FieldText
 					label="Email"
 					value={newMember.email}
-					handleFuntion={(event) =>
+					onChange={(event) =>
 						setNewMember({ ...newMember, email: event.target.value })
 					}
 				/>
-				<FieldSelect
+{/* 				<FieldSelect
 					label="Role"
 					options={ROLES}
 					selectedValue={newMember.role}
 					handleChange={(event) =>
 						setNewMember({ ...newMember, role: event.target.value })
 					}
-				/>
+				/> */}
 				<Button name="Guardar" handleFunction={saveNewMember} />
 				<Button
 					name="Cancelar"

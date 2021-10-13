@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Cookies from "universal-cookie";
 import { Context } from "../../../App/components/ContextProvider";
 import VerificationDataModel from "../../../App/models/VerificationDataModel";
 import Button from "../../../GlobalComponents/Button";
@@ -8,8 +7,6 @@ import Section from "../../../GlobalComponents/Section";
 import FieldText from "../../../GlobalComponents/FieldText";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { signUpService } from "../services/SignUpService";
-
-const cookie = new Cookies();
 
 const SignUp = () => {
 	const [data, setData] = useState<{
@@ -26,7 +23,7 @@ const SignUp = () => {
 		confirmation: "dariojose",
 	});
 
-	const { setAlert, setLoading, setCurrentUser,setCurrentTeam } = useContext(Context);
+	const { setAlert, setLoading, setCurrentUser } = useContext(Context);
 	const history = useHistory();
 	const verificationData: VerificationDataModel[] = [
 		{
@@ -67,16 +64,9 @@ const SignUp = () => {
 			setAlert(response.alert);
 			if (response.currentUser) {
 				setCurrentUser(response.currentUser);
-				cookie.set("currentUser", response.currentUser);
 				history.push("/");
 			}
 
-			if (response.currentTeam) {
-				setCurrentTeam(response.currentTeam);
-				cookie.set("currentTeam", response.currentTeam);
-				history.push("/");
-			}
-			
 			setLoading(false);
 		});
 	};
@@ -89,34 +79,30 @@ const SignUp = () => {
 						<FieldText
 							label="Nombre"
 							value={data.name}
-							handleFuntion={(e) => setData({ ...data, name: e.target.value })}
+							onChange={(e) => setData({ ...data, name: e.target.value })}
 						/>
 						<FieldText
 							label="Correo"
 							value={data.email}
-							handleFuntion={(e) => setData({ ...data, email: e.target.value })}
+							onChange={(e) => setData({ ...data, email: e.target.value })}
 						/>
 						<FieldText
 							label="WhatsApp"
 							placeholder="573001234567"
 							value={data.whatsapp}
-							handleFuntion={(e) =>
-								setData({ ...data, whatsapp: e.target.value })
-							}
+							onChange={(e) => setData({ ...data, whatsapp: e.target.value })}
 						/>
 						<FieldText
 							label="Contraseña"
 							value={data.password}
 							type="password"
-							handleFuntion={(e) =>
-								setData({ ...data, password: e.target.value })
-							}
+							onChange={(e) => setData({ ...data, password: e.target.value })}
 						/>
 						<FieldText
 							label="Confirmación"
 							value={data.confirmation}
 							type="password"
-							handleFuntion={(e) =>
+							onChange={(e) =>
 								setData({ ...data, confirmation: e.target.value })
 							}
 						/>

@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
-import Cookies from "universal-cookie";
 import { Context } from "../../../App/components/ContextProvider";
 import VerificationDataModel from "../../../App/models/VerificationDataModel";
 import Button from "../../../GlobalComponents/Button";
@@ -18,12 +17,11 @@ import { editSingleUserService } from "../services/editSingleUserService";
 import { getSingleUserService } from "../services/getSingleUserService";
 import { signOutService } from "../services/SignOutService";
 
-const cookie = new Cookies();
 
 const Profile = () => {
 	const history = useHistory();
 	const { uid } = useParams<{ uid: string }>();
-	const { setLoading, currentUser, setAlert, setCurrentUser, setCurrentTeam } =
+	const { setLoading, currentUser, setAlert, setCurrentUser } =
 		useContext(Context);
 
 	const [data, setData] = useState<CurrentUserModel>({
@@ -77,7 +75,7 @@ const Profile = () => {
 		editSingleUserService(data).then((response) => {
 			setAlert(response.alert);
 			if (response.alert.type === "success") {
-				cookie.set("currentUser", data);
+				setCurrentUser(response.currentUser)
 			}
 			setLoading(false);
 		});
@@ -90,10 +88,7 @@ const Profile = () => {
 	const signOut = () => {
 		setLoading(true);
 		signOutService().then((response) => {
-			cookie.remove("currentUser");
-			cookie.remove("currentTeam");
 			setCurrentUser(undefined);
-			setCurrentTeam(undefined);
 			setAlert(response.alert);
 			setLoading(false);
 			history.push("/ingreso");
@@ -109,18 +104,18 @@ const Profile = () => {
 						<FieldText
 							label="Correo"
 							value={data.email}
-							handleFuntion={(e) => setData({ ...data, email: e.target.value })}
+							onChange={(e) => setData({ ...data, email: e.target.value })}
 							disabled={true}
 						/>
 						<FieldText
 							label="Nombre"
 							value={data.name}
-							handleFuntion={(e) => setData({ ...data, name: e.target.value })}
+							onChange={(e) => setData({ ...data, name: e.target.value })}
 						/>
 						<FieldText
 							label="Whatsapp"
 							value={data.whatsapp}
-							handleFuntion={(e) => {
+							onChange={(e) => {
 								console.log(e.type);
 								setData({ ...data, whatsapp: e.target.value });
 							}}

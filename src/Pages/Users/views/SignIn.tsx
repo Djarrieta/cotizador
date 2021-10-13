@@ -1,16 +1,12 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Cookies from "universal-cookie";
 import { Context } from "../../../App/components/ContextProvider";
 import VerificationDataModel from "../../../App/models/VerificationDataModel";
 import Button from "../../../GlobalComponents/Button";
-import Section from "../../../GlobalComponents/Section";
 import FieldText from "../../../GlobalComponents/FieldText";
+import Section from "../../../GlobalComponents/Section";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { signInService } from "../services/SignInService";
-
-
-const cookie = new Cookies();
 
 const SignIn = () => {
 	const [data, setData] = useState<{
@@ -21,7 +17,7 @@ const SignIn = () => {
 		password: "dariojose",
 	});
 
-	const { setAlert, setLoading, setCurrentUser, setCurrentTeam } =
+	const { setAlert, setLoading, setCurrentUser } =
 		useContext(Context);
 	const history = useHistory();
 	const verificationData: VerificationDataModel[] = [
@@ -36,7 +32,7 @@ const SignIn = () => {
 	];
 
 	const handleClick = (): void => {
-		setLoading(true)
+		setLoading(true);
 		const infoVerified = verifyDataInfo(
 			verificationData,
 			"Has ingresado satisfactoriamente."
@@ -52,13 +48,8 @@ const SignIn = () => {
 			if (response.alert.type === "success") {
 				if (response.currentUser) {
 					setCurrentUser(response.currentUser);
-					cookie.set("currentUser", response.currentUser);
 				}
 
-				if (response.currentTeam) {
-					setCurrentTeam(response.currentTeam);
-					cookie.set("currentTeam", response.currentTeam);
-				}
 				history.push("/");
 			}
 			setLoading(false);
@@ -73,15 +64,13 @@ const SignIn = () => {
 						<FieldText
 							label="Correo"
 							value={data.email}
-							handleFuntion={(e) => setData({ ...data, email: e.target.value })}
+							onChange={(e) => setData({ ...data, email: e.target.value })}
 						/>
 						<FieldText
 							label="Contraseña"
 							value={data.password}
 							type="password"
-							handleFuntion={(e) =>
-								setData({ ...data, password: e.target.value })
-							}
+							onChange={(e) => setData({ ...data, password: e.target.value })}
 						/>
 						<Button name="Ingresar" handleFunction={() => handleClick()} />
 						<Button

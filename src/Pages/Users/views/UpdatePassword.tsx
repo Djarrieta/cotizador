@@ -51,7 +51,7 @@ const UpdatePassword = () => {
 						label="Nueva contraseña"
 						value={data.newPasswod}
 						type="password"
-						handleFuntion={(e) =>
+						onChange={(e) =>
 							setData({ ...data, newPasswod: e.target.value })
 						}
 					/>
@@ -59,7 +59,7 @@ const UpdatePassword = () => {
 						label="Confirmación"
 						value={data.confirmation}
 						type="password"
-						handleFuntion={(e) =>
+						onChange={(e) =>
 							setData({ ...data, confirmation: e.target.value })
 						}
 					/>

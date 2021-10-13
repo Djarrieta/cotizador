@@ -1,4 +1,5 @@
 import { CurrentTeamModel } from "../models/CurrentTeamModel";
+import { Roles } from "../models/Roles";
 
 export const getSingleTeamService = (
 	teamId: string
@@ -8,7 +9,7 @@ export const getSingleTeamService = (
 			name: "Other team comming from service",
 			teamId: "uid",
 			pictureURL: "url",
-			members:[ { email: "email@member1", role: "admin" , uid:"uid"}],
+			members:[ { email: "email@member1", role: Roles.Admin , uid:"uid"}],
 		});
 	});
 };

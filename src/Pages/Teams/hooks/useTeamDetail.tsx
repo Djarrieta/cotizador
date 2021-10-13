@@ -4,13 +4,15 @@ import { Context } from "../../../App/components/ContextProvider";
 import VerificationDataModel from "../../../App/models/VerificationDataModel";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { CurrentTeamModel } from "../models/CurrentTeamModel";
+import { Roles } from "../models/Roles";
 import { editSingleTeamService } from "../services/editSingleTeamService";
 import { getSingleTeamService } from "../services/getSingleTeamService";
 
 export const useTeamDetail = () => {
 	const { teamId } = useParams<{ teamId: string }>();
-	const { setLoading, currentTeam, setAlert } = useContext(Context);
-  const history=useHistory()
+	const { setLoading, setAlert, currentUser, setCurrentUser } =
+		useContext(Context);
+	const history = useHistory();
 
 	const [data, setData] = useState<CurrentTeamModel>({
 		teamId: "",
@@ -22,29 +24,21 @@ export const useTeamDetail = () => {
 	const verificationData: VerificationDataModel[] = [
 		{
 			condition: !data.teamId,
-			text: "No hay id de equipo. Actualiza la página.",
+			text: "No hay id de equipo.",
 		},
 		{
 			condition: !data.name,
 			text: "Coloca un nombre válido.",
 		},
-		{
-			condition: data.members.length === 0,
-			text: "Debe haber por lo menos un miembro",
-		},
 	];
 
 	useEffect(() => {
-		if (currentTeam && teamId === currentTeam.teamId) {
-			setData(currentTeam);
-			return;
-		}
 		if (teamId !== "nuevo") {
 			getSingleTeamService(teamId).then((response) => setData(response));
 		}
-	}, [teamId, currentTeam]);
+	}, [teamId]);
 
-	const saveTeamData = () => {
+	const saveTeamData = async () => {
 		setLoading(true);
 		const infoVerified = verifyDataInfo(
 			verificationData,
@@ -56,16 +50,42 @@ export const useTeamDetail = () => {
 			return;
 		}
 
-		editSingleTeamService(data).then((response) => {
+		const newMemberData =
+			data.members.length === 0
+				? {
+						...data,
+						members: [
+							{
+								email: currentUser.email,
+								role: Roles.Admin,
+								uid: currentUser.uid,
+							},
+						],
+				  }
+				: data;
+
+		editSingleTeamService(newMemberData).then((response) => {
+			const newTeams =
+				!currentUser.teams || currentUser.teams.length === 0
+					? [{ teamId: data.teamId, role: Roles.Admin }]
+					: [...currentUser.teams, { teamId: data.teamId, role: Roles.Admin }];
+
+			setCurrentUser({
+				...currentUser,
+				defaultTeam: data.teamId,
+				teams: newTeams,
+			});
+
 			setAlert(response.alert);
 			setLoading(false);
+			history.push("/");
 		});
 	};
 
 	const changePictureURL = () => {
 		console.log("cambia foto");
 	};
-	const handleRoleChange = (selectedUid: string, newRole: string) => {
+	const handleRoleChange = (selectedUid: string, newRole: Roles) => {
 		setLoading(true);
 		const editedMembers = data.members.map((member) => {
 			if (member.uid === selectedUid) {
@@ -75,7 +95,9 @@ export const useTeamDetail = () => {
 			}
 		});
 
-		if (editedMembers.filter((member) => member.role === "Admin").length < 1) {
+		if (
+			editedMembers.filter((member) => member.role === Roles.Admin).length < 1
+		) {
 			setAlert({
 				type: "error",
 				text: "Debe haber por lo menos un Admin",
@@ -90,5 +112,13 @@ export const useTeamDetail = () => {
 			setLoading(false);
 		});
 	};
-	return { teamId, data, setData, saveTeamData, changePictureURL, handleRoleChange ,history};
+	return {
+		teamId,
+		data,
+		setData,
+		saveTeamData,
+		changePictureURL,
+		handleRoleChange,
+		history,
+	};
 };
