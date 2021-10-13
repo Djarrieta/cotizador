@@ -35,9 +35,10 @@ const ContextProvider = ({ children }: { children: ReactElement }) => {
 			user ? setCurrentUser(user) : setCurrentUser(undefined);
 			setFirstRun(false);
 		} else {
+			console.log("currentUser", currentUser)
 			currentUser
 				? cookies.set("currentUser", currentUser)
-				: cookies.set("currentUser", undefined);
+				: cookies.remove("currentUser");
 		}
 		setLoading(false);
 	}, [currentUser, firstRun]);
