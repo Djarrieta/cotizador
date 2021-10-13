@@ -1,4 +1,5 @@
 import { ResponseTeamModel } from "../models/ResponseTeamModel";
+import { Roles } from "../models/Roles";
 export const addTeamMemberService = (
 	teamId: string,
 	newMember: {
@@ -13,7 +14,7 @@ export const addTeamMemberService = (
 				name: "Other team comming from service",
 				teamId: "uid",
 				pictureURL: "url",
-				members: [{ email: "email@member1", role: "admin", uid: "uid" }],
+				members: [{ email: "email@member1", role: Roles.Admin, uid: "uid" }],
 			},
 		});
 	});
