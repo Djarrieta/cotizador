@@ -24,7 +24,7 @@ const useRoutes = () => {
 	const userRoutes: routeModel[] = [
 		{
 			path: "/",
-			condition: currentUser === undefined,
+			condition: currentUser !== undefined,
 			redirect: "/ingreso",
 			component: Home,
 		},

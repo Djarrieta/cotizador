@@ -17,8 +17,7 @@ const SignIn = () => {
 		password: "dariojose",
 	});
 
-	const { setAlert, setLoading, setCurrentUser } =
-		useContext(Context);
+	const { setAlert, setLoading, setCurrentUser } = useContext(Context);
 	const history = useHistory();
 	const verificationData: VerificationDataModel[] = [
 		{
@@ -46,11 +45,9 @@ const SignIn = () => {
 		signInService(data.email, data.password).then((response) => {
 			setAlert(response.alert);
 			if (response.alert.type === "success") {
-				console.log(response.currentUser)
-/* 				if (response.currentUser) {
+				if (response.currentUser) {
 					setCurrentUser(response.currentUser);
-				} */
-
+				}
 				history.push("/");
 			}
 			setLoading(false);
