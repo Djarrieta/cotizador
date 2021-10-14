@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import IconMenu from "../../GlobalComponents/icons/IconMenu";
+import IconMenu from "../../../GlobalComponents/icons/IconMenu";
 
 const HomeButton = () => {
 	const location = useLocation();

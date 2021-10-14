@@ -1,4 +1,4 @@
-import MenuHomeModel from "../App/models/MenuHomeModel";
+import MenuHomeModel from "../Pages/App/models/MenuHomeModel";
 import IconTasks from "../GlobalComponents/icons/IconTasks";
 import IconItems from "../GlobalComponents/icons/IconItems";
 import IconProjects from "../GlobalComponents/icons/IconProjects";

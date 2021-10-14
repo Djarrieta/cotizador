@@ -1,7 +1,8 @@
 import React from "react";
 import { useContext } from "react";
-import IconLogo from "../../GlobalComponents/icons/IconLogo";
-import { Context } from "./ContextProvider";
+import { Context } from "../../../GlobalComponents/ContextProvider";
+import IconLogo from "../../../GlobalComponents/icons/IconLogo";
+
 
 const Loading = () => {
 	const { loading } = useContext(Context);

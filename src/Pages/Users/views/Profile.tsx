@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../../../App/components/ContextProvider";
 import Button from "../../../GlobalComponents/Button";
+import { Context } from "../../../GlobalComponents/ContextProvider";
 import FieldText from "../../../GlobalComponents/FieldText";
 import IconDetail from "../../../GlobalComponents/icons/IconDetail";
 import IconTeam from "../../../GlobalComponents/icons/IconTeam";
@@ -80,7 +80,7 @@ const Profile = () => {
 					{currentUser.teams &&
 						currentUser.teams.map((team) => {
 							return (
-								<TableRow key={team.teamId}>
+								<TableRow keyValue={team.teamId}>
 									<TableData>
 										<IconTeam />
 									</TableData>

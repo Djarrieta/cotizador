@@ -77,7 +77,7 @@ const TeamDetail = () => {
 				<Table>
 					{data.members.map((member) => {
 						return (
-							<TableRow key={member.email}>
+							<TableRow keyValue={member.email}>
 								<TableData>
 									<IconUser />
 								</TableData>

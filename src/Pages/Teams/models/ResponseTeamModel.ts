@@ -1,4 +1,4 @@
-import {AlertModel} from "../../../App/models/AlertModel";
+import {AlertModel} from "../../App/models/AlertModel";
 import { CurrentTeamModel } from "./CurrentTeamModel";
 
 export interface ResponseTeamModel {

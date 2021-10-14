@@ -6,7 +6,7 @@ import { TaskModel } from "../models/TaskModel";
 import { getTasksService } from "../services/getTasksService";
 import { TaskState } from "../models/TaskModel";
 import { useContext } from "react";
-import { Context } from "../../../App/components/ContextProvider";
+import { Context } from "../../../GlobalComponents/ContextProvider";
 import { Link } from "react-router-dom";
 import FieldText from "../../../GlobalComponents/FieldText";
 import IconFilter from "../../../GlobalComponents/icons/IconFilter";
@@ -34,7 +34,7 @@ const Tasks = () => {
 					<Table>
 						{tasks.map((task) => {
 							return (
-								<TableItem key={task.id}>
+								<TableItem keyValue={task.id}>
 									<Link
 										to={`/${currentUser.defaultTeam}/tarea/${task.id}`}
 										className="flex flex-col w-full "

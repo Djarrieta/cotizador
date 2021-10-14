@@ -1,4 +1,4 @@
-import { ResponseModel } from "../../../App/models/ResponseModel";
+import { ResponseModel } from "../../App/models/ResponseModel";
 import { firebaseDB } from "../../../config/firebase";
 
 export const getSingleTeamService = (

@@ -1,14 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { Context } from "../../../App/components/ContextProvider";
-import VerificationDataModel from "../../../App/models/VerificationDataModel";
+import { Context } from "../../../GlobalComponents/ContextProvider";
+import VerificationDataModel from "../../App/models/VerificationDataModel";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { CurrentUserModel } from "../models/CurrentUserModel";
 import { editSingleUserService } from "../services/editSingleUserService";
 import { getSingleUserService } from "../services/getSingleUserService";
 import { signOutService } from "../services/SignOutService";
+import Cookies from "universal-cookie";
+
+
 
 const useProfile = () => {
+	const cookies = new Cookies();
 	const history = useHistory();
 	const { uid } = useParams<{ uid: string }>();
 	const { setLoading, currentUser, setAlert, setCurrentUser } =
@@ -78,6 +82,7 @@ const useProfile = () => {
 	const signOut = () => {
 		setLoading(true);
 		signOutService().then((response) => {
+			
 			setCurrentUser(undefined);
 			setAlert(response.alert);
 			setLoading(false);

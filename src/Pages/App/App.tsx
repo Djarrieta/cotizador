@@ -1,9 +1,10 @@
 import { BrowserRouter } from "react-router-dom";
-import ContextProvider from "./components/ContextProvider";
+
 import {Alert} from "./components/Alert";
 import Loading from "./components/Loading";
 import Routes from "./components/Routes";
 import HomeButton from "./components/HomeButton";
+import ContextProvider from "../../GlobalComponents/ContextProvider";
 
 function App() {
 	return (

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useHistory } from "react-router";
-import { Context } from "../../../App/components/ContextProvider";
-import VerificationDataModel from "../../../App/models/VerificationDataModel";
+import { Context } from "../../../GlobalComponents/ContextProvider";
+import VerificationDataModel from "../../App/models/VerificationDataModel";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { CurrentTeamModel } from "../models/CurrentTeamModel";
 import { Roles } from "../models/Roles";
