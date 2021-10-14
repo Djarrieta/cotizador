@@ -1,5 +1,5 @@
 import Button from "../../../GlobalComponents/Button";
-import CustomTable from "../../../GlobalComponents/CustomTable";
+import Table from "../../../GlobalComponents/Table";
 import FieldSelect from "../../../GlobalComponents/FieldSelect";
 import FieldText from "../../../GlobalComponents/FieldText";
 import IconTeam from "../../../GlobalComponents/icons/IconTeam";
@@ -72,7 +72,7 @@ const TeamDetail = () => {
 				buttonName="Invitar"
 				handleFunction={() => history.push("/" + teamId + "/nuevo-miembro")}
 			>
-				<CustomTable
+				<Table
 					tableData={data.members.map((member) => {
 						return {
 							data: [

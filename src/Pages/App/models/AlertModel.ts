@@ -1,4 +1,4 @@
 export interface AlertModel {
-	type: string;
+	type: "error" | "success";
 	text: string;
 }

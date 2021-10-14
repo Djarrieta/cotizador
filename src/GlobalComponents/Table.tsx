@@ -1,4 +1,4 @@
-const CustomTable = (props: {
+const Table = (props: {
 	tableData: { data: JSX.Element[]; key: string }[];
 }) => {
 	const { tableData } = props;
@@ -26,4 +26,4 @@ const CustomTable = (props: {
 		</table>
 	);
 };
-export default CustomTable;
+export default Table;

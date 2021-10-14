@@ -65,7 +65,7 @@ const useProfile = () => {
 		editSingleUserService(data).then((response) => {
 			setAlert(response.alert);
 			if (response.alert.type === "success") {
-				setCurrentUser(response.currentUser);
+				setCurrentUser(response.data.currentUser as CurrentUserModel) ;
 			}
 			setLoading(false);
 		});
