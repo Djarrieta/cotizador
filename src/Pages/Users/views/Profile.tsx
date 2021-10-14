@@ -1,104 +1,21 @@
-import { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import Cookies from "universal-cookie";
 import { Context } from "../../../App/components/ContextProvider";
-import VerificationDataModel from "../../../App/models/VerificationDataModel";
 import Button from "../../../GlobalComponents/Button";
 import FieldText from "../../../GlobalComponents/FieldText";
-import IconMore from "../../../GlobalComponents/icons/IconMore";
+import IconDetail from "../../../GlobalComponents/icons/IconDetail";
 import IconTeam from "../../../GlobalComponents/icons/IconTeam";
 import IconUser from "../../../GlobalComponents/icons/IconUser";
 import Section from "../../../GlobalComponents/Section";
 import Table from "../../../GlobalComponents/Table";
-import TableItem from "../../../GlobalComponents/TableItem";
-import { verifyDataInfo } from "../../../utils/verifyDataInfo";
-import { CurrentUserModel } from "../models/CurrentUserModel";
-import { editSingleUserService } from "../services/editSingleUserService";
-import { getSingleUserService } from "../services/getSingleUserService";
-import { signOutService } from "../services/SignOutService";
-
-const cookie = new Cookies();
+import TableData from "../../../GlobalComponents/TableData";
+import TableRow from "../../../GlobalComponents/TableRow";
+import useProfile from "../hooks/useProfile";
 
 const Profile = () => {
-	const history = useHistory();
-	const { uid } = useParams<{ uid: string }>();
-	const { setLoading, currentUser, setAlert, setCurrentUser, setCurrentTeam } =
-		useContext(Context);
-
-	const [data, setData] = useState<CurrentUserModel>({
-		uid: "",
-		name: "",
-		email: "",
-		whatsapp: "",
-		pictureURL: "",
-		teams: [],
-	});
-
-	const verificationData: VerificationDataModel[] = [
-		{
-			condition: !data.uid,
-			text: "No hay id de usuario. Actualiza la página.",
-		},
-		{
-			condition: !data.name,
-			text: "El nombre no puede estar vacío.",
-		},
-		{
-			condition: !data.email,
-			text: "Email no puede estar vacío.",
-		},
-		{
-			condition: !data.whatsapp,
-			text: "Especifica un número con whatsapp no puede estar vacío.",
-		},
-	];
-
-	useEffect(() => {
-		if (currentUser?.uid === uid) {
-			setData(currentUser);
-			return;
-		}
-		getSingleUserService(uid).then((response) => setData(response.currentUser));
-	}, [uid, currentUser]);
-
-	const saveUserData = () => {
-		setLoading(true);
-		const infoVerified = verifyDataInfo(
-			verificationData,
-			"Has actualizado la información de usuario."
-		);
-		if (!infoVerified.ok) {
-			setAlert({ text: infoVerified.text, type: "error" });
-			setLoading(false);
-			return;
-		}
-
-		editSingleUserService(data).then((response) => {
-			setAlert(response.alert);
-			if (response.alert.type === "success") {
-				cookie.set("currentUser", data);
-			}
-			setLoading(false);
-		});
-	};
-
-	const changePictureURL = () => {
-		console.log("cambia foto");
-	};
-
-	const signOut = () => {
-		setLoading(true);
-		signOutService().then((response) => {
-			cookie.remove("currentUser");
-			cookie.remove("currentTeam");
-			setCurrentUser(undefined);
-			setCurrentTeam(undefined);
-			setAlert(response.alert);
-			setLoading(false);
-			history.push("/ingreso");
-		});
-	};
+	const { currentUser } = useContext(Context);
+	const { data, setData, saveUserData, changePictureURL, signOut, history } =
+		useProfile();
 
 	return (
 		<>
@@ -109,18 +26,18 @@ const Profile = () => {
 						<FieldText
 							label="Correo"
 							value={data.email}
-							handleFuntion={(e) => setData({ ...data, email: e.target.value })}
+							onChange={(e) => setData({ ...data, email: e.target.value })}
 							disabled={true}
 						/>
 						<FieldText
 							label="Nombre"
 							value={data.name}
-							handleFuntion={(e) => setData({ ...data, name: e.target.value })}
+							onChange={(e) => setData({ ...data, name: e.target.value })}
 						/>
 						<FieldText
 							label="Whatsapp"
 							value={data.whatsapp}
-							handleFuntion={(e) => {
+							onChange={(e) => {
 								console.log(e.type);
 								setData({ ...data, whatsapp: e.target.value });
 							}}
@@ -157,32 +74,31 @@ const Profile = () => {
 			<Section
 				name="Equipos"
 				buttonName="Agregar"
-				handleFunction={() => history.push("/equipo/nuevo")}
+				handleFunction={() => history.push("/equipo-nuevo")}
 			>
 				<Table>
-					{currentUser.teams ? (
+					{currentUser.teams &&
 						currentUser.teams.map((team) => {
 							return (
-								<TableItem key={team.teamId}>
-									<div className="flex justify-between w-full h-10">
+								<TableRow key={team.teamId}>
+									<TableData>
 										<IconTeam />
+									</TableData>
+									<TableData>
 										<span>{team.teamId}</span>
+									</TableData>
+									<TableData>
 										<span>{team.role}</span>
+									</TableData>
+
+									<TableData>
 										<Link to={`/equipo/${team.teamId}`} className="h-full">
-											<IconMore />
+											<IconDetail />
 										</Link>
-									</div>
-								</TableItem>
+									</TableData>
+								</TableRow>
 							);
-						})
-					) : (
-						<tr className="flex items-center justify-center w-full ">
-							<td>
-								<span>No tienes ningún equipo. </span>
-								<Link to="/equipo/nuevo">Crea tu primer equipo</Link>
-							</td>
-						</tr>
-					)}
+						})}
 				</Table>
 			</Section>
 		</>

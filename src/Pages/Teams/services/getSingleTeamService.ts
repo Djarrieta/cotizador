@@ -1,14 +1,14 @@
-import { CurrentTeamModel } from "../models/CurrentTeamModel";
+import { ResponseModel } from "../../../App/models/ResponseModel";
+import { firebaseDB } from "../../../config/firebase";
 
 export const getSingleTeamService = (
 	teamId: string
-): Promise<CurrentTeamModel> => {
-	return new Promise((resolve, reject) => {
-		resolve({
-			name: "Other team comming from service",
-			teamId: "uid",
-			pictureURL: "url",
-			members:[ { email: "email@member1", role: "admin" , uid:"uid"}],
+): Promise<ResponseModel> => {
+	return firebaseDB
+		.collection("teams")
+		.doc(teamId)
+		.get()
+		.then((respose) => {
+			return { alert: { type: "success", text: "" }, data: respose.data() };
 		});
-	});
 };

@@ -1,4 +1,3 @@
-import ROLES from "../../../constants/ROLES";
 import Button from "../../../GlobalComponents/Button";
 import FieldSelect from "../../../GlobalComponents/FieldSelect";
 import FieldText from "../../../GlobalComponents/FieldText";
@@ -6,8 +5,10 @@ import IconTeam from "../../../GlobalComponents/icons/IconTeam";
 import IconUser from "../../../GlobalComponents/icons/IconUser";
 import Section from "../../../GlobalComponents/Section";
 import Table from "../../../GlobalComponents/Table";
-import TableItem from "../../../GlobalComponents/TableItem";
+import TableData from "../../../GlobalComponents/TableData";
+import TableRow from "../../../GlobalComponents/TableRow";
 import { useTeamDetail } from "../hooks/useTeamDetail";
+import { Roles } from "../models/Roles";
 
 const TeamDetail = () => {
 	const {
@@ -22,21 +23,29 @@ const TeamDetail = () => {
 
 	return (
 		<>
-			<Section name="Equipo ">
+			<Section name="Equipo">
 				<div className="flex flex-col-reverse my-6 sm:flex-row">
 					<div className="w-full px-6 pb-2 my-3s sm:w-1/2">
 						<FieldText
 							label="ID"
 							value={data.teamId}
 							disabled={teamId !== "nuevo"}
-							handleFuntion={(e) => setData({ ...data, teamId: e.target.value })}
+							maxlength={10}
+							onChange={(event) =>
+								event.target.value.match(/^[A-Za-z]*$/) &&
+								setData({
+									...data,
+									teamId: event.target.value.toLowerCase(),
+								})
+							}
 						/>
 						<FieldText
 							label="Nombre"
 							value={data.name}
-							handleFuntion={(e) => setData({ ...data, name: e.target.value })}
+							onChange={(e) => setData({ ...data, name: e.target.value })}
+							onEnter={saveTeamData}
 						/>
-						<Button name="Editar" handleFunction={saveTeamData} />
+						<Button name="Guardar" handleFunction={saveTeamData} />
 						<div className="w-1/2 text-left">
 							<Button
 								name="Archivar"
@@ -68,17 +77,23 @@ const TeamDetail = () => {
 				<Table>
 					{data.members.map((member) => {
 						return (
-							<TableItem key={member.email}>
-								<IconUser />
-								<span>{member.email}</span>
-								<FieldSelect
-									selectedValue={member.role}
-									options={ROLES}
-									handleChange={(event) =>
-										handleRoleChange(member.uid, event.target.value)
-									}
-								/>
-							</TableItem>
+							<TableRow key={member.email}>
+								<TableData>
+									<IconUser />
+								</TableData>
+								<TableData>
+									<span>{member.email}</span>
+								</TableData>
+								<TableData>
+									<FieldSelect
+										selectedValue={Roles[member.role]}
+										options={Object.keys(Roles).map((role) => Roles[role])}
+										handleChange={(event) =>
+											handleRoleChange(member.uid, Roles[event.target.value])
+										}
+									/>
+								</TableData>
+							</TableRow>
 						);
 					})}
 				</Table>

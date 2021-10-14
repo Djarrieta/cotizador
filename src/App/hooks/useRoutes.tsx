@@ -3,6 +3,7 @@ import Home from "../../Pages/Home/views/Home";
 import TaskDetail from "../../Pages/Tasks/views/TaskDetail";
 import Tasks from "../../Pages/Tasks/views/Tasks";
 import NewMember from "../../Pages/Teams/views/NewMember";
+import NewTeam from "../../Pages/Teams/views/NewTeam";
 import TeamDetail from "../../Pages/Teams/views/TeamDetail";
 import Profile from "../../Pages/Users/views/Profile";
 import SignIn from "../../Pages/Users/views/SignIn";
@@ -55,6 +56,12 @@ const useRoutes = () => {
 	];
 
 	const teamRoutes: routeModel[] = [
+		{
+			path: "/equipo-nuevo",
+			condition: currentUser !== undefined,
+			redirect: "/ingreso",
+			component: NewTeam,
+		},
 		{
 			path: "/equipo/:teamId",
 			condition: currentUser !== undefined,

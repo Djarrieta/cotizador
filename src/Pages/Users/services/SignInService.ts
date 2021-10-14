@@ -24,7 +24,7 @@ export const signInService = async (
 			}
 			return firebaseDB.collection("teams").doc(currentUser.defaultTeam).get();
 		})
-		.then((response) => {
+		.then(() => {
 			let finalResponse = {
 				alert: {
 					type: "success",
@@ -32,11 +32,6 @@ export const signInService = async (
 				},
 				currentUser,
 			};
-
-			if (response) {
-				console.log("currentTeam", response.data());
-			}
-
 			return finalResponse;
 		})
 		.catch((error) => {

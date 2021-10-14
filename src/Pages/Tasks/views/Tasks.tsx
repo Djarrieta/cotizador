@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Section from "../../../GlobalComponents/Section";
 import Table from "../../../GlobalComponents/Table";
-import TableItem from "../../../GlobalComponents/TableItem";
+import TableItem from "../../../GlobalComponents/TableRow";
 import { TaskModel } from "../models/TaskModel";
 import { getTasksService } from "../services/getTasksService";
 import { TaskState } from "../models/TaskModel";
@@ -14,7 +14,7 @@ import IconSearch from "../../../GlobalComponents/icons/IconSearch";
 
 const Tasks = () => {
 	const [tasks, setTasks] = useState<TaskModel[]>([]);
-	const { currentTeam } = useContext(Context);
+	const { currentUser } = useContext(Context);
 
 	useEffect(() => {
 		getTasksService().then((response) => {
@@ -36,7 +36,7 @@ const Tasks = () => {
 							return (
 								<TableItem key={task.id}>
 									<Link
-										to={`/${currentTeam.teamId}/tarea/${task.id}`}
+										to={`/${currentUser.defaultTeam}/tarea/${task.id}`}
 										className="flex flex-col w-full "
 									>
 										<div className="flex justify-between w-full">
