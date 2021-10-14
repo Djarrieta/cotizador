@@ -2,14 +2,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../GlobalComponents/Button";
 import { Context } from "../../../GlobalComponents/ContextProvider";
+import CustomTable from "../../../GlobalComponents/CustomTable";
 import FieldText from "../../../GlobalComponents/FieldText";
 import IconDetail from "../../../GlobalComponents/icons/IconDetail";
 import IconTeam from "../../../GlobalComponents/icons/IconTeam";
 import IconUser from "../../../GlobalComponents/icons/IconUser";
 import Section from "../../../GlobalComponents/Section";
-import Table from "../../../GlobalComponents/Table";
-import TableData from "../../../GlobalComponents/TableData";
-import TableRow from "../../../GlobalComponents/TableRow";
 import useProfile from "../hooks/useProfile";
 
 const Profile = () => {
@@ -76,30 +74,24 @@ const Profile = () => {
 				buttonName="Agregar"
 				handleFunction={() => history.push("/equipo-nuevo")}
 			>
-				<Table>
-					{currentUser.teams &&
+				<CustomTable
+					tableData={
+						currentUser.teams &&
 						currentUser.teams.map((team) => {
-							return (
-								<TableRow keyValue={team.teamId}>
-									<TableData>
-										<IconTeam />
-									</TableData>
-									<TableData>
-										<span>{team.teamId}</span>
-									</TableData>
-									<TableData>
-										<span>{team.role}</span>
-									</TableData>
-
-									<TableData>
-										<Link to={`/equipo/${team.teamId}`} className="h-full">
-											<IconDetail />
-										</Link>
-									</TableData>
-								</TableRow>
-							);
-						})}
-				</Table>
+							return {
+								data: [
+									<IconTeam />,
+									<span>{team.teamId}</span>,
+									<span>{team.role}</span>,
+									<Link to={`/equipo/${team.teamId}`} className="h-1/2">
+										<IconDetail />
+									</Link>,
+								],
+								key: team.teamId,
+							};
+						})
+					}
+				/>
 			</Section>
 		</>
 	);

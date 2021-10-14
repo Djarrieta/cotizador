@@ -38,11 +38,11 @@ const ContextProvider = ({ children }: { children: ReactElement }) => {
 		setFirstRun(false);
 
 		if (!firstRun && currentUser) {
-			cookies.set("currentUser", currentUser);
+			cookies.set("currentUser", currentUser, {path: '/'});
 		}
 
 		if (!firstRun && !currentUser) {
-			cookies.remove("currentUser");
+			cookies.remove("currentUser", {path: '/'});
 		}
 		setLoading(false);
 	}, [currentUser, firstRun]);

@@ -7,12 +7,8 @@ import { CurrentUserModel } from "../models/CurrentUserModel";
 import { editSingleUserService } from "../services/editSingleUserService";
 import { getSingleUserService } from "../services/getSingleUserService";
 import { signOutService } from "../services/SignOutService";
-import Cookies from "universal-cookie";
-
-
 
 const useProfile = () => {
-	const cookies = new Cookies();
 	const history = useHistory();
 	const { uid } = useParams<{ uid: string }>();
 	const { setLoading, currentUser, setAlert, setCurrentUser } =
@@ -82,7 +78,6 @@ const useProfile = () => {
 	const signOut = () => {
 		setLoading(true);
 		signOutService().then((response) => {
-			
 			setCurrentUser(undefined);
 			setAlert(response.alert);
 			setLoading(false);
@@ -96,7 +91,7 @@ const useProfile = () => {
 		saveUserData,
 		changePictureURL,
 		signOut,
-		history
+		history,
 	};
 };
 

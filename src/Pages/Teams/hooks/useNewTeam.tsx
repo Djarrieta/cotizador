@@ -55,7 +55,7 @@ export const useNewTeam = () => {
 			setCurrentUser({
 				...currentUser,
 				defaultTeam: data.teamId,
-				teams: [{ teamId: data.teamId, role: Roles.Admin }],
+				teams: [ ...currentUser.teams, { teamId: data.teamId, role: Roles.Admin }],
 			});
 
 			setAlert(response.alert);

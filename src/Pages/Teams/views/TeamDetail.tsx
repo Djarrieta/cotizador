@@ -1,12 +1,10 @@
 import Button from "../../../GlobalComponents/Button";
+import CustomTable from "../../../GlobalComponents/CustomTable";
 import FieldSelect from "../../../GlobalComponents/FieldSelect";
 import FieldText from "../../../GlobalComponents/FieldText";
 import IconTeam from "../../../GlobalComponents/icons/IconTeam";
 import IconUser from "../../../GlobalComponents/icons/IconUser";
 import Section from "../../../GlobalComponents/Section";
-import Table from "../../../GlobalComponents/Table";
-import TableData from "../../../GlobalComponents/TableData";
-import TableRow from "../../../GlobalComponents/TableRow";
 import { useTeamDetail } from "../hooks/useTeamDetail";
 import { Roles } from "../models/Roles";
 
@@ -74,29 +72,24 @@ const TeamDetail = () => {
 				buttonName="Invitar"
 				handleFunction={() => history.push("/" + teamId + "/nuevo-miembro")}
 			>
-				<Table>
-					{data.members.map((member) => {
-						return (
-							<TableRow keyValue={member.email}>
-								<TableData>
-									<IconUser />
-								</TableData>
-								<TableData>
-									<span>{member.email}</span>
-								</TableData>
-								<TableData>
-									<FieldSelect
-										selectedValue={Roles[member.role]}
-										options={Object.keys(Roles).map((role) => Roles[role])}
-										handleChange={(event) =>
-											handleRoleChange(member.uid, Roles[event.target.value])
-										}
-									/>
-								</TableData>
-							</TableRow>
-						);
+				<CustomTable
+					tableData={data.members.map((member) => {
+						return {
+							data: [
+								<IconUser />,
+								<span>{member.email}</span>,
+								<FieldSelect
+									selectedValue={Roles[member.role]}
+									options={Object.keys(Roles).map((role) => role)}
+									handleChange={(event) =>
+										handleRoleChange(member.uid, Roles[event.target.value])
+									}
+								/>,
+							],
+							key: member.uid,
+						};
 					})}
-				</Table>
+				/>
 			</Section>
 		</>
 	);

@@ -1,6 +1,7 @@
 import { ResponseModel } from "../../App/models/ResponseModel";
-import { firebaseDB } from "../../../config/firebase";
+import { firebaseArrayAdd, firebaseDB } from "../../../config/firebase";
 import { CurrentTeamModel } from "../models/CurrentTeamModel";
+import { Roles } from "../models/Roles";
 
 export const createTeamService = (
 	team: CurrentTeamModel
@@ -10,6 +11,7 @@ export const createTeamService = (
 	batch.set(firebaseDB.collection("teams").doc(team.teamId), team);
 	batch.update(firebaseDB.collection("users").doc(team.members[0].uid), {
 		defaultTeam: team.teamId,
+		teams: firebaseArrayAdd({ teamId: team.teamId, role: Roles.Admin }) 
 	});
 
 	return batch
