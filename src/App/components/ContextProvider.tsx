@@ -30,14 +30,14 @@ const ContextProvider = ({ children }: { children: ReactElement }) => {
 
 	useEffect(() => {
 		const cookies = new Cookies();
-		if (firstRun) {
-			const user: CurrentUserModel = cookies.get("currentUser");
-			user ? setCurrentUser(user) : setCurrentUser(undefined);
-			setFirstRun(false);
-		} else {
-			currentUser
-				? cookies.set("currentUser", currentUser)
-				: cookies.set("currentUser", undefined);
+		const cookiesUser = cookies.get("currentUser");
+
+		if (firstRun && cookiesUser) {
+			setCurrentUser(cookiesUser);
+		}
+		setFirstRun(false);
+		if (!firstRun && currentUser) {
+			cookies.set("currentUser", currentUser);
 		}
 		setLoading(false);
 	}, [currentUser, firstRun]);

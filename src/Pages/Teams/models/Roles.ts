@@ -1,7 +1,6 @@
 export enum Roles{
-	"super-admin"="superAdmin",
 	"Admin"="admin",
 	"Comercial"="sells",
 	"Logístico"="logistic",
-	"Técnico"="technical",
+	"Técnico"="tecnichal",
 	"Financiero"="financial"}

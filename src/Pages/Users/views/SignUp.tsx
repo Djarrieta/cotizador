@@ -66,7 +66,6 @@ const SignUp = () => {
 				setCurrentUser(response.currentUser);
 				history.push("/");
 			}
-
 			setLoading(false);
 		});
 	};

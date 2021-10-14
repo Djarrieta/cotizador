@@ -17,8 +17,7 @@ const SignIn = () => {
 		password: "dariojose",
 	});
 
-	const { setAlert, setLoading, setCurrentUser } =
-		useContext(Context);
+	const { setAlert, setLoading, setCurrentUser } = useContext(Context);
 	const history = useHistory();
 	const verificationData: VerificationDataModel[] = [
 		{
@@ -49,7 +48,6 @@ const SignIn = () => {
 				if (response.currentUser) {
 					setCurrentUser(response.currentUser);
 				}
-
 				history.push("/");
 			}
 			setLoading(false);
