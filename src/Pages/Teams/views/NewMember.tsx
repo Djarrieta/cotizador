@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { Context } from "../../../App/components/ContextProvider";
-import VerificationDataModel from "../../../App/models/VerificationDataModel";
+import { Context } from "../../../GlobalComponents/ContextProvider";
+import VerificationDataModel from "../../App/models/VerificationDataModel";
 import Button from "../../../GlobalComponents/Button";
 import FieldText from "../../../GlobalComponents/FieldText";
 import Section from "../../../GlobalComponents/Section";

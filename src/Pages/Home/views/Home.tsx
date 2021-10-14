@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Context } from "../../../App/components/ContextProvider";
+import { Context } from "../../../GlobalComponents/ContextProvider";
 import DEFAULT_MENU_HOME from "../../../constants/DEFAULT_MENU_HOME";
 import Section from "../../../GlobalComponents/Section";
 import Card from "../components/Card";
