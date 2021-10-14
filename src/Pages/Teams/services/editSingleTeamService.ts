@@ -13,7 +13,7 @@ export const editSingleTeamService = (
 			return {
 				alert: { type: "success", text: "Equipo editado con éxito." },
 				data: { currentTeam: team },
-			};
+			} as ResponseModel;
 		}).catch(error=>{
 			console.error(error)
 			return {

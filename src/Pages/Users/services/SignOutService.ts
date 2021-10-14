@@ -1,9 +1,8 @@
 import { firebaseAuth } from "../../../config/firebase";
+import { ResponseModel } from "../../App/models/ResponseModel";
 
-import { ResponseUserModel } from "../models/ResponseUserModel";
-
-export const signOutService = (): Promise<ResponseUserModel> => {
-		return firebaseAuth
+export const signOutService = (): Promise<ResponseModel> => {
+	return firebaseAuth
 		.signOut()
 		.then(() => {
 			return {
@@ -11,7 +10,7 @@ export const signOutService = (): Promise<ResponseUserModel> => {
 					type: "success",
 					text: "Has cerrado sesión satisfactoriomante.",
 				},
-			};
+			} as ResponseModel;
 		})
 		.catch((e) => {
 			console.error(e);

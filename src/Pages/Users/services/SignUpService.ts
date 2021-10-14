@@ -1,4 +1,5 @@
 import { firebaseAuth, firebaseDB } from "../../../config/firebase";
+import { ResponseModel } from "../../App/models/ResponseModel";
 import { CurrentUserModel } from "../models/CurrentUserModel";
 import { ResponseUserModel } from "../models/ResponseUserModel";
 const alertCases = {
@@ -9,7 +10,7 @@ const alertCases = {
 };
 export const signUpService = (
 	newUser: CurrentUserModel
-): Promise<ResponseUserModel> => {
+): Promise<ResponseModel> => {
 	let { password, confirmation, ...finalUser } = newUser;
 
 	return firebaseAuth
@@ -27,8 +28,8 @@ export const signUpService = (
 					type: "success",
 					text: "Haz creado tu cuenta satisfactoriomante.",
 				},
-				currentUser: finalUser,
-			};
+				data: { currentUser: finalUser },
+			} as ResponseModel;
 		})
 		.catch((error) => {
 			console.error(error);

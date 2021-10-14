@@ -45,8 +45,8 @@ const SignIn = () => {
 		signInService(data.email, data.password).then((response) => {
 			setAlert(response.alert);
 			if (response.alert.type === "success") {
-				if (response.currentUser) {
-					setCurrentUser(response.currentUser);
+				if (response.data) {
+					setCurrentUser(response.data);
 				}
 				history.push("/");
 			}

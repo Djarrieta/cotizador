@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../GlobalComponents/Button";
 import { Context } from "../../../GlobalComponents/ContextProvider";
-import CustomTable from "../../../GlobalComponents/CustomTable";
+import Table from "../../../GlobalComponents/Table";
 import FieldText from "../../../GlobalComponents/FieldText";
 import IconDetail from "../../../GlobalComponents/icons/IconDetail";
 import IconTeam from "../../../GlobalComponents/icons/IconTeam";
@@ -74,7 +74,7 @@ const Profile = () => {
 				buttonName="Agregar"
 				handleFunction={() => history.push("/equipo-nuevo")}
 			>
-				<CustomTable
+				<Table
 					tableData={
 						currentUser.teams &&
 						currentUser.teams.map((team) => {

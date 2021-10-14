@@ -1,4 +1,5 @@
 import { firebaseDB } from "../../../config/firebase";
+import { ResponseModel } from "../../App/models/ResponseModel";
 import { ResponseUserModel } from "../models/ResponseUserModel";
 
 export const getSingleUserService = (
@@ -11,8 +12,8 @@ export const getSingleUserService = (
 		.then((response) => {
 			return {
 				alert: { type: "success", text: "" },
-				currentUser: response.data(),
-			};
+				data:	{			currentUser: response.data()},
+			} as ResponseModel;
 		})
 		.catch((error) => {
 			console.error(error);
