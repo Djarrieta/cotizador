@@ -57,11 +57,10 @@ export const useNewTeam = () => {
 				defaultTeam: data.teamId,
 				teams: [{ teamId: data.teamId, role: Roles.Admin }],
 			});
-			history.push(`/equipo/${data.teamId}`);
 
 			setAlert(response.alert);
 			setLoading(false);
-			history.push("/");
+			history.push(`/equipo/${data.teamId}`);
 		});
 	};
 

@@ -33,10 +33,13 @@ export const useTeamDetail = () => {
 	];
 
 	useEffect(() => {
-		if (teamId !== "nuevo") {
-			getSingleTeamService(teamId).then((response) => setData(response));
-		}
-	}, [teamId]);
+		setLoading(true);
+		getSingleTeamService(teamId).then((response) => {
+			const teamData: CurrentTeamModel = response.data;
+			setData(teamData);
+			setLoading(false);
+		});
+	}, [teamId, setLoading]);
 
 	const saveTeamData = async () => {
 		setLoading(true);

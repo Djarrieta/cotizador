@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Section from "../../../GlobalComponents/Section";
 import Table from "../../../GlobalComponents/Table";
-import TableItem from "../../../GlobalComponents/TableItem";
+import TableItem from "../../../GlobalComponents/TableRow";
 import { TaskModel } from "../models/TaskModel";
 import { getTasksService } from "../services/getTasksService";
 import { TaskState } from "../models/TaskModel";
