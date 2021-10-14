@@ -69,8 +69,9 @@ const SignIn = () => {
 							value={data.password}
 							type="password"
 							onChange={(e) => setData({ ...data, password: e.target.value })}
+							onEnter={handleClick}
 						/>
-						<Button name="Ingresar" handleFunction={() => handleClick()} />
+						<Button name="Ingresar" handleFunction={handleClick} />
 						<Button
 							name="Registrarme"
 							handleFunction={() => history.push("/registro")}

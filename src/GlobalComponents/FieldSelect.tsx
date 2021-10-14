@@ -15,7 +15,7 @@ const FieldSelect = (props: {
 				value={selectedValue}
 			>
 				{options.map((option: string) => (
-					<option value={option}>{option}</option>
+					<option key={option} value={option}>{option}</option>
 				))}
 			</select>
 		</div>
