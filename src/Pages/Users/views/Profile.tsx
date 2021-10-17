@@ -74,10 +74,9 @@ const Profile = () => {
 				buttonName="Agregar"
 				handleFunction={() => history.push("/equipo-nuevo")}
 			>
-				<Table
-					tableData={
-						currentUser.teams &&
-						currentUser.teams.map((team) => {
+				{currentUser.teams ? (
+					<Table
+						tableData={currentUser.teams.map((team) => {
 							return {
 								data: [
 									<IconTeam />,
@@ -89,9 +88,18 @@ const Profile = () => {
 								],
 								key: team.teamId,
 							};
-						})
-					}
-				/>
+						})}
+					/>
+				) : (
+					<div>
+						<p>
+							No tienes ningún equipo,{" "}
+							<span className="text-realced">
+								<Link to="/equipo-nuevo">Crea uno</Link>
+							</span>.
+						</p>
+					</div>
+				)}
 			</Section>
 		</>
 	);

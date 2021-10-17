@@ -20,13 +20,8 @@ export const signInService = async (
 		})
 		.then((response) => {
 			currentUser = response.data();
-			if (!currentUser.defaultTeam) {
-				return undefined;
-			}
-			return firebaseDB.collection("teams").doc(currentUser.defaultTeam).get();
-		})
-		.then(() => {
-			let finalResponse = {
+
+			const finalResponse = {
 				alert: {
 					type: "success",
 					text: "Has ingresado satisfactoriomante.",

@@ -41,8 +41,7 @@ export const useNewTeam = () => {
 			setLoading(false);
 			return;
 		}
-
-		createTeamService({
+		const newTeamData = {
 			...data,
 			members: [
 				{
@@ -51,11 +50,15 @@ export const useNewTeam = () => {
 					uid: currentUser.uid,
 				},
 			],
-		}).then((response) => {
+		};
+
+		createTeamService(newTeamData).then((response) => {
 			setCurrentUser({
 				...currentUser,
 				defaultTeam: data.teamId,
-				teams: [ ...currentUser.teams, { teamId: data.teamId, role: Roles.Admin }],
+				teams: currentUser.teams
+					? [...currentUser.teams, { teamId: data.teamId, role: Roles.Admin }]
+					: [{ teamId: data.teamId, role: Roles.Admin }],
 			});
 
 			setAlert(response.alert);

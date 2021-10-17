@@ -79,11 +79,13 @@ const TeamDetail = () => {
 								<IconUser />,
 								<span>{member.email}</span>,
 								<FieldSelect
-									selectedValue={Roles[member.role]}
-									options={Object.keys(Roles).map((role) => role)}
-									handleChange={(event) =>
-										handleRoleChange(member.uid, Roles[event.target.value])
-									}
+									selectedValue={member.role.toString()}
+									options={Object.keys(Roles).map((role) => {
+										return { value:  role, render:Roles[role]};
+									})}
+									handleChange={(event) => {
+										handleRoleChange(member.uid, Roles[event.target.value]);
+									}}
 								/>,
 							],
 							key: member.uid,

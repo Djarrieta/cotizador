@@ -305,7 +305,7 @@ const Error404Image = () => {
 				<path
 					d="M123.306 79.3795L123.943 78.929C123.943 78.929 124.567 79.916 124.898 80.5808C125.351 81.4875 125.558 82.021 125.854 82.9835C125.996 83.448 126.244 83.7061 126.172 84.1849C126.101 84.653 125.535 85.2361 125.535 85.2361C125.535 85.2361 125.212 83.7543 124.898 82.8334C124.422 81.4329 123.306 79.3795 123.306 79.3795Z"
 					fill="#62635E"
-					fill-opacity="0.5"
+					fillOpacity="0.5"
 				/>
 			</g>
 			<path
@@ -321,8 +321,8 @@ const Error404Image = () => {
 				fill="url(#paint35_linear)"
 			/>
 			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
+				fillRule="evenodd"
+				clipRule="evenodd"
 				d="M91.9058 82.5624C90.3508 84.1852 89.8239 84.9539 88.4859 87.1958C87.9254 88.1348 88.1802 89.4023 88.405 90.5221C88.433 90.6615 88.4605 90.7986 88.4859 90.9325C89.5817 96.7004 94.5822 101.545 97.8537 102.292C104.368 102.577 105.898 101.684 109.877 99.3622L110.493 99.0035C114.761 96.5235 117.927 93.7723 119.711 90.3346C120.41 88.9891 119.711 86.4485 119.711 86.4485C119.711 86.4485 118.697 83.458 117.778 81.6656C116.628 79.4204 116.292 78.9753 114.805 77.0322C113.651 75.5252 112.384 74.3419 110.493 74.3419C107.816 74.3419 106.18 74.6408 102.909 75.8365C100.565 76.6933 99.2454 77.2311 97.1101 78.5269C94.9126 79.8603 93.6866 80.7041 91.9058 82.5624ZM92.3439 82.7991C90.845 84.3555 90.3371 85.0926 89.047 87.2428C88.5069 88.1431 88.7522 89.3584 88.9689 90.4321C88.9958 90.566 89.0224 90.6978 89.047 90.8264C90.1036 96.3581 94.9241 101.004 98.0777 101.72C104.358 101.994 105.833 101.137 109.669 98.9109C109.86 98.7997 110.057 98.685 110.262 98.5669C114.377 96.1885 117.429 93.5499 119.149 90.253C119.822 88.9626 119.149 86.526 119.149 86.526C119.149 86.526 118.171 83.658 117.286 81.939C116.177 79.7858 115.852 79.3589 114.419 77.4954C113.307 76.0501 112.085 74.9152 110.262 74.9152C107.682 74.9152 106.105 75.2019 102.951 76.3486C100.692 77.1704 99.4195 77.6862 97.3609 78.9288C95.2427 80.2077 94.0607 81.0169 92.3439 82.7991Z"
 				fill="url(#paint36_linear)"
 			/>
@@ -341,14 +341,14 @@ const Error404Image = () => {
 				fill="#DBDBDB"
 			/>
 			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
+				fillRule="evenodd"
+				clipRule="evenodd"
 				d="M123.86 109.793L122.264 109.808L121.789 109.82L122.36 110.264L121.951 110.456L121.64 111.144L121.13 111.214L120.823 112.113L120.894 110.712L121.438 110.895L121.499 109.582L122.163 109.684L122.139 109.063L121.901 107.87L122.502 107.965L123.294 108.273L123.368 107.797C124.432 108.052 124.982 108.197 125.017 108.231C125.052 108.265 124.608 108.229 123.683 108.123L124.207 108.886L123.181 108.693L122.243 108.291L122.495 108.921L123.445 109.13L122.689 109.393L123.86 109.793Z"
 				fill="white"
 			/>
 			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
+				fillRule="evenodd"
+				clipRule="evenodd"
 				d="M121.406 109.523C121.406 109.523 121.015 109.599 120.847 109.765C120.68 109.93 120.589 110.004 120.589 110.004C120.589 110.004 120.806 110.16 121.003 110.181C121.201 110.175 121.183 110.216 121.183 110.216C120.687 112.546 122.355 113.619 124.371 111.986C124.371 111.986 123.585 111.788 123.232 111.587C122.789 111.321 122.955 110.811 122.955 110.811C122.955 110.811 123.239 110.564 123.818 110.616C124.095 110.641 124.322 110.489 124.338 110.463C124.378 110.401 124.297 110.226 124.297 110.226C124.297 110.226 124.399 110.203 124.435 110.024C124.47 109.844 124.366 109.567 124.366 109.567C124.366 109.567 123.884 109.505 123.705 109.47C123.525 109.434 123.253 109.373 123.084 109.239C122.915 109.104 122.359 108.942 122.359 108.942C120.992 108.328 120.266 109.02 120.036 109.722C119.936 110.068 119.964 110.581 120.631 110.807C120.25 110.399 120.234 110.143 120.265 109.984C120.37 109.448 120.956 109.105 121.406 109.523Z"
 				fill="#BC0624"
 			/>
@@ -388,86 +388,86 @@ const Error404Image = () => {
 				<path
 					d="M121.492 108.688C121.271 109.03 121.193 109.199 121.253 109.411"
 					stroke="#372620"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M121.492 108.688C121.271 109.03 121.193 109.199 121.253 109.411"
 					stroke="url(#paint39_linear)"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M121.066 108.72C121.016 108.954 120.953 109.115 121.044 109.345"
 					stroke="#372620"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M121.066 108.72C121.016 108.954 120.953 109.115 121.044 109.345"
 					stroke="url(#paint40_linear)"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M120.62 108.916C120.649 109.113 120.692 109.207 120.823 109.363"
 					stroke="#372620"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M120.62 108.916C120.649 109.113 120.692 109.207 120.823 109.363"
 					stroke="url(#paint41_linear)"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M120.347 109.135C120.441 109.298 120.488 109.35 120.631 109.459"
 					stroke="#372620"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M120.347 109.135C120.441 109.298 120.488 109.35 120.631 109.459"
 					stroke="url(#paint42_linear)"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M120.191 109.337C120.264 109.478 120.328 109.536 120.469 109.608"
 					stroke="#372620"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M120.191 109.337C120.264 109.478 120.328 109.536 120.469 109.608"
 					stroke="url(#paint43_linear)"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M120.05 109.604C120.025 109.653 120.363 109.87 120.335 109.797"
 					stroke="#372620"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M120.05 109.604C120.025 109.653 120.363 109.87 120.335 109.797"
 					stroke="url(#paint44_linear)"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M119.974 109.91C120.083 109.982 120.149 110.008 120.276 110.02"
 					stroke="#372620"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 				<path
 					d="M119.974 109.91C120.083 109.982 120.149 110.008 120.276 110.02"
 					stroke="url(#paint45_linear)"
-					stroke-width="0.1"
-					stroke-miterlimit="2.6131"
+					strokeWidth="0.1"
+					strokeMiterlimit="2.6131"
 				/>
 			</g>
 			<path
@@ -476,16 +476,16 @@ const Error404Image = () => {
 			/>
 			<g filter="url(#filter3_i)">
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M122.951 109.613C122.951 109.613 122.809 109.549 122.747 109.588C122.685 109.627 122.687 109.671 122.642 109.708C122.597 109.745 122.563 109.749 122.563 109.749C122.563 109.749 122.674 109.804 122.768 109.767C122.862 109.731 122.933 109.665 122.933 109.665L122.951 109.613Z"
 					fill="#A4001B"
 				/>
 			</g>
 			<g filter="url(#filter4_i)">
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M123.783 110.322C123.783 110.322 123.799 110.278 123.978 110.248C124.158 110.218 124.296 110.226 124.296 110.226"
 					fill="#AD0420"
 				/>
@@ -493,7 +493,7 @@ const Error404Image = () => {
 			<path
 				d="M121.183 110.217C121.298 110.252 121.38 110.24 121.472 110.209C121.362 110.285 121.262 110.316 121.168 110.288C121.172 110.268 121.178 110.237 121.183 110.217Z"
 				fill="url(#paint46_linear)"
-				fill-opacity="0.3"
+				fillOpacity="0.3"
 			/>
 			<g filter="url(#filter5_i)">
 				<path
@@ -508,14 +508,14 @@ const Error404Image = () => {
 				/>
 			</g>
 			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
+				fillRule="evenodd"
+				clipRule="evenodd"
 				d="M124.552 112.187C125.892 111.102 126.099 109.138 125.015 107.799C123.931 106.46 121.966 106.254 120.626 107.339C119.286 108.424 119.079 110.389 120.163 111.728C121.247 113.066 123.212 113.272 124.552 112.187ZM124.382 111.977C125.606 110.986 125.795 109.192 124.805 107.969C123.814 106.746 122.02 106.558 120.796 107.549C119.572 108.54 119.383 110.335 120.373 111.558C121.363 112.78 123.158 112.968 124.382 111.977Z"
 				fill="#BC0624"
 			/>
 			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
+				fillRule="evenodd"
+				clipRule="evenodd"
 				d="M124.552 112.187C125.892 111.102 126.099 109.138 125.015 107.799C123.931 106.46 121.966 106.254 120.626 107.339C119.286 108.424 119.079 110.389 120.163 111.728C121.247 113.066 123.212 113.272 124.552 112.187ZM124.382 111.977C125.606 110.986 125.795 109.192 124.805 107.969C123.814 106.746 122.02 106.558 120.796 107.549C119.572 108.54 119.383 110.335 120.373 111.558C121.363 112.78 123.158 112.968 124.382 111.977Z"
 				fill="url(#paint47_linear)"
 			/>
@@ -533,9 +533,9 @@ const Error404Image = () => {
 					width="129"
 					height="123.153"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB"
+					
 				>
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix
 						in="SourceAlpha"
 						type="matrix"
@@ -566,9 +566,9 @@ const Error404Image = () => {
 					width="10.8785"
 					height="14.3071"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB"
+					
 				>
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
@@ -584,9 +584,9 @@ const Error404Image = () => {
 					width="1.87312"
 					height="6.11177"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB"
+					
 				>
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
@@ -615,9 +615,9 @@ const Error404Image = () => {
 					width="0.387891"
 					height="0.704977"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB"
+					
 				>
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
@@ -646,9 +646,9 @@ const Error404Image = () => {
 					width="0.513316"
 					height="0.196841"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB"
+					
 				>
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
@@ -677,9 +677,9 @@ const Error404Image = () => {
 					width="0.880877"
 					height="1.1482"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB"
+					
 				>
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
@@ -708,9 +708,9 @@ const Error404Image = () => {
 					width="0.24404"
 					height="0.24199"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB"
+					
 				>
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
@@ -739,9 +739,9 @@ const Error404Image = () => {
 					width="99.05"
 					height="119.3"
 					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB"
+					
 				>
-					<feFlood flood-opacity="0" result="BackgroundImageFix" />
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feColorMatrix
 						in="SourceAlpha"
 						type="matrix"
@@ -773,8 +773,8 @@ const Error404Image = () => {
 					y2="48.4156"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#F67C01" />
-					<stop offset="1" stop-color="#BB5E00" />
+					<stop stopColor="#F67C01" />
+					<stop offset="1" stopColor="#BB5E00" />
 				</linearGradient>
 				<linearGradient
 					id="paint1_linear"
@@ -784,8 +784,8 @@ const Error404Image = () => {
 					y2="37.674"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop offset="0.213542" stop-color="#D2CECE" />
-					<stop offset="1" stop-color="#393535" />
+					<stop offset="0.213542" stopColor="#D2CECE" />
+					<stop offset="1" stopColor="#393535" />
 				</linearGradient>
 				<linearGradient
 					id="paint2_linear"
@@ -795,8 +795,8 @@ const Error404Image = () => {
 					y2="37.674"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop offset="0.213542" stop-color="#D2CECE" />
-					<stop offset="1" stop-color="#393535" />
+					<stop offset="0.213542" stopColor="#D2CECE" />
+					<stop offset="1" stopColor="#393535" />
 				</linearGradient>
 				<linearGradient
 					id="paint3_linear"
@@ -806,7 +806,7 @@ const Error404Image = () => {
 					y2="62.6895"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#404040" />
+					<stop stopColor="#404040" />
 					<stop offset="1" />
 				</linearGradient>
 				<linearGradient
@@ -818,7 +818,7 @@ const Error404Image = () => {
 					gradientUnits="userSpaceOnUse"
 				>
 					<stop />
-					<stop offset="1" stop-color="#7A7A7A" />
+					<stop offset="1" stopColor="#7A7A7A" />
 				</linearGradient>
 				<linearGradient
 					id="paint5_linear"
@@ -828,7 +828,7 @@ const Error404Image = () => {
 					y2="14.8516"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#8C8B8B" />
+					<stop stopColor="#8C8B8B" />
 					<stop offset="1" />
 				</linearGradient>
 				<linearGradient
@@ -839,8 +839,8 @@ const Error404Image = () => {
 					y2="59.7432"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop offset="0.1875" stop-color="white" />
-					<stop offset="1" stop-color="#393535" />
+					<stop offset="0.1875" stopColor="white" />
+					<stop offset="1" stopColor="#393535" />
 				</linearGradient>
 				<linearGradient
 					id="paint7_linear"
@@ -850,8 +850,8 @@ const Error404Image = () => {
 					y2="19.4277"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop offset="0.135417" stop-color="white" />
-					<stop offset="1" stop-color="#393535" />
+					<stop offset="0.135417" stopColor="white" />
+					<stop offset="1" stopColor="#393535" />
 				</linearGradient>
 				<linearGradient
 					id="paint8_linear"
@@ -861,8 +861,8 @@ const Error404Image = () => {
 					y2="16.5185"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop offset="0.0885417" stop-color="#212121" />
-					<stop offset="1" stop-color="#606060" />
+					<stop offset="0.0885417" stopColor="#212121" />
+					<stop offset="1" stopColor="#606060" />
 				</linearGradient>
 				<linearGradient
 					id="paint9_linear"
@@ -872,8 +872,8 @@ const Error404Image = () => {
 					y2="252.314"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#C50D15" />
-					<stop offset="1" stop-color="#280001" />
+					<stop stopColor="#C50D15" />
+					<stop offset="1" stopColor="#280001" />
 				</linearGradient>
 				<linearGradient
 					id="paint10_linear"
@@ -883,8 +883,8 @@ const Error404Image = () => {
 					y2="194.41"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#1F0406" />
-					<stop offset="1" stop-color="#A8111A" />
+					<stop stopColor="#1F0406" />
+					<stop offset="1" stopColor="#A8111A" />
 				</linearGradient>
 				<linearGradient
 					id="paint11_linear"
@@ -894,8 +894,8 @@ const Error404Image = () => {
 					y2="163.697"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#190306" />
-					<stop offset="1" stop-color="#E0131F" />
+					<stop stopColor="#190306" />
+					<stop offset="1" stopColor="#E0131F" />
 				</linearGradient>
 				<linearGradient
 					id="paint12_linear"
@@ -905,8 +905,8 @@ const Error404Image = () => {
 					y2="206.164"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#2E0508" />
-					<stop offset="1" stop-color="#7D060D" />
+					<stop stopColor="#2E0508" />
+					<stop offset="1" stopColor="#7D060D" />
 				</linearGradient>
 				<linearGradient
 					id="paint13_linear"
@@ -916,8 +916,8 @@ const Error404Image = () => {
 					y2="146.413"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#420609" />
-					<stop offset="1" stop-color="#DF131E" />
+					<stop stopColor="#420609" />
+					<stop offset="1" stopColor="#DF131E" />
 				</linearGradient>
 				<linearGradient
 					id="paint14_linear"
@@ -927,8 +927,8 @@ const Error404Image = () => {
 					y2="246.965"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#150305" />
-					<stop offset="1" stop-color="#70090F" />
+					<stop stopColor="#150305" />
+					<stop offset="1" stopColor="#70090F" />
 				</linearGradient>
 				<linearGradient
 					id="paint15_linear"
@@ -938,8 +938,8 @@ const Error404Image = () => {
 					y2="207.329"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#6F060A" />
-					<stop offset="1" stop-color="#8C080E" />
+					<stop stopColor="#6F060A" />
+					<stop offset="1" stopColor="#8C080E" />
 				</linearGradient>
 				<linearGradient
 					id="paint16_linear"
@@ -949,8 +949,8 @@ const Error404Image = () => {
 					y2="206.823"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#6F060A" />
-					<stop offset="1" stop-color="#8C080E" />
+					<stop stopColor="#6F060A" />
+					<stop offset="1" stopColor="#8C080E" />
 				</linearGradient>
 				<linearGradient
 					id="paint17_linear"
@@ -960,8 +960,8 @@ const Error404Image = () => {
 					y2="256.232"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#2A0001" />
-					<stop offset="1" stop-color="#360103" />
+					<stop stopColor="#2A0001" />
+					<stop offset="1" stopColor="#360103" />
 				</linearGradient>
 				<linearGradient
 					id="paint18_linear"
@@ -971,8 +971,8 @@ const Error404Image = () => {
 					y2="253.779"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#2A0001" />
-					<stop offset="1" stop-color="#360103" />
+					<stop stopColor="#2A0001" />
+					<stop offset="1" stopColor="#360103" />
 				</linearGradient>
 				<linearGradient
 					id="paint19_linear"
@@ -982,8 +982,8 @@ const Error404Image = () => {
 					y2="215.077"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#380103" />
-					<stop offset="1" stop-color="#470205" />
+					<stop stopColor="#380103" />
+					<stop offset="1" stopColor="#470205" />
 				</linearGradient>
 				<linearGradient
 					id="paint20_linear"
@@ -993,8 +993,8 @@ const Error404Image = () => {
 					y2="214.31"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#380103" />
-					<stop offset="1" stop-color="#470205" />
+					<stop stopColor="#380103" />
+					<stop offset="1" stopColor="#470205" />
 				</linearGradient>
 				<linearGradient
 					id="paint21_linear"
@@ -1004,8 +1004,8 @@ const Error404Image = () => {
 					y2="167.478"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#92090E" />
-					<stop offset="1" stop-color="#82070C" />
+					<stop stopColor="#92090E" />
+					<stop offset="1" stopColor="#82070C" />
 				</linearGradient>
 				<linearGradient
 					id="paint22_linear"
@@ -1015,8 +1015,8 @@ const Error404Image = () => {
 					y2="168.295"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#92090E" />
-					<stop offset="1" stop-color="#82070C" />
+					<stop stopColor="#92090E" />
+					<stop offset="1" stopColor="#82070C" />
 				</linearGradient>
 				<linearGradient
 					id="paint23_linear"
@@ -1026,8 +1026,8 @@ const Error404Image = () => {
 					y2="108.43"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#778186" />
-					<stop offset="1" stop-color="#474B4C" />
+					<stop stopColor="#778186" />
+					<stop offset="1" stopColor="#474B4C" />
 				</linearGradient>
 				<linearGradient
 					id="paint24_linear"
@@ -1037,8 +1037,8 @@ const Error404Image = () => {
 					y2="108.716"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#C1C1C1" />
-					<stop offset="1" stop-color="#929292" />
+					<stop stopColor="#C1C1C1" />
+					<stop offset="1" stopColor="#929292" />
 				</linearGradient>
 				<linearGradient
 					id="paint25_linear"
@@ -1048,8 +1048,8 @@ const Error404Image = () => {
 					y2="191.569"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#D4853F" />
-					<stop offset="1" stop-color="#D79962" />
+					<stop stopColor="#D4853F" />
+					<stop offset="1" stopColor="#D79962" />
 				</linearGradient>
 				<linearGradient
 					id="paint26_linear"
@@ -1059,8 +1059,8 @@ const Error404Image = () => {
 					y2="191.569"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#A25D21" />
-					<stop offset="1" stop-color="#D79962" />
+					<stop stopColor="#A25D21" />
+					<stop offset="1" stopColor="#D79962" />
 				</linearGradient>
 				<linearGradient
 					id="paint27_linear"
@@ -1070,8 +1070,8 @@ const Error404Image = () => {
 					y2="191.569"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#995316" />
-					<stop offset="1" stop-color="#D79962" />
+					<stop stopColor="#995316" />
+					<stop offset="1" stopColor="#D79962" />
 				</linearGradient>
 				<linearGradient
 					id="paint28_linear"
@@ -1081,8 +1081,8 @@ const Error404Image = () => {
 					y2="124.771"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#6A4222" />
-					<stop offset="1" stop-color="#D58947" />
+					<stop stopColor="#6A4222" />
+					<stop offset="1" stopColor="#D58947" />
 				</linearGradient>
 				<linearGradient
 					id="paint29_linear"
@@ -1092,8 +1092,8 @@ const Error404Image = () => {
 					y2="109.72"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#D48845" />
-					<stop offset="1" stop-color="#4E3219" />
+					<stop stopColor="#D48845" />
+					<stop offset="1" stopColor="#4E3219" />
 				</linearGradient>
 				<linearGradient
 					id="paint30_linear"
@@ -1103,8 +1103,8 @@ const Error404Image = () => {
 					y2="100.689"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#D48641" stop-opacity="0" />
-					<stop offset="1" stop-color="#4E3219" />
+					<stop stopColor="#D48641" stopOpacity="0" />
+					<stop offset="1" stopColor="#4E3219" />
 				</linearGradient>
 				<linearGradient
 					id="paint31_linear"
@@ -1114,8 +1114,8 @@ const Error404Image = () => {
 					y2="128.231"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#D58A49" />
-					<stop offset="1" stop-color="#281709" />
+					<stop stopColor="#D58A49" />
+					<stop offset="1" stopColor="#281709" />
 				</linearGradient>
 				<linearGradient
 					id="paint32_linear"
@@ -1125,8 +1125,8 @@ const Error404Image = () => {
 					y2="85.4947"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#9F9F9F" />
-					<stop offset="1" stop-color="#787877" />
+					<stop stopColor="#9F9F9F" />
+					<stop offset="1" stopColor="#787877" />
 				</linearGradient>
 				<linearGradient
 					id="paint33_linear"
@@ -1136,8 +1136,8 @@ const Error404Image = () => {
 					y2="85.9247"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#CBCBCB" />
-					<stop offset="1" stop-color="#828380" />
+					<stop stopColor="#CBCBCB" />
+					<stop offset="1" stopColor="#828380" />
 				</linearGradient>
 				<linearGradient
 					id="paint34_linear"
@@ -1147,9 +1147,9 @@ const Error404Image = () => {
 					y2="89.3931"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#1B0A5D" />
-					<stop offset="0.390625" stop-color="#1B0A5D" />
-					<stop offset="0.970597" stop-color="#010005" />
+					<stop stopColor="#1B0A5D" />
+					<stop offset="0.390625" stopColor="#1B0A5D" />
+					<stop offset="0.970597" stopColor="#010005" />
 				</linearGradient>
 				<linearGradient
 					id="paint35_linear"
@@ -1159,8 +1159,8 @@ const Error404Image = () => {
 					y2="87.6731"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#FFF9FF" stop-opacity="0.36" />
-					<stop offset="1" stop-color="#1B0A5D" stop-opacity="0" />
+					<stop stopColor="#FFF9FF" stopOpacity="0.36" />
+					<stop offset="1" stopColor="#1B0A5D" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
 					id="paint36_linear"
@@ -1170,8 +1170,8 @@ const Error404Image = () => {
 					y2="88.3615"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#5B5C59" />
-					<stop offset="1" stop-color="#3F403E" />
+					<stop stopColor="#5B5C59" />
+					<stop offset="1" stopColor="#3F403E" />
 				</linearGradient>
 				<linearGradient
 					id="paint37_linear"
@@ -1181,8 +1181,8 @@ const Error404Image = () => {
 					y2="109.741"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#A58C7A" />
-					<stop offset="1" stop-color="#7B5C46" stop-opacity="0" />
+					<stop stopColor="#A58C7A" />
+					<stop offset="1" stopColor="#7B5C46" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
 					id="paint38_linear"
@@ -1192,8 +1192,8 @@ const Error404Image = () => {
 					y2="109.741"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#A58C7A" />
-					<stop offset="1" stop-color="#7B5C46" stop-opacity="0" />
+					<stop stopColor="#A58C7A" />
+					<stop offset="1" stopColor="#7B5C46" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
 					id="paint39_linear"
@@ -1203,8 +1203,8 @@ const Error404Image = () => {
 					y2="109.218"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#95614F" />
-					<stop offset="1" stop-color="#372620" stop-opacity="0" />
+					<stop stopColor="#95614F" />
+					<stop offset="1" stopColor="#372620" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
 					id="paint40_linear"
@@ -1214,8 +1214,8 @@ const Error404Image = () => {
 					y2="109.242"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#95614F" />
-					<stop offset="1" stop-color="#372620" stop-opacity="0" />
+					<stop stopColor="#95614F" />
+					<stop offset="1" stopColor="#372620" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
 					id="paint41_linear"
@@ -1225,8 +1225,8 @@ const Error404Image = () => {
 					y2="109.324"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#95614F" />
-					<stop offset="1" stop-color="#372620" stop-opacity="0" />
+					<stop stopColor="#95614F" />
+					<stop offset="1" stopColor="#372620" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
 					id="paint42_linear"
@@ -1236,8 +1236,8 @@ const Error404Image = () => {
 					y2="109.464"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#95614F" />
-					<stop offset="1" stop-color="#372620" stop-opacity="0" />
+					<stop stopColor="#95614F" />
+					<stop offset="1" stopColor="#372620" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
 					id="paint43_linear"
@@ -1247,8 +1247,8 @@ const Error404Image = () => {
 					y2="109.622"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#95614F" />
-					<stop offset="1" stop-color="#372620" stop-opacity="0" />
+					<stop stopColor="#95614F" />
+					<stop offset="1" stopColor="#372620" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
 					id="paint44_linear"
@@ -1258,8 +1258,8 @@ const Error404Image = () => {
 					y2="109.832"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#95614F" />
-					<stop offset="1" stop-color="#372620" stop-opacity="0" />
+					<stop stopColor="#95614F" />
+					<stop offset="1" stopColor="#372620" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
 					id="paint45_linear"
@@ -1269,8 +1269,8 @@ const Error404Image = () => {
 					y2="110.072"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#95614F" />
-					<stop offset="1" stop-color="#372620" stop-opacity="0" />
+					<stop stopColor="#95614F" />
+					<stop offset="1" stopColor="#372620" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
 					id="paint46_linear"
@@ -1281,7 +1281,7 @@ const Error404Image = () => {
 					gradientUnits="userSpaceOnUse"
 				>
 					<stop />
-					<stop offset="1" stop-color="#BC0624" />
+					<stop offset="1" stopColor="#BC0624" />
 				</linearGradient>
 				<linearGradient
 					id="paint47_linear"
@@ -1291,8 +1291,8 @@ const Error404Image = () => {
 					y2="112.08"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop offset="0.0001" stop-color="#F44336" />
-					<stop offset="1" stop-color="#BC0624" stop-opacity="0" />
+					<stop offset="0.0001" stopColor="#F44336" />
+					<stop offset="1" stopColor="#BC0624" stopOpacity="0" />
 				</linearGradient>
 			</defs>
 		</svg>

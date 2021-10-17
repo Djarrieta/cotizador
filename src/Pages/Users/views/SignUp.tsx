@@ -64,8 +64,8 @@ const SignUp = () => {
 		}
 		signUpService(data).then((response) => {
 			setAlert(response.alert);
-			if (response.data) {
-				setCurrentUser(response.data);
+			if (response.data.currentUser) {
+				setCurrentUser(response.data.currentUser);
 				history.push("/");
 			}
 			setLoading(false);
