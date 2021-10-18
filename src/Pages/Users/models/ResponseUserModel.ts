@@ -1,4 +1,4 @@
-import { AlertModel } from "../../../App/models/AlertModel";
+import { AlertModel } from "../../App/models/AlertModel";
 import { CurrentTeamModel } from "../../Teams/models/CurrentTeamModel";
 import { CurrentUserModel } from "./CurrentUserModel";
 

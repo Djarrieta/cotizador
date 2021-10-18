@@ -1,15 +1,16 @@
 import { useContext } from "react";
-import Home from "../../Pages/Home/views/Home";
-import TaskDetail from "../../Pages/Tasks/views/TaskDetail";
-import Tasks from "../../Pages/Tasks/views/Tasks";
-import NewMember from "../../Pages/Teams/views/NewMember";
-import NewTeam from "../../Pages/Teams/views/NewTeam";
-import TeamDetail from "../../Pages/Teams/views/TeamDetail";
-import Profile from "../../Pages/Users/views/Profile";
-import SignIn from "../../Pages/Users/views/SignIn";
-import SignUp from "../../Pages/Users/views/SignUp";
-import UpdatePassword from "../../Pages/Users/views/UpdatePassword";
-import { Context } from "../components/ContextProvider";
+import { Context } from "../../../GlobalComponents/ContextProvider";
+import Home from "../../Home/views/Home";
+import TaskDetail from "../../Tasks/views/TaskDetail";
+import Tasks from "../../Tasks/views/Tasks";
+import NewMember from "../../Teams/views/NewMember";
+import NewTeam from "../../Teams/views/NewTeam";
+import TeamDetail from "../../Teams/views/TeamDetail";
+import Profile from "../../Users/views/Profile";
+import SignIn from "../../Users/views/SignIn";
+import SignUp from "../../Users/views/SignUp";
+import UpdatePassword from "../../Users/views/UpdatePassword";
+
 
 interface routeModel {
 	path: string;

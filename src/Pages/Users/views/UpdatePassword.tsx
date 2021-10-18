@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import { Context } from "../../../App/components/ContextProvider";
 import Button from "../../../GlobalComponents/Button";
 import Section from "../../../GlobalComponents/Section";
 import FieldText from "../../../GlobalComponents/FieldText";
 import { updatePasswordService } from "../services/UpdatePasswordService";
-import VerificationDataModel from "../../../App/models/VerificationDataModel";
+import VerificationDataModel from "../../App/models/VerificationDataModel";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
+import { Context } from "../../../GlobalComponents/ContextProvider";
 
 const UpdatePassword = () => {
 	const { setLoading, setAlert } = useContext(Context);

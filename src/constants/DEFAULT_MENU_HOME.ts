@@ -1,4 +1,4 @@
-import MenuHomeModel from "../App/models/MenuHomeModel";
+import MenuHomeModel from "../Pages/Home/models/MenuHomeModel";
 import IconTasks from "../GlobalComponents/icons/IconTasks";
 import IconItems from "../GlobalComponents/icons/IconItems";
 import IconProjects from "../GlobalComponents/icons/IconProjects";
@@ -61,7 +61,7 @@ const DEFAULT_MENU_HOME: MenuHomeModel[] = [
 				to: "/informes/visitas-por-mes",
 				icon: IconReport(),
 				title: "Visitas por mes",
-				text: "visitas cada comercial por mes",
+				text: "visitas comercial/mes",
 			},
 		],
 	},

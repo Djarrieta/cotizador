@@ -1,4 +1,4 @@
-import { ResponseModel } from "../../../App/models/ResponseModel";
+import { ResponseModel } from "../../App/models/ResponseModel";
 import { firebaseDB } from "../../../config/firebase";
 import { CurrentTeamModel } from "../models/CurrentTeamModel";
 
@@ -13,7 +13,7 @@ export const editSingleTeamService = (
 			return {
 				alert: { type: "success", text: "Equipo editado con éxito." },
 				data: { currentTeam: team },
-			};
+			} as ResponseModel;
 		}).catch(error=>{
 			console.error(error)
 			return {

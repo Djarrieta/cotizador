@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { Context } from "../../../App/components/ContextProvider";
-import VerificationDataModel from "../../../App/models/VerificationDataModel";
+import { Context } from "../../../GlobalComponents/ContextProvider";
+import VerificationDataModel from "../../App/models/VerificationDataModel";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { CurrentUserModel } from "../models/CurrentUserModel";
 import { editSingleUserService } from "../services/editSingleUserService";
@@ -65,7 +65,7 @@ const useProfile = () => {
 		editSingleUserService(data).then((response) => {
 			setAlert(response.alert);
 			if (response.alert.type === "success") {
-				setCurrentUser(response.currentUser);
+				setCurrentUser(response.data.currentUser as CurrentUserModel) ;
 			}
 			setLoading(false);
 		});
@@ -91,7 +91,7 @@ const useProfile = () => {
 		saveUserData,
 		changePictureURL,
 		signOut,
-		history
+		history,
 	};
 };
 

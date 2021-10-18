@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { Context } from "./ContextProvider";
+import { Context } from "../../../GlobalComponents/ContextProvider";
+
 
 export const Alert = () => {
 	const { alert } = useContext(Context);

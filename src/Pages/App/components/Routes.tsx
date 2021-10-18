@@ -1,6 +1,6 @@
 import React, { createElement } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import Error404 from "../../Pages/Error404/views/Error404";
+import Error404 from "../../Error404/views/Error404";
 import useRoutes from "../hooks/useRoutes";
 
 const Routes = () => {

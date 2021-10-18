@@ -1,10 +1,11 @@
 import { firebaseDB } from "../../../config/firebase";
+import { ResponseModel } from "../../App/models/ResponseModel";
 import { CurrentUserModel } from "../models/CurrentUserModel";
-import { ResponseUserModel } from "../models/ResponseUserModel";
+
 
 export const editSingleUserService = (
 	user: CurrentUserModel
-): Promise<ResponseUserModel> => {
+): Promise<ResponseModel> => {
 	return firebaseDB
 		.collection("users")
 		.doc(user.uid)
@@ -15,7 +16,7 @@ export const editSingleUserService = (
 					type: "success",
 					text: "Has actualizado la información con éxito.",
 				},
-			};
+			}  as ResponseModel;;
 		})
 		.catch((error) => {
 			console.error(error.code);

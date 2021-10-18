@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Context } from "../../../App/components/ContextProvider";
-import VerificationDataModel from "../../../App/models/VerificationDataModel";
+import { Context } from "../../../GlobalComponents/ContextProvider";
+import VerificationDataModel from "../../App/models/VerificationDataModel";
 import Button from "../../../GlobalComponents/Button";
 import FieldText from "../../../GlobalComponents/FieldText";
 import Section from "../../../GlobalComponents/Section";
@@ -45,8 +45,8 @@ const SignIn = () => {
 		signInService(data.email, data.password).then((response) => {
 			setAlert(response.alert);
 			if (response.alert.type === "success") {
-				if (response.currentUser) {
-					setCurrentUser(response.currentUser);
+				if (response.data) {
+					setCurrentUser(response.data);
 				}
 				history.push("/");
 			}
@@ -69,8 +69,9 @@ const SignIn = () => {
 							value={data.password}
 							type="password"
 							onChange={(e) => setData({ ...data, password: e.target.value })}
+							onEnter={handleClick}
 						/>
-						<Button name="Ingresar" handleFunction={() => handleClick()} />
+						<Button name="Ingresar" handleFunction={handleClick} />
 						<Button
 							name="Registrarme"
 							handleFunction={() => history.push("/registro")}

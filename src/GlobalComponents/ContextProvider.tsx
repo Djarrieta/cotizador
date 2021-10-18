@@ -1,7 +1,7 @@
 import React, { createContext, ReactElement, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import { CurrentUserModel } from "../../Pages/Users/models/CurrentUserModel";
-import { AlertModel } from "../models/AlertModel";
+import { AlertModel } from "../Pages/App/models/AlertModel";
+import { CurrentUserModel } from "../Pages/Users/models/CurrentUserModel";
 
 export const Context = createContext<{
 	currentUser: CurrentUserModel | undefined;
@@ -36,8 +36,13 @@ const ContextProvider = ({ children }: { children: ReactElement }) => {
 			setCurrentUser(cookiesUser);
 		}
 		setFirstRun(false);
+
 		if (!firstRun && currentUser) {
-			cookies.set("currentUser", currentUser);
+			cookies.set("currentUser", currentUser, {path: '/'});
+		}
+
+		if (!firstRun && !currentUser) {
+			cookies.remove("currentUser", {path: '/'});
 		}
 		setLoading(false);
 	}, [currentUser, firstRun]);

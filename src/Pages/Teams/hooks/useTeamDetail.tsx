@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { Context } from "../../../App/components/ContextProvider";
-import VerificationDataModel from "../../../App/models/VerificationDataModel";
+import { Context } from "../../../GlobalComponents/ContextProvider";
+import VerificationDataModel from "../../App/models/VerificationDataModel";
 import { verifyDataInfo } from "../../../utils/verifyDataInfo";
 import { CurrentTeamModel } from "../models/CurrentTeamModel";
 import { Roles } from "../models/Roles";
 import { editSingleTeamService } from "../services/editSingleTeamService";
 import { getSingleTeamService } from "../services/getSingleTeamService";
+import { editRoleMemberService } from "../services/editRoleMemberService";
 
 export const useTeamDetail = () => {
 	const { teamId } = useParams<{ teamId: string }>();
@@ -40,6 +41,9 @@ export const useTeamDetail = () => {
 			setLoading(false);
 		});
 	}, [teamId, setLoading]);
+	useEffect(() => {
+		console.log(data);
+	}, [data]);
 
 	const saveTeamData = async () => {
 		setLoading(true);
@@ -70,8 +74,8 @@ export const useTeamDetail = () => {
 		editSingleTeamService(newMemberData).then((response) => {
 			const newTeams =
 				!currentUser.teams || currentUser.teams.length === 0
-					? [{ teamId: data.teamId, role: Roles.Admin }]
-					: [...currentUser.teams, { teamId: data.teamId, role: Roles.Admin }];
+					? [{ teamId: data.teamId, role: Roles.Admin as Roles}]
+					: [...currentUser.teams , { teamId: data.teamId, role: Roles.Admin as Roles }];
 
 			setCurrentUser({
 				...currentUser,
@@ -86,16 +90,25 @@ export const useTeamDetail = () => {
 	};
 
 	const changePictureURL = () => {
-		console.log("cambia foto");
+		setAlert({ type: "error", text: "En construcción..." });
 	};
 	const handleRoleChange = (selectedUid: string, newRole: Roles) => {
 		setLoading(true);
+		const newMemberList=data.members.map((el) => {
+			return el.uid === selectedUid ? { ...el, role: newRole } : el;
+		})
+
+		editRoleMemberService(data.teamId,newMemberList).then((response) => {
+			setAlert(response.alert);
+			setLoading(false);
+			history.push("/equipo/" + data.teamId);
+		});
+
+		/* 
 		const editedMembers = data.members.map((member) => {
-			if (member.uid === selectedUid) {
-				return { uid: member.uid, role: newRole, email: member.email };
-			} else {
-				return member;
-			}
+			return member.uid === selectedUid
+				? { uid: member.uid, role: newRole, email: member.email }
+				: member;
 		});
 
 		if (
@@ -113,7 +126,7 @@ export const useTeamDetail = () => {
 		editSingleTeamService(data).then((response) => {
 			setAlert(response.alert);
 			setLoading(false);
-		});
+		}); */
 	};
 	return {
 		teamId,

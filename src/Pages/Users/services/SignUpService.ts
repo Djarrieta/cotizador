@@ -1,6 +1,6 @@
 import { firebaseAuth, firebaseDB } from "../../../config/firebase";
+import { ResponseModel } from "../../App/models/ResponseModel";
 import { CurrentUserModel } from "../models/CurrentUserModel";
-import { ResponseUserModel } from "../models/ResponseUserModel";
 const alertCases = {
 	"auth/email-already-in-use":
 		"Este email ya está en uso, intenta con otro o recupera tu contraseña.",
@@ -9,8 +9,9 @@ const alertCases = {
 };
 export const signUpService = (
 	newUser: CurrentUserModel
-): Promise<ResponseUserModel> => {
+): Promise<ResponseModel> => {
 	let { password, confirmation, ...finalUser } = newUser;
+
 	return firebaseAuth
 		.createUserWithEmailAndPassword(newUser.email, newUser.password)
 		.then((response) => {
@@ -26,12 +27,11 @@ export const signUpService = (
 					type: "success",
 					text: "Haz creado tu cuenta satisfactoriomante.",
 				},
-				currentUser: finalUser,
-			};
+				data: { currentUser: finalUser },
+			} as ResponseModel;
 		})
 		.catch((error) => {
 			console.error(error);
-
 			return {
 				alert: {
 					type: "error",

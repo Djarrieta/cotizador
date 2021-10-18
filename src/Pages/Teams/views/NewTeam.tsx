@@ -1,14 +1,18 @@
+import { useContext } from "react";
+import { useHistory } from "react-router";
 import Button from "../../../GlobalComponents/Button";
+import { Context } from "../../../GlobalComponents/ContextProvider";
 import FieldText from "../../../GlobalComponents/FieldText";
 import Section from "../../../GlobalComponents/Section";
 import { useNewTeam } from "../hooks/useNewTeam";
 
 const NewTeam = () => {
 	const { data, setData, saveNewTeamData } = useNewTeam();
-
+	const history = useHistory();
+	const { currentUser } = useContext(Context);
 	return (
 		<>
-			<Section name="Equipo">
+			<Section name="Crear Nuevo Equipo">
 				<div className="flex flex-col-reverse my-6 sm:flex-row">
 					<div className="w-full px-6 pb-2 my-3s sm:w-1/2">
 						<FieldText
@@ -30,6 +34,11 @@ const NewTeam = () => {
 							onEnter={saveNewTeamData}
 						/>
 						<Button name="Guardar" handleFunction={saveNewTeamData} />
+						<Button
+							name="Cancelar"
+							handleFunction={() => history.push("/perfil/" + currentUser.uid)}
+							secondary={true}
+						/>
 					</div>
 				</div>
 			</Section>

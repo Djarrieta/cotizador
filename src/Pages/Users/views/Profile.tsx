@@ -1,15 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../../../App/components/ContextProvider";
 import Button from "../../../GlobalComponents/Button";
+import { Context } from "../../../GlobalComponents/ContextProvider";
+import Table from "../../../GlobalComponents/Table";
 import FieldText from "../../../GlobalComponents/FieldText";
 import IconDetail from "../../../GlobalComponents/icons/IconDetail";
 import IconTeam from "../../../GlobalComponents/icons/IconTeam";
 import IconUser from "../../../GlobalComponents/icons/IconUser";
 import Section from "../../../GlobalComponents/Section";
-import Table from "../../../GlobalComponents/Table";
-import TableData from "../../../GlobalComponents/TableData";
-import TableRow from "../../../GlobalComponents/TableRow";
 import useProfile from "../hooks/useProfile";
 
 const Profile = () => {
@@ -76,30 +74,32 @@ const Profile = () => {
 				buttonName="Agregar"
 				handleFunction={() => history.push("/equipo-nuevo")}
 			>
-				<Table>
-					{currentUser.teams &&
-						currentUser.teams.map((team) => {
-							return (
-								<TableRow key={team.teamId}>
-									<TableData>
-										<IconTeam />
-									</TableData>
-									<TableData>
-										<span>{team.teamId}</span>
-									</TableData>
-									<TableData>
-										<span>{team.role}</span>
-									</TableData>
-
-									<TableData>
-										<Link to={`/equipo/${team.teamId}`} className="h-full">
-											<IconDetail />
-										</Link>
-									</TableData>
-								</TableRow>
-							);
+				{currentUser.teams ? (
+					<Table
+						tableData={currentUser.teams.map((team) => {
+							return {
+								data: [
+									<IconTeam />,
+									<span>{team.teamId}</span>,
+									<span>{team.role}</span>,
+									<Link to={`/equipo/${team.teamId}`} className="h-1/2">
+										<IconDetail />
+									</Link>,
+								],
+								key: team.teamId,
+							};
 						})}
-				</Table>
+					/>
+				) : (
+					<div>
+						<p>
+							No tienes ningún equipo,{" "}
+							<span className="text-realced">
+								<Link to="/equipo-nuevo">Crea uno</Link>
+							</span>.
+						</p>
+					</div>
+				)}
 			</Section>
 		</>
 	);
