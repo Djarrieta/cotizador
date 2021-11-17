@@ -36,11 +36,10 @@ const Profile = () => {
 							label="Whatsapp"
 							value={data.whatsapp}
 							onChange={(e) => {
-								console.log(e.type);
 								setData({ ...data, whatsapp: e.target.value });
 							}}
 						/>
-						<Button name="Editar" handleFunction={saveUserData} />
+						<Button name="Guardar" handleFunction={saveUserData} />
 						<div className="w-1/2 text-left">
 							<Button
 								name="Cerrar sesión"

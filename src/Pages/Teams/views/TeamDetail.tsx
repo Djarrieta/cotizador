@@ -79,9 +79,14 @@ const TeamDetail = () => {
 								<IconUser />,
 								<span>{member.email}</span>,
 								<FieldSelect
-									selectedValue={member.role.toString()}
+									selectedValue={member.role}
 									options={Object.keys(Roles).map((role) => {
-										return { value:  role, render:Roles[role]};
+										return (
+											isNaN(parseInt(role)) && {
+												value: role,
+												render: Roles[role],
+											}
+										);
 									})}
 									handleChange={(event) => {
 										handleRoleChange(member.uid, Roles[event.target.value]);

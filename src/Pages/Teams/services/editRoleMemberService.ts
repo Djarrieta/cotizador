@@ -13,6 +13,7 @@ export const editRoleMemberService = (
 		.then(() => {
 			return {
 				alert: { type: "success", text: "Equipo editado con éxito." },
+				data: newMembersList
 			} as ResponseModel;
 		})
 		.catch((error) => {

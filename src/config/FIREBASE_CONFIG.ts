@@ -1,4 +1,4 @@
-export const firebaseConfig = {
+export const FIREBASE_CONFIG = {
   apiKey: "AIzaSyA8hieQpYMIz6KD1BVzq0QiXicLc_VuQeE",
   authDomain: "cotizador-2db51.firebaseapp.com",
   projectId: "cotizador-2db51",

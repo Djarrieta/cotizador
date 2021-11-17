@@ -41,9 +41,7 @@ export const useTeamDetail = () => {
 			setLoading(false);
 		});
 	}, [teamId, setLoading]);
-	useEffect(() => {
-		console.log(data);
-	}, [data]);
+	useEffect(() => {}, [data]);
 
 	const saveTeamData = async () => {
 		setLoading(true);
@@ -74,8 +72,11 @@ export const useTeamDetail = () => {
 		editSingleTeamService(newMemberData).then((response) => {
 			const newTeams =
 				!currentUser.teams || currentUser.teams.length === 0
-					? [{ teamId: data.teamId, role: Roles.Admin as Roles}]
-					: [...currentUser.teams , { teamId: data.teamId, role: Roles.Admin as Roles }];
+					? [{ teamId: data.teamId, role: Roles.Admin as Roles }]
+					: [
+							...currentUser.teams,
+							{ teamId: data.teamId, role: Roles.Admin as Roles },
+					  ];
 
 			setCurrentUser({
 				...currentUser,
@@ -94,39 +95,17 @@ export const useTeamDetail = () => {
 	};
 	const handleRoleChange = (selectedUid: string, newRole: Roles) => {
 		setLoading(true);
-		const newMemberList=data.members.map((el) => {
+		const newMemberList = data.members.map((el) => {
 			return el.uid === selectedUid ? { ...el, role: newRole } : el;
-		})
-
-		editRoleMemberService(data.teamId,newMemberList).then((response) => {
+		});
+		editRoleMemberService(data.teamId, newMemberList).then((response) => {
 			setAlert(response.alert);
 			setLoading(false);
-			history.push("/equipo/" + data.teamId);
-		});
-
-		/* 
-		const editedMembers = data.members.map((member) => {
-			return member.uid === selectedUid
-				? { uid: member.uid, role: newRole, email: member.email }
-				: member;
-		});
-
-		if (
-			editedMembers.filter((member) => member.role === Roles.Admin).length < 1
-		) {
-			setAlert({
-				type: "error",
-				text: "Debe haber por lo menos un Admin",
+			setData({
+				...data,
+				members: newMemberList,
 			});
-			setLoading(false);
-			return;
-		}
-
-		setData({ ...data, members: editedMembers });
-		editSingleTeamService(data).then((response) => {
-			setAlert(response.alert);
-			setLoading(false);
-		}); */
+		});
 	};
 	return {
 		teamId,
